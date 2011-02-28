@@ -4,21 +4,24 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>无标题文档</title>
 
-<script type="text/javascript"src="js/jquery-1.5.js"></script>
+<script type="text/javascript"src="js/jquery-1.5.min.js"></script>
 
 <script language="javascript">
 	
 	$(function(){
 		
+		alert($('.window').html());
+		
 		var jxhr = $.ajax({ url: "subPages/joinUs.html" })
 	
-	　　.success(function() { alert("success"); })
-	
-	　　.error(function() { alert("error"); })
-	
-	　　.complete(function() { alert("complete"); 
-	});
-	
+		　　.success(function() { alert("success"); })
+		
+		　　.error(function() { alert("error"); })
+		
+		　　.complete(function() { alert("complete"); 
+		
+		});
+			
 	});
 
 </script>
@@ -26,7 +29,7 @@
 </head>
 <body>
 	<div class="window">
-    	
+    	dsafafdsa
 	</div>
 </body>
 </html>
