@@ -12,7 +12,8 @@ $(function(){ // 页面整体效果
 	var $floor = $(".floor"); //底部
 	var $prev = $(".prev"); //上一页按钮
 	var $next = $(".next"); //下一页按钮
-	var $topMenus = $(".nav")//头部按钮
+	var $topMenus = $(".nav").find("a")//头部按钮
+	var $pages = $moveContainer.find(".page");
 	
 	var minW = 1024; //可视窗口最小宽度
 	var minH = 623; //可视窗口最小高度
@@ -23,30 +24,30 @@ $(function(){ // 页面整体效果
 	var runing = true;//是否正在滚动
 	var w=$(window).width(), h=$(window).height();
 	var containerH = h-$top.height()-$floor.height();
+	var subPageState = [];
 	
 	
-	$(".pageC").subPage();
-	$(".pageB").subPage({moveSize:235});
-	$(".pageD").subPage({moveSize:470});
+//	$(".pageC").subPage();
+//	$(".pageB").subPage({moveSize:235});
+//	$(".pageD").subPage({moveSize:470});
 	
-	$.ajax({
-		url:"subPages/joinUs.html",
-		type:'get',
-		dataType:'html',
-		success:function(text){
-			$(".pageE").html(text);
-		}
+	$pages.each(function(){
+		var stateIndex = parseInt($(this).attr("lang"));
+		subPageState[stateIndex] = true;
 	});
 	
-	$.ajax({
-		url:"subPages/about.html",
-		type:'get',
-		dataType:'html',
-		success:function(text){
-			$(".pageA").html(text);
+	//监听url hash值修改
+	$.router(function(hash) {
+		
+		if("" == hash || null == hash){
+			var hf = $topMenus.eq(0).attr("href");
+			hash = hf.substring(hf.indexOf("#")+1,hf.length);
 		}
+		
+		hashMovePage(hash);
+		
+		loadSubPage(hash);
 	});
-	
 	
 	//可视窗口大小
 	$(window).load(function(){windowSize();});
@@ -58,7 +59,7 @@ $(function(){ // 页面整体效果
 	
 	$moveContainer.find(".page").dblclick(function(){
 		currentPage = parseInt($(this).attr("lang"));
-		movePage(currentPage);
+		movePage();
 		$("*").blur();
 	});
 	
@@ -66,7 +67,7 @@ $(function(){ // 页面整体效果
 		if(runing){
 			currentPage -= 1;
 			if(currentPage < 0){currentPage = 0;}
-			else{movePage(currentPage);}
+			else{changeHref()}
 		}
 	});
 	
@@ -74,17 +75,47 @@ $(function(){ // 页面整体效果
 		if(runing){
 			currentPage += 1;
 			if(currentPage >= pageNum){currentPage = pageNum-1;}
-			else{movePage(currentPage);}
+			else{changeHref()}
 		}
 	});
 	
-	$topMenus.find("a").click(function(){
-		$(this).blur(); 
-		if(runing){
-			currentPage = parseInt($(this).attr("lang"));
-			movePage(currentPage);
+	function loadSubPage(hash){
+		var stateIndex = parseInt($("." + hash).parent().attr("lang"));
+		
+		if(subPageState[stateIndex]){
+			var subPageUrl = "subPages/"+ hash +".html"
+			$.ajax({
+				url: subPageUrl,
+				type:'get',
+				dataType:'html',
+				success:function(text){
+					
+					$("." + hash).html(text);
+					subPageState[stateIndex] = false;
+					
+				}
+			});
 		}
-	});
+	}
+	
+	function hashMovePage(hash){
+		$topMenus.each(function(){
+			var url = $(this).attr("href");
+			var target = url.substring(url.indexOf("#")+1);
+			
+			if(target == hash){
+				$(this).blur(); 
+				currentPage = parseInt($(this).attr("lang"));
+				movePage();
+			}
+		});
+	}
+	
+	function changeHref(){
+		//var href = document.location.href;
+		//var target = href.substring(0,href.indexOf("#"));
+		document.location.href = $topMenus.eq(currentPage).attr("href");
+	}
 	
 	function windowSize(){
 		w = $(window).width(); 
@@ -110,17 +141,19 @@ $(function(){ // 页面整体效果
 	$prev.css({left:$(window).scrollLeft(),top:containerH/2+$top.height()-$prev.height()/2});
 	$next.css({left:$(window).width()-$next.width()+$(window).scrollLeft(),top:containerH/2+$top.height()-$prev.height()/2});
 	
-	function movePage(index){
+	function movePage(){
 		runing = false;
 		w = $(window).width(); 
 		if(w < minW){w = minW;}
 		var flashBgMoveSize = ($flashBg.width()-w)/pageNum;
-		if(index == pageNum-1){
+		if(currentPage == pageNum-1){
 			$moveContainer.animate({left:-(pageW*pageNum-w)},1000,function(){menuCss();});
 		}else{
-			$moveContainer.animate({left:-index*pageW},1000,function(){menuCss();});
+			$moveContainer.animate({left:-currentPage*pageW},1000,function(){menuCss();});
 		}
-		$flashBg.animate({left:-flashBgMoveSize*index},1000);
+		
+		$flashBg.animate({left:-flashBgMoveSize*currentPage},1000);
+		
 	}
 	
 	function menuCss(){
@@ -134,7 +167,7 @@ $(function(){ // 页面整体效果
 			$prev.attr({"class":"prev prev-hover"});
 			$next.attr({"class":"next next-hover"});
 		}
-		$topMenus.find("a").eq(currentPage).removeClass().addClass("nav-hover").siblings().removeClass().addClass("nav-out");
+		$topMenus.eq(currentPage).removeClass().addClass("nav-hover").siblings().removeClass().addClass("nav-out");
 		runing = true;
 	}
 	
