@@ -13,6 +13,20 @@ $(function(){ // 页面整体效果
 	var $prev = $(".prev"); //上一页按钮
 	var $next = $(".next"); //下一页按钮
 	var $topMenus = $(".nav").find("a")//头部按钮
+	
+	var buildPages = $topMenus.each(function(index){
+		var hf = $(this).attr("href");
+		var name = hf.substring(hf.indexOf("#")+1,hf.length);
+		
+		var p = $('<div class="page"><div class="pageContainer"></div></div>');
+		p.find(".pageContainer").addClass(name);
+		$moveContainer.append(p);
+		
+		$(this).data("pageInfo",{num:index,name:name,state:true});
+		p.data("pageInfo",{num:index,name:name,state:true});
+		
+	});
+	
 	var $pages = $moveContainer.find(".page");
 	
 	var minW = 1024; //可视窗口最小宽度
@@ -21,69 +35,51 @@ $(function(){ // 页面整体效果
 	var pageH = $(".page").outerHeight();//滚动页面高度
 	var pageW = $(".page").outerWidth();
 	var currentPage = 0; //当前页
-	var runing = true;//是否正在滚动
 	var w=$(window).width(), h=$(window).height();
 	var containerH = h-$top.height()-$floor.height();
-	var subPageState = [];
-	
-	
-//	$(".pageC").subPage();
-//	$(".pageB").subPage({moveSize:235});
-//	$(".pageD").subPage({moveSize:470});
-	
-	$pages.each(function(){
-		var stateIndex = parseInt($(this).attr("lang"));
-		subPageState[stateIndex] = true;
-	});
 	
 	//监听url hash值修改
 	$.router(function(hash) {
 		
 		if("" == hash || null == hash){
-			var hf = $topMenus.eq(0).attr("href");
-			hash = hf.substring(hf.indexOf("#")+1,hf.length);
+			hash = $topMenus.eq(0).data("pageInfo").name;
 		}
 		
-		hashMovePage(hash);
-		
 		loadSubPage(hash);
+		
 	});
 	
 	//可视窗口大小
 	$(window).load(function(){windowSize();});
 	$(window).resize(function(){windowSize();});
+	
 	$(window).scroll(function(){
 		$next.animate({left:$(window).width()-$next.width()+$(window).scrollLeft()},{queue:false},10);	
 		$prev.animate({left:$(window).scrollLeft()},{queue:false},10);	
 	});
 	
-	$moveContainer.find(".page").dblclick(function(){
-		currentPage = parseInt($(this).attr("lang"));
-		movePage();
-		$("*").blur();
-	});
-	
 	$prev.click(function(){
-		if(runing){
-			currentPage -= 1;
-			if(currentPage < 0){currentPage = 0;}
-			else{changeHref()}
-		}
+		currentPage -= 1;
+		
+		if(currentPage < 0){currentPage = 0;}
+		else{changeHref()}
+		
 	});
 	
 	$next.click(function(){
-		if(runing){
-			currentPage += 1;
-			if(currentPage >= pageNum){currentPage = pageNum-1;}
-			else{changeHref()}
-		}
+		currentPage += 1;
+		
+		if(currentPage >= pageNum){currentPage = pageNum-1;}
+		else{changeHref()}
+		
 	});
 	
 	function loadSubPage(hash){
-		var stateIndex = parseInt($("." + hash).parent().attr("lang"));
+		var p = $("." + hash).parent();
 		
-		if(subPageState[stateIndex]){
+		if(p.data("pageInfo").state){
 			var subPageUrl = "subPages/"+ hash +".html"
+			
 			$.ajax({
 				url: subPageUrl,
 				type:'get',
@@ -91,29 +87,33 @@ $(function(){ // 页面整体效果
 				success:function(text){
 					
 					$("." + hash).html(text);
-					subPageState[stateIndex] = false;
+					p.data("pageInfo",{state:false});
+					hashMovePage(hash);
 					
 				}
 			});
+			
+		}else{
+			hashMovePage(hash);
 		}
 	}
 	
 	function hashMovePage(hash){
+		
 		$topMenus.each(function(){
-			var url = $(this).attr("href");
-			var target = url.substring(url.indexOf("#")+1);
+			var target = $(this).data("pageInfo").name;
 			
 			if(target == hash){
 				$(this).blur(); 
-				currentPage = parseInt($(this).attr("lang"));
+				currentPage = $(this).data("pageInfo").num;
 				movePage();
 			}
+			
 		});
+		
 	}
 	
 	function changeHref(){
-		//var href = document.location.href;
-		//var target = href.substring(0,href.indexOf("#"));
 		document.location.href = $topMenus.eq(currentPage).attr("href");
 	}
 	
@@ -132,9 +132,11 @@ $(function(){ // 页面整体效果
 		$floor.width(w);
 		$prev.animate({left:$(window).scrollLeft(),top:containerH/2+$top.height()-$prev.height()/2},{queue:false},10);
 		$next.animate({left:$(window).width()-$next.width()+$(window).scrollLeft(),top:containerH/2+$top.height()-$prev.height()/2},{queue:false},10);
+		
 		if(($flashBg.width() + $flashBg.offset().left) < w){
 			$flashBg.css({left:-($flashBg.width()-w)});
 		}
+		
 		$("#bgFlash").height(h);
 	}
 	
@@ -142,10 +144,12 @@ $(function(){ // 页面整体效果
 	$next.css({left:$(window).width()-$next.width()+$(window).scrollLeft(),top:containerH/2+$top.height()-$prev.height()/2});
 	
 	function movePage(){
-		runing = false;
+		$moveContainer.stop();
+		$flashBg.stop();
 		w = $(window).width(); 
 		if(w < minW){w = minW;}
 		var flashBgMoveSize = ($flashBg.width()-w)/pageNum;
+		
 		if(currentPage == pageNum-1){
 			$moveContainer.animate({left:-(pageW*pageNum-w)},1000,function(){menuCss();});
 		}else{
@@ -167,6 +171,7 @@ $(function(){ // 页面整体效果
 			$prev.attr({"class":"prev prev-hover"});
 			$next.attr({"class":"next next-hover"});
 		}
+		
 		$topMenus.eq(currentPage).removeClass().addClass("nav-hover").siblings().removeClass().addClass("nav-out");
 		runing = true;
 	}
@@ -178,11 +183,13 @@ $(function(){ // 页面整体效果
 	
 	$(document).keydown(function(event){
 		mousePosition = "";
+		
 		if(event.keyCode == 37 || event.keyCode == 38 ){
 			$prev.click();
 		}else if(event.keyCode == 39 || event.keyCode == 40 ){
 			$next.click();
 		}
+		
 	}).keyup(function(){
 		
 	});
@@ -203,12 +210,19 @@ $.fn.subPage = function(options) { //subPage --ajax --title
 	var aW = ($subNav.width()-15*pageSize)/pageSize;
 	var path = $subNav.find("a:first").attr("_action");
 	
+	$subNav.find("a").each(function(i){
+		
+		$(this).data("pageInfo",{num: i});
+		
+	});
+	
 	slideDirMove();
 	loadSubContainer(path);
+	
 	$subNav.find("a").mouseout(function(){
 		navCss();
 	}).click(function(){
-		index = parseInt($(this).attr("lang"));
+		index = $(this).data("pageInfo").num;
 		path = $(this).attr("_action");
 		slideDirMove();
 	});
@@ -229,15 +243,18 @@ $.fn.subPage = function(options) { //subPage --ajax --title
 	function slideDirMove(){
 		$slideDir.animate({left:aW/2+index*opts.moveSize-2},500,function(){
 			navCss();
+			
 			if(path != ""){
 				loadSubContainer(path);
 			}
+			
 		});
 	}
 
 	function navCss(){
 		$subNav.find("a").eq(index).removeClass().addClass("subNav-hover").siblings().removeClass().addClass("subNav-out");
 	}
+	
 };
 $.fn.subPage.defaults = {
 	moveSize: 190
@@ -314,6 +331,7 @@ $.fn.roll = function(options) {
 	}
 	
 	$window.css({'position':'relative','overflow':'hidden'});
+	
 	if(dir == 'left'){
 		container.css({'position':'absolute','width':pagers*options.scrollAmount});
 		items.css({'float':'left'});
@@ -321,9 +339,11 @@ $.fn.roll = function(options) {
 		container.css({'position':'absolute','height':pagers*options.scrollAmount});
 	
 	var b;
+	
 	if(options.prevID != 'no'){
 		$prev.hover(function(){clearInterval(intervalTime);},
 									function(){setIntervalAgain();})
+		
 		$prev.click(function(){
 			$(this).blur();
 			clearInterval(intervalTime);
@@ -334,9 +354,11 @@ $.fn.roll = function(options) {
 			ShowAD(index);
 		});
 	}	
+	
 	if(options.nextID != 'no'){
 		$next.hover(function(){clearInterval(intervalTime);},
 									function(){setIntervalAgain();})
+		
 		$next.click(function(){
 			$(this).blur(); 
 			clearInterval(intervalTime);
@@ -351,6 +373,7 @@ $.fn.roll = function(options) {
 	if(options.listID != 'no'){
 		listItems.each(function(){
 			var items = $(this).find(options.listTab);
+			
 			if(options.touchList == 'hover'){
 				items.hover(function(){
 					if(intervalTime){
@@ -364,6 +387,7 @@ $.fn.roll = function(options) {
 					clearInterval(intervalTime);
 					setIntervalAgain();
 				});
+				
 			}else{
 				items.click(function(){
 					if(intervalTime){
@@ -380,13 +404,18 @@ $.fn.roll = function(options) {
 			}
 		});
 	}
+	
 	items.hover(function(){
+		
 		if(intervalTime){
 			clearInterval(intervalTime);
 		}
+		
 	},function(){
+		
 		clearInterval(intervalTime);
 		setIntervalAgain();
+		
 	});
 	
 	var intervalTime;
@@ -394,11 +423,13 @@ $.fn.roll = function(options) {
 	
 	if(options.listID != 'no' && options.listHoverCss != 'no' && options.listOutCss != 'no'){
 		changeListClass(0);
+		
 		listItems.find(options.listTab).hover(function(){
 			$(this).addClass(options.listHoverCss).removeClass(options.listOutCss);
 		},function(){
 			changeListClass(index);
 		});
+		
 	}
 	
 	var ShowAD=function(i){
@@ -412,7 +443,6 @@ $.fn.roll = function(options) {
 				changeListClass(i);
 				changeCss();
 			});
-			
 	};
 	
 	function changeCss(){
@@ -434,27 +464,35 @@ $.fn.roll = function(options) {
 		if(options.listID != 'no' && options.listHoverCss != 'no' && options.listOutCss != 'no'){
 			listItems.each(function(){
 				var items = $(this).find(options.listTab);
+				
 				items.each(function(p){
+					
 					if(p == i){
 						$(this).addClass(options.listHoverCss).removeClass(options.listOutCss);
 					}else{
 						$(this).addClass(options.listOutCss).removeClass(options.listHoverCss);
 					}
+					
 				});
+				
 			});
 		}
 	}
 	
 	function setIntervalAgain(){
 		if(options.timer!=0){
+			
 			intervalTime= setInterval(function(){
 				ShowAD(index);
 				index++;
 				b = true;
+				
 				if(index==pagers){
 					index=0;
 				}
+				
 			},options.timer);
+			
 		}
 	}
 };
