@@ -65,7 +65,7 @@ $(function(){ // 页面整体效果
 		range: "min",
 		value: 60,
 		min: 1,
-		max: pageW * (pageNum-1),
+		max: pageW * pageNum- $(window).width(),
 		slide: function( event, ui ) {
 			$moveContainer.css({left:-ui.value});
 			var flashMoveSize = $flashBg.width() / (pageW * (pageNum*2+2)) * ui.value;
@@ -185,13 +185,18 @@ $(function(){ // 页面整体效果
 			var flashBgMoveSize = ($flashBg.width()-w)/pageNum;
 			
 			if(currentPage == pageNum-1){
-				$moveContainer.animate({left:-(pageW*pageNum-w)},1000,function(){
+				$moveContainer.animate({left:-(pageW*pageNum-w)},{
+				duration: 1000,
+				step: function(){
 					changeSideValue();
-				});
+				}});
+				
 			}else{
-				$moveContainer.animate({left:-currentPage*pageW},1000,function(){
+				$moveContainer.animate({left:-currentPage*pageW},{
+				duration: 1000,
+				step: function(){
 					changeSideValue();
-				});
+				}});
 			}
 			
 			$flashBg.animate({left:-flashBgMoveSize*currentPage},1000);
@@ -199,11 +204,11 @@ $(function(){ // 页面整体效果
 	}
 	
 	function changeSideValue(){
-		if(currentPage == 0){
-			$scrollbar.slider({value: 60});	
-		}else{
-			$scrollbar.slider({value: Math.abs($moveContainer.offset().left)});	
-		}
+		var lt = Math.abs($moveContainer.offset().left);
+		
+		if(lt < 60){lt = 60}
+		
+		$scrollbar.slider({value: lt});	
 	}
 	
 	function menuCss(){
