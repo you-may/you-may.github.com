@@ -39,6 +39,7 @@ $(function(){ // 页面整体效果
 	var w=$(window).width(), h=$(window).height();
 	var containerH = h-$top.height()-$floor.height();
 	var isSide = false;
+	var locationHref;
 	
 	//监听url hash值修改
 	$.router(function(hash) {
@@ -47,6 +48,7 @@ $(function(){ // 页面整体效果
 			hash = $topMenus.eq(0).data("pageInfo").name;
 		}
 		
+		locationHref = hash;
 		loadSubPage(hash);
 		
 	});
@@ -73,7 +75,11 @@ $(function(){ // 页面整体效果
 			
 			currentPage = Math.round(ui.value / pageW);
 			
-			window.location.href = "#" + $topMenus.eq(currentPage).data("pageInfo").name;
+			var hashName = $topMenus.eq(currentPage).data("pageInfo").name;
+			if(!locationHref == hashName){
+				window.location.href = "#" + hashName;
+				locationHref = hashName;
+			}
 			
 		},
 		start: function(event,ui) {
