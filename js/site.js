@@ -76,9 +76,9 @@ $(function(){ // 页面整体效果
 			currentPage = Math.round(ui.value / pageW);
 			
 			var hashName = $topMenus.eq(currentPage).data("pageInfo").name;
-			if(!locationHref == hashName){
+			//alert(locationHref == hashName);
+			if(locationHref != hashName){
 				window.location.href = "#" + hashName;
-				locationHref = hashName;
 			}
 			
 		},
