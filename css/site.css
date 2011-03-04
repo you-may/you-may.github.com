@@ -97,6 +97,13 @@
 	_filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src="images/menu_hover.png" ,sizingMethod="crop"); 
 }
 
+.mainSlider{
+	position:absolute;
+	top: -20px;
+	left: 50px;
+	z-index:10000;
+}
+
 .floor{
 	height:49px;
 	background:#39aee7 url(../images/floor.jpg) repeat-x;

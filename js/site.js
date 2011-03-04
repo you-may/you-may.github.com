@@ -12,7 +12,8 @@ $(function(){ // 页面整体效果
 	var $floor = $(".floor"); //底部
 	var $prev = $(".prev"); //上一页按钮
 	var $next = $(".next"); //下一页按钮
-	var $topMenus = $(".nav").find("a")//头部按钮
+	var $topMenus = $(".nav").find("a");//头部按钮
+	var $scrollbar = $(".mainSlider");
 	
 	var buildPages = $topMenus.each(function(index){
 		var hf = $(this).attr("href");
@@ -37,6 +38,7 @@ $(function(){ // 页面整体效果
 	var currentPage = 0; //当前页
 	var w=$(window).width(), h=$(window).height();
 	var containerH = h-$top.height()-$floor.height();
+	var isSide = false;
 	
 	//监听url hash值修改
 	$.router(function(hash) {
@@ -56,6 +58,30 @@ $(function(){ // 页面整体效果
 	$(window).scroll(function(){
 		$next.animate({left:$(window).width()-$next.width()+$(window).scrollLeft()},{queue:false},10);	
 		$prev.animate({left:$(window).scrollLeft()},{queue:false},10);	
+	});
+	
+	// 拖动条
+	$scrollbar.slider({
+		range: "min",
+		value: 60,
+		min: 1,
+		max: pageW * (pageNum-1),
+		slide: function( event, ui ) {
+			$moveContainer.css({left:-ui.value});
+			var flashMoveSize = $flashBg.width() / (pageW * (pageNum*2+2)) * ui.value;
+			$flashBg.css({left:-flashMoveSize});
+			
+			currentPage = Math.round(ui.value / pageW);
+			
+			window.location.href = "#" + $topMenus.eq(currentPage).data("pageInfo").name;
+			
+		},
+		start: function(event,ui) {
+			isSide = true;
+		},
+		stop: function(event,ui) {
+			isSide = false;
+		}
 	});
 	
 	$prev.click(function(){
@@ -87,7 +113,9 @@ $(function(){ // 页面整体效果
 				success:function(text){
 					
 					$("." + hash).html(text);
+					
 					p.data("pageInfo",{state:false});
+					
 					hashMovePage(hash);
 					
 				}
@@ -121,6 +149,9 @@ $(function(){ // 页面整体效果
 		w = $(window).width(); 
 		h = $(window).height();
 		var moveMargin = 0;
+		
+		$scrollbar.css({width:w - 100,top:h-70});
+		
 		if(w < minW){w = minW;}
 		if(h < minH){h = minH;}
 		containerH = h-$top.height()-$floor.height();
@@ -144,36 +175,52 @@ $(function(){ // 页面整体效果
 	$next.css({left:$(window).width()-$next.width()+$(window).scrollLeft(),top:containerH/2+$top.height()-$prev.height()/2});
 	
 	function movePage(){
-		$moveContainer.stop();
-		$flashBg.stop();
-		w = $(window).width(); 
-		if(w < minW){w = minW;}
-		var flashBgMoveSize = ($flashBg.width()-w)/pageNum;
+		menuCss();
 		
-		if(currentPage == pageNum-1){
-			$moveContainer.animate({left:-(pageW*pageNum-w)},1000,function(){menuCss();});
-		}else{
-			$moveContainer.animate({left:-currentPage*pageW},1000,function(){menuCss();});
+		if(!isSide){
+			$moveContainer.stop();
+			$flashBg.stop();
+			w = $(window).width(); 
+			if(w < minW){w = minW;}
+			var flashBgMoveSize = ($flashBg.width()-w)/pageNum;
+			
+			if(currentPage == pageNum-1){
+				$moveContainer.animate({left:-(pageW*pageNum-w)},1000,function(){
+					changeSideValue();
+				});
+			}else{
+				$moveContainer.animate({left:-currentPage*pageW},1000,function(){
+					changeSideValue();
+				});
+			}
+			
+			$flashBg.animate({left:-flashBgMoveSize*currentPage},1000);
 		}
-		
-		$flashBg.animate({left:-flashBgMoveSize*currentPage},1000);
-		
+	}
+	
+	function changeSideValue(){
+		if(currentPage == 0){
+			$scrollbar.slider({value: 60});	
+		}else{
+			$scrollbar.slider({value: Math.abs($moveContainer.offset().left)});	
+		}
 	}
 	
 	function menuCss(){
-		if(currentPage == 0){
+		if(currentPage < 1){
 			$prev.attr({"class":"prev prev-out"});
 			$next.attr({"class":"next next-hover"});
+			
 		}else if(currentPage == pageNum-1){
 			$next.attr({"class":"next next-out"});
 			$prev.attr({"class":"prev prev-hover"});
+			
 		}else{
 			$prev.attr({"class":"prev prev-hover"});
 			$next.attr({"class":"next next-hover"});
 		}
 		
 		$topMenus.eq(currentPage).removeClass().addClass("nav-hover").siblings().removeClass().addClass("nav-out");
-		runing = true;
 	}
 	
 	// background flash
@@ -266,7 +313,7 @@ $.fn.subPage.setDefaults = function(settings) {
 /************************** imgFace **************************/
 
 $.fn.imgFace = function(options) { //imgFace
-	var opts = $.extend({}, $.fn.subPage.defaults, options);
+	var opts = $.extend({}, $.fn.imgFace.defaults, options);
 	
 	var $imgCtn = $(this);
 	var $img = $(this).find("img");
@@ -516,6 +563,8 @@ $.fn.roll.defaults = {
 $.fn.roll.setDefaults = function(settings) {
     $.extend($.fn.roll.defaults, settings);
 };
+
+
 
 
 
