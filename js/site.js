@@ -5,12 +5,13 @@
 $.fn.modalWindow = function(options) { //imgFace
 	var opts = $.extend({}, $.fn.modalWindow.defaults, options);
 	
-	alert("in");
 	var $context = $(this);
 	var minW = 1024; 
 	var minH = 623; 
 	
 	var $windowBg = $("<div></div>").css({
+					width:"100%",
+					height:"100%",
 					opacity:0.5,
 					zIndex:10001,
 					position:"absolute",
@@ -19,6 +20,8 @@ $.fn.modalWindow = function(options) { //imgFace
 					});
 					
 	var $window = $("<div></div>").css({
+					width:"100%",
+					height:"100%",
 					zIndex:10002,
 					position:"absolute",
 					top:0,
@@ -33,9 +36,15 @@ $.fn.modalWindow = function(options) { //imgFace
 					verticalAlign: "middle"
 					});
 					
+	$window.click(function(){
+		$window.hide();
+		$windowBg.hide();
+	});
+					
 	$window.append($container);
 	$("body").append($windowBg,$window);
 	
+	resize();
 	$(window).load(function(){resize();});
 	$(window).resize(function(){resize();});
 	$(window).scroll(function(){resize();});
@@ -45,8 +54,9 @@ $.fn.modalWindow = function(options) { //imgFace
 		if(w < minW){w = minW;}
 		if(h < minH){h = minH;}
 		
-		$windowBg.css({width:w,height:h})
-		$window.css({width:w,height:h})
+		$windowBg.css({width:w,height:h});
+		$window.css({width:w,height:h});
+		$container.css({marginTop: (h - $container.height())/2});
 	}
 };
 $.fn.modalWindow.defaults = {
@@ -360,21 +370,17 @@ $(function(){ // 页面整体效果
 		$topMenus.eq(currentPage).removeClass().addClass("nav-hover").siblings().removeClass().addClass("nav-out");
 	}
 	
-	init($("body"));
 	
-	function init(context){
-		context.find("[_actionType]").each(function(){
-			var actionObj = $(this);
-			var actionType = actionObj.attr("_actionType");
-			var action = actionObj.attr("_action");
-			
-			switch(actionType) {
-				case "dialog":
-					actionObj.live("click", function(event) {
-						actionObj.modalWindow();
-					});
-					break;
-			}
+	$("[_actionType='dialog']").live("click",function(){$(this).modalWindow();});
+	
+	init();
+	
+	function init(){
+		var dialogObj = $("[_actionType='dialog']");
+		
+		dialogObj.die("click");
+		dialogObj.live("click",function(){
+			$(this).modalWindow();
 		});
 	}
 	
