@@ -29,6 +29,7 @@ $(function(){ // 页面整体效果
 	});
 	
 	var $pages = $moveContainer.find(".page");
+	var $autoLoadPage = $pages.eq(0);
 	
 	
 	var navigatorName = "Microsoft Internet Explorer";  
@@ -39,6 +40,7 @@ $(function(){ // 页面整体效果
 	
 	var minW = 1024; //可视窗口最小宽度
 	var minH = 623; //可视窗口最小高度
+	var autoLoadTime = 2000;
 	var firstLoad = 0;
 	var duration = 1000;
 	var pageNum = $container.find(".page").size(); //滚动页数 
@@ -61,6 +63,10 @@ $(function(){ // 页面整体效果
 		loadSubPage(hash);
 		
 	});
+	
+	var autoLoadSubPage = setTimeout(function(){
+		autoLoadPage();
+	},autoLoadTime);
 	
 	//可视窗口大小
 	$(window).load(function(){windowSize();});
@@ -114,13 +120,47 @@ $(function(){ // 页面整体效果
 		
 	});
 	
+	function autoLoadPage(){
+	//alert($autoLoadPage.data("pageInfo").name +" "+ $autoLoadPage.data("pageInfo").state);
+	//alert($autoLoadPage.html());
+		if(!$autoLoadPage.size() > 0){
+			clearTimeout(autoLoadSubPage);
+			return;
+		}
+		
+		if(!$autoLoadPage.data("pageInfo").state){
+			$autoLoadPage = $autoLoadPage.next();
+			autoLoadPage();
+			
+		}else{
+			var url = $autoLoadPage.data("pageInfo").name;
+			loadByParameter($autoLoadPage,url,false);
+			$autoLoadPage = $autoLoadPage.next();
+		}
+	}
+	
 	function loadSubPage(hash){
 		var p = $("." + hash).parent();
-		//var nextP = $pages.eq(p.data("pageInfo").num + 1);
-		//alert(nextP.html());
+		var prevP = p.prev();
+		var nextP = p.next();
 		
-		if(p.data("pageInfo").state){
-			var subPageUrl = "subPages/"+ hash +".html"
+		loadByParameter(p,hash,true);
+		
+		if(prevP.size() > 0){
+			var url = prevP.data("pageInfo").name;
+			loadByParameter(prevP,url,false);
+		}
+		
+		if(nextP.size() > 0){
+			var url = nextP.data("pageInfo").name;
+			loadByParameter(nextP,url,false);
+		}
+		
+	}
+	
+	function loadByParameter(subPageObj,url,crtPage){
+		if(subPageObj.data("pageInfo").state){
+			var subPageUrl = "subPages/"+ url +".html"
 			
 			$.ajax({
 				url: subPageUrl,
@@ -128,35 +168,21 @@ $(function(){ // 页面整体效果
 				dataType:'html',
 				success:function(text){
 					
-					$("." + hash).html(text);
+					$("." + url).html(text);
 					
-					p.data("pageInfo",{state:false});
+					subPageObj.data("pageInfo",{state:false});
 					
-					hashMovePage(hash);
-					
+					if(crtPage){
+						hashMovePage(url);
+					}
 				}
 			});
 			
 		}else{
-			hashMovePage(hash);
+			if(crtPage){
+				hashMovePage(url);
+			}
 		}
-		
-		//if(nextP.data("pageInfo").state && nextP.size() > 0){
-		//	var pName = nextP.data("pageInfo").name;
-		//	var subPageUrl = "subPages/"+ pName +".html"
-			
-		//	$.ajax({
-		//		url: subPageUrl,
-		//		type:'get',
-		//		dataType:'html',
-		//		success:function(text){
-		//			$("." + pName).html(text);
-					
-		//			nextP.data("pageInfo",{state:false});
-		//		}
-		//	});
-			
-		//}
 	}
 	
 	function hashMovePage(hash){
