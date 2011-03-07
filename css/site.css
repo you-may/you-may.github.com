@@ -102,6 +102,11 @@
 	top: -20px;
 	left: 50px;
 	z-index:10000;
+	cursor: pointer;
+}
+
+.ui-slider-handle{
+	cursor: pointer;
 }
 
 .floor{

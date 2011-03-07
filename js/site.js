@@ -30,8 +30,17 @@ $(function(){ // 页面整体效果
 	
 	var $pages = $moveContainer.find(".page");
 	
+	
+	var navigatorName = "Microsoft Internet Explorer";  
+	var isIE = false;  
+		if( navigator.appName == navigatorName ){  
+		isIE = true;      
+	} 
+	
 	var minW = 1024; //可视窗口最小宽度
 	var minH = 623; //可视窗口最小高度
+	var firstLoad = 0;
+	var duration = 1000;
 	var pageNum = $container.find(".page").size(); //滚动页数 
 	var pageH = $(".page").outerHeight();//滚动页面高度
 	var pageW = $(".page").outerWidth();
@@ -65,7 +74,7 @@ $(function(){ // 页面整体效果
 	// 拖动条
 	$scrollbar.slider({
 		range: "min",
-		value: 60,
+		value: 1,
 		min: 1,
 		max: pageW * pageNum- $(window).width(),
 		slide: function( event, ui ) {
@@ -76,7 +85,6 @@ $(function(){ // 页面整体效果
 			currentPage = Math.round(ui.value / pageW);
 			
 			var hashName = $topMenus.eq(currentPage).data("pageInfo").name;
-			//alert(locationHref == hashName);
 			if(locationHref != hashName){
 				window.location.href = "#" + hashName;
 			}
@@ -108,6 +116,8 @@ $(function(){ // 页面整体效果
 	
 	function loadSubPage(hash){
 		var p = $("." + hash).parent();
+		//var nextP = $pages.eq(p.data("pageInfo").num + 1);
+		//alert(nextP.html());
 		
 		if(p.data("pageInfo").state){
 			var subPageUrl = "subPages/"+ hash +".html"
@@ -130,6 +140,23 @@ $(function(){ // 页面整体效果
 		}else{
 			hashMovePage(hash);
 		}
+		
+		//if(nextP.data("pageInfo").state && nextP.size() > 0){
+		//	var pName = nextP.data("pageInfo").name;
+		//	var subPageUrl = "subPages/"+ pName +".html"
+			
+		//	$.ajax({
+		//		url: subPageUrl,
+		//		type:'get',
+		//		dataType:'html',
+		//		success:function(text){
+		//			$("." + pName).html(text);
+					
+		//			nextP.data("pageInfo",{state:false});
+		//		}
+		//	});
+			
+		//}
 	}
 	
 	function hashMovePage(hash){
@@ -188,32 +215,46 @@ $(function(){ // 页面整体效果
 			$flashBg.stop();
 			w = $(window).width(); 
 			if(w < minW){w = minW;}
+			
+			if(isIE && firstLoad < 2){
+				duration = 0;
+			}else if(!isIE && firstLoad < 1){
+				duration = 0;
+			}else{
+				duration =1000;
+			}
+			firstLoad = firstLoad > 2 ? 2 : firstLoad += 1;
+		
 			var flashBgMoveSize = ($flashBg.width()-w)/pageNum;
 			
 			if(currentPage == pageNum-1){
 				$moveContainer.animate({left:-(pageW*pageNum-w)},{
-				duration: 1000,
+				duration: duration,
 				step: function(){
+					changeSideValue();
+				},
+				complete:function(){
 					changeSideValue();
 				}});
 				
 			}else{
 				$moveContainer.animate({left:-currentPage*pageW},{
-				duration: 1000,
+				duration: duration,
 				step: function(){
+					changeSideValue();
+				},
+				complete:function(){
 					changeSideValue();
 				}});
 			}
 			
-			$flashBg.animate({left:-flashBgMoveSize*currentPage},1000);
+			$flashBg.animate({left:-flashBgMoveSize*currentPage},duration);
+			
 		}
 	}
 	
 	function changeSideValue(){
 		var lt = Math.abs($moveContainer.offset().left);
-		
-		if(lt < 60){lt = 60}
-		
 		$scrollbar.slider({value: lt});	
 	}
 	
