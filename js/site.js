@@ -1,6 +1,67 @@
 
 
-/************************** 页面整体效果**************************/
+/************************** 模式页面 **************************/
+
+$.fn.modalWindow = function(options) { //imgFace
+	var opts = $.extend({}, $.fn.modalWindow.defaults, options);
+	
+	var $context = $(this);
+	var minW = 1024; 
+	var minH = 623; 
+	
+	var $windowBg = $("<div></div>").css({
+					opacity:0.5,
+					zIndex:10001,
+					position:"absolute",
+					background:"red",
+					top:0
+					});
+					
+	var $window = $("<div></div>").css({
+					zIndex:10002,
+					position:"absolute",
+					top:0,
+					textAlign:"center"
+					});
+					
+	var $container = $("<div>ddd</div>").css({
+					width:opts.contextW,
+					height:opts.contextH,
+					margin:"auto auto",
+					background:"blue",
+					verticalAlign: "middle"
+					});
+					
+	$window.append($container);
+	$("body").append($windowBg,$window);
+	
+	
+	
+	$(window).load(function(){resize();});
+	$(window).resize(function(){resize();});
+	$(window).scroll(function(){resize();});
+	
+	function resize(){
+		var w=$(window).width(), h=$(window).height();
+		if(w < minW){w = minW;}
+		if(h < minH){h = minH;}
+		
+		$windowBg.css({width:w,height:h})
+		$window.css({width:w,height:h})
+	}
+};
+$.fn.modalWindow.defaults = {
+	contextW: 950,
+	contextH: 480
+};
+$.fn.modalWindow.setDefaults = function(settings) {
+    $.extend($.fn.modalWindow.defaults, settings);
+};
+
+
+
+
+/************************** 页面整体效果 **************************/
 
 $(function(){ // 页面整体效果
 	var $window = $(".window");//可视窗口
@@ -27,6 +88,7 @@ $(function(){ // 页面整体效果
 		p.data("pageInfo",{num:index,name:name,state:true});
 		
 	});
+	
 	
 	var $pages = $moveContainer.find(".page");
 	var $autoLoadPage = $pages.eq(0);
@@ -297,6 +359,25 @@ $(function(){ // 页面整体效果
 		}
 		
 		$topMenus.eq(currentPage).removeClass().addClass("nav-hover").siblings().removeClass().addClass("nav-out");
+	}
+	
+	function init(context){
+		context = $(context);
+		
+		context.find("[_actionType]").each(function(){
+			var actionObj = $(this);
+			var actionType = actionObj.attr("_actionType");
+			var action = actionObj.attr("_action");
+			
+			switch(actionType) {
+				case "dialog":
+					actionObj.unbind("click");
+					actionObj.bind("click", function(event) {
+						
+					});
+					break;
+			}
+		});
 	}
 	
 	// background flash
