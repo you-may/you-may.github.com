@@ -363,8 +363,6 @@ $(function(){ // 页面整体效果
 	init($("body"));
 	
 	function init(context){
-		context = $(context);
-		
 		context.find("[_actionType]").each(function(){
 			var actionObj = $(this);
 			var actionType = actionObj.attr("_actionType");
@@ -372,8 +370,7 @@ $(function(){ // 页面整体效果
 			
 			switch(actionType) {
 				case "dialog":
-					actionObj.unbind("click");
-					actionObj.bind("click", function(event) {
+					actionObj.live("click", function(event) {
 						actionObj.modalWindow();
 					});
 					break;
