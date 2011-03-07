@@ -5,6 +5,7 @@
 $.fn.modalWindow = function(options) { //imgFace
 	var opts = $.extend({}, $.fn.modalWindow.defaults, options);
 	
+	alert("in");
 	var $context = $(this);
 	var minW = 1024; 
 	var minH = 623; 
@@ -28,14 +29,12 @@ $.fn.modalWindow = function(options) { //imgFace
 					width:opts.contextW,
 					height:opts.contextH,
 					margin:"auto auto",
-					background:"blue",
+					background:"pink",
 					verticalAlign: "middle"
 					});
 					
 	$window.append($container);
 	$("body").append($windowBg,$window);
-	
-	
 	
 	$(window).load(function(){resize();});
 	$(window).resize(function(){resize();});
@@ -361,6 +360,8 @@ $(function(){ // 页面整体效果
 		$topMenus.eq(currentPage).removeClass().addClass("nav-hover").siblings().removeClass().addClass("nav-out");
 	}
 	
+	init($("body"));
+	
 	function init(context){
 		context = $(context);
 		
@@ -373,7 +374,7 @@ $(function(){ // 页面整体效果
 				case "dialog":
 					actionObj.unbind("click");
 					actionObj.bind("click", function(event) {
-						
+						actionObj.modalWindow();
 					});
 					break;
 			}
