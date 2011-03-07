@@ -64,7 +64,7 @@ $(function(){ // 页面整体效果
 		
 	});
 	
-	var autoLoadSubPage = setTimeout(function(){
+	var autoLoadSubPage = setInterval(function(){
 		autoLoadPage();
 	},autoLoadTime);
 	
@@ -121,8 +121,6 @@ $(function(){ // 页面整体效果
 	});
 	
 	function autoLoadPage(){
-	//alert($autoLoadPage.data("pageInfo").name +" "+ $autoLoadPage.data("pageInfo").state);
-	//alert($autoLoadPage.html());
 		if(!$autoLoadPage.size() > 0){
 			clearTimeout(autoLoadSubPage);
 			return;
