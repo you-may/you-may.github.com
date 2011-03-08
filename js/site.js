@@ -96,7 +96,7 @@ $.fn.modalWindow = function(options) { //imgFace
 					height:20,
 					width:23,
 					cursor: "pointer",
-					background:"url('images/sideNext_hover.gif') no-repeat"
+					background:"url('images/sideNext_out.gif') no-repeat"
 					});
 					
 	var $sidebar = $("<div></div>").css({
@@ -120,6 +120,7 @@ $.fn.modalWindow = function(options) { //imgFace
 	var english = $contextual.attr("_english").toUpperCase();
 	var str = title + "<br/><font style='font-size:12px;color:#9C9E9C'>&nbsp;" + english + "</font>";
 	var action = $contextual.attr("_action");
+	var sctionType = $contextual.attr("_actionType");
 	$titleText.html(str);
 	
 	$sidebar.slider({
@@ -129,10 +130,12 @@ $.fn.modalWindow = function(options) { //imgFace
 		min: 1,
 		max: 100000,
 		slide: function( event, ui ) {
-			$text.css({top:-($text.width()+400 - ui.value)});
+			if($text.height() > 390){
+				$text.css({top:-($text.height() - ui.value - 390)});
+			}
 		},
 		start: function(event,ui) {
-			$sidebar.slider( "option", "max", $text.width()+400 );
+			$sidebar.slider( "option", "max", $text.height() > 390 ?  $text.height() - 390 : 390);
 		},
 		stop: function(event,ui) {
 			$sidebar.find(".ui-slider-handle ").blur();
@@ -155,9 +158,21 @@ $.fn.modalWindow = function(options) { //imgFace
 			dataType:'html',
 			success:function(text){
 				if(opts.useModel){
+				
 					$text.html(text);
+					
+					if($text.height() > 385){
+						$sideNext.css({
+							background:"url('images/sideNext_hover.gif') no-repeat"
+						});
+					}
+					
 				}else{
-					$context.html(text).css({background:""});
+					$context.html(text).css({
+						background:"",
+						width:"100%",
+						padding:0
+					});
 				}
 			}
 		});
