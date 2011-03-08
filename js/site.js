@@ -5,17 +5,17 @@
 $.fn.modalWindow = function(options) { //imgFace
 	var opts = $.extend({}, $.fn.modalWindow.defaults, options);
 	
-	var $context = $(this);
+	var $contextual = $(this);
 	var minW = 1024; 
 	var minH = 623; 
 	
 	var $windowBg = $("<div></div>").css({
 					width:"100%",
 					height:"100%",
-					opacity:0.5,
+					opacity:0.8,
 					zIndex:10001,
 					position:"absolute",
-					background:"red",
+					background:"white",
 					top:0
 					});
 					
@@ -24,25 +24,149 @@ $.fn.modalWindow = function(options) { //imgFace
 					height:"100%",
 					zIndex:10002,
 					position:"absolute",
-					top:0,
-					textAlign:"center"
+					top:0
 					});
 					
-	var $container = $("<div>ddd</div>").css({
+	var $container = $("<div></div>").css({
 					width:opts.contextW,
 					height:opts.contextH,
-					margin:"auto auto",
-					background:"pink",
-					verticalAlign: "middle"
+					margin:"auto auto"
 					});
 					
-	$window.click(function(){
-		$window.hide();
-		$windowBg.hide();
-	});
+	var $title = $("<div></div>").css({
+					width:"100%",
+					height:60
+					});
+					
+	var $titleText = $("<div></div>").css({
+					float:"left",
+					fontSize:30,
+					fontFamily:"幼圆",
+					fontWeight:"bold"
+					});
+	
+	var $cancel = $("<div></div>").css({
+					float:"right",
+					width:72,
+					height:26,
+					cursor:"pointer",
+					marginTop:10,
+					background:"url('images/cancel.gif') no-repeat"
+					});
+	
+	var $context = $("<div></div>").css({
+					clear:"both",
+					height:428,
+					width:915,
+					position:"relative",
+					padding:20,
+					background:"url('images/model_bg.gif') no-repeat"
+					});
+					
+	var $textWindow = $("<div></div>").css({
+					overflow:"hidden",
+					position:"relative",
+					height:385,
+					marginTop:0
+					});
+					
+	var $text = $("<div></div>").css({
+					lineHeight:"28px",
+					textIndent:"2em",
+					position:"absolute",
+					width:875
+					});
+	
+	var $sidebarWindow = $("<div></div>").css({
+					height:428,
+					width:23,
+					position:"absolute",
+					top:0,
+					left:928
+					});
+					
+	var $sidePrev = $("<div></div>").css({
+					height:20,
+					width:23,
+					cursor: "pointer",
+					background:"url('images/sidePrev_out.gif') no-repeat"
+					});
+					
+	var $sideNext = $("<div></div>").css({
+					height:20,
+					width:23,
+					cursor: "pointer",
+					background:"url('images/sideNext_hover.gif') no-repeat"
+					});
+					
+	var $sidebar = $("<div></div>").css({
+					height:338,
+					width:23,
+					margin:"38px 0px 12px 0px",
+					border:0,
+					background:"transparent"
+					});
 					
 	$window.append($container);
 	$("body").append($windowBg,$window);
+	$title.append($titleText,$cancel);
+	$textWindow.append($text);
+	$context.append($textWindow,$sidebarWindow);
+	$container.append($title,$context);
+	
+	$sidebarWindow.append($sidePrev,$sidebar,$sideNext);
+	
+	var title = $contextual.attr("title");
+	var english = $contextual.attr("_english").toUpperCase();
+	var str = title + "<br/><font style='font-size:12px;color:#9C9E9C'>&nbsp;" + english + "</font>";
+	var action = $contextual.attr("_action");
+	$titleText.html(str);
+	
+	$sidebar.slider({
+		orientation: 'vertical',
+		range: "min",
+		value: 100000,
+		min: 1,
+		max: 100000,
+		slide: function( event, ui ) {
+			$text.css({top:-($text.width()+400 - ui.value)});
+		},
+		start: function(event,ui) {
+			$sidebar.slider( "option", "max", $text.width()+400 );
+		},
+		stop: function(event,ui) {
+			$sidebar.find(".ui-slider-handle ").blur();
+		}
+	});
+	
+	$sidebar.find(".ui-slider-range").hide();
+	$sidebar.find(".ui-slider-handle ").css({
+		width:23,
+		height:40,
+		left:0,
+		border:0,
+		background:"url('images/sider.gif') no-repeat"
+	});
+	
+	if(action.length > 1){
+		$.ajax({
+			url: action,
+			type:'get',
+			dataType:'html',
+			success:function(text){
+				if(opts.useModel){
+					$text.html(text);
+				}else{
+					$context.html(text).css({background:""});
+				}
+			}
+		});
+	}
+	
+	$cancel.click(function(){
+		$window.remove();
+		$windowBg.remove();
+	});
 	
 	resize();
 	$(window).load(function(){resize();});
@@ -56,12 +180,13 @@ $.fn.modalWindow = function(options) { //imgFace
 		
 		$windowBg.css({width:w,height:h});
 		$window.css({width:w,height:h});
-		$container.css({marginTop: (h - $container.height())/2});
+		$container.css({marginTop: (h - $container.height())/2 - 10});
 	}
 };
 $.fn.modalWindow.defaults = {
 	contextW: 950,
-	contextH: 480
+	contextH: 480,
+	useModel: true
 };
 $.fn.modalWindow.setDefaults = function(settings) {
     $.extend($.fn.modalWindow.defaults, settings);
@@ -123,6 +248,8 @@ $(function(){ // 页面整体效果
 	var isSide = false;
 	var locationHref;
 	
+	init();
+	
 	//监听url hash值修改
 	$.router(function(hash) {
 		
@@ -171,7 +298,7 @@ $(function(){ // 页面整体效果
 			isSide = true;
 		},
 		stop: function(event,ui) {
-			isSide = false;
+			//isSide = false;
 		}
 	});
 	
@@ -181,6 +308,8 @@ $(function(){ // 页面整体效果
 		if(currentPage < 0){currentPage = 0;}
 		else{changeHref()}
 		
+		isSide = false;
+		
 	});
 	
 	$next.click(function(){
@@ -189,6 +318,12 @@ $(function(){ // 页面整体效果
 		if(currentPage >= pageNum){currentPage = pageNum-1;}
 		else{changeHref()}
 		
+		isSide = false;
+		
+	});
+	
+	$topMenus.click(function(){
+		isSide = false;
 	});
 	
 	function autoLoadPage(){
@@ -370,18 +505,20 @@ $(function(){ // 页面整体效果
 		$topMenus.eq(currentPage).removeClass().addClass("nav-hover").siblings().removeClass().addClass("nav-out");
 	}
 	
-	
-	$("[_actionType='dialog']").live("click",function(){$(this).modalWindow();});
-	
-	init();
-	
 	function init(){
 		var dialogObj = $("[_actionType='dialog']");
+		var dialogNoModelObj = $("[_actionType='dialogNoModel']");
 		
 		dialogObj.die("click");
 		dialogObj.live("click",function(){
 			$(this).modalWindow();
 		});
+		
+		dialogNoModelObj.die("click");
+		dialogNoModelObj.live("click",function(){
+			$(this).modalWindow({useModel:false});
+		});
+		
 	}
 	
 	// background flash
