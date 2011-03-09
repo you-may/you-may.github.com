@@ -8,6 +8,13 @@
 	color:#666666;
 }
 
+ul, li {
+	margin:0px;
+	padding:0px;
+	list-style:none;
+	list-style-image:none;
+}
+
 .bold{font-weight:bold;}
 .font-yy{font-family:Arial,"幼圆";;}
 .C40{color:#404040;}

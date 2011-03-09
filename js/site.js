@@ -35,7 +35,7 @@ $.fn.modalWindow = function(options) { //imgFace
 					
 	var $title = $("<div></div>").css({
 					width:"100%",
-					height:60
+					height:50
 					});
 					
 	var $titleText = $("<div></div>").css({
@@ -111,16 +111,27 @@ $.fn.modalWindow = function(options) { //imgFace
 	$("body").append($windowBg,$window);
 	$title.append($titleText,$cancel);
 	$textWindow.append($text);
-	$context.append($textWindow,$sidebarWindow);
+	
+	if(!opts.useModel){
+		$context.css({
+			background:"",
+			width:"100%",
+			padding:0
+		});
+		
+	}else{
+		$context.append($textWindow,$sidebarWindow);
+	}
+	
 	$container.append($title,$context);
 	
 	$sidebarWindow.append($sidePrev,$sidebar,$sideNext);
 	
 	var title = $contextual.attr("title");
-	var english = $contextual.attr("_english").toUpperCase();
+	var english = $contextual.attr("_enTitle").toUpperCase();
 	var str = title + "<br/><font style='font-size:12px;color:#9C9E9C'>&nbsp;" + english + "</font>";
 	var action = $contextual.attr("_action");
-	var sctionType = $contextual.attr("_actionType");
+	
 	$titleText.html(str);
 	
 	$sidebar.slider({
@@ -168,11 +179,7 @@ $.fn.modalWindow = function(options) { //imgFace
 					}
 					
 				}else{
-					$context.html(text).css({
-						background:"",
-						width:"100%",
-						padding:0
-					});
+					$context.html(text);
 				}
 			}
 		});
