@@ -35,7 +35,7 @@ $.fn.modalWindow = function(options) { //imgFace
 					
 	var $title = $("<div></div>").css({
 					width:"100%",
-					height:50
+					height:60
 					});
 					
 	var $titleText = $("<div></div>").css({
