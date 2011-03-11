@@ -64,10 +64,12 @@ $.fn.modalWindow = function(options) { //imgFace
 					});
 					
 	var $textWindow = $("<div></div>").css({
-					overflow:"hidden",
+					overflow:"auto",//"hidden",
 					position:"relative",
 					height:385,
-					marginTop:0
+					marginTop:0,
+					overflowY:"hidden",
+					overflowX:"hidden"
 					});
 					
 	var $text = $("<div></div>").css({
@@ -116,7 +118,8 @@ $.fn.modalWindow = function(options) { //imgFace
 		$context.css({
 			background:"",
 			width:"100%",
-			padding:0
+			padding:"2px",
+			border:"1px #A0A0A0 dotted"
 		});
 		
 	}else{
@@ -131,6 +134,7 @@ $.fn.modalWindow = function(options) { //imgFace
 	var english = $contextual.attr("_enTitle").toUpperCase();
 	var str = title + "<br/><font style='font-size:12px;color:#9C9E9C'>&nbsp;" + english + "</font>";
 	var action = $contextual.attr("_action");
+	var twH = $textWindow.height();
 	
 	$titleText.html(str);
 	
@@ -141,16 +145,41 @@ $.fn.modalWindow = function(options) { //imgFace
 		min: 1,
 		max: 100000,
 		slide: function( event, ui ) {
-			if($text.height() > 390){
-				$text.css({top:-($text.height() - ui.value - 390)});
+			if($text.height() > twH){
+				$textWindow.scrollTop($text.height() - ui.value - twH);
 			}
 		},
 		start: function(event,ui) {
-			$sidebar.slider( "option", "max", $text.height() > 390 ?  $text.height() - 390 : 390);
+			$sidebar.slider( "option", "max", $text.height() > twH ?  $text.height() - twH : twH);
+			changeSidebarCss();
 		},
 		stop: function(event,ui) {
 			$sidebar.find(".ui-slider-handle ").blur();
+			changeSidebarCss();
 		}
+	});
+	
+	$textWindow.css({top:0});
+	$textWindow.bind("mousewheel",function(event, delta){
+		var slierValue = $sidebar.slider( "option", "value" );
+		
+		if(delta > 0){// ? 'Up' : 'Down'
+			$textWindow.scrollTop($textWindow.scrollTop()-50);
+		}else{
+			$textWindow.scrollTop($textWindow.scrollTop()+50);
+		}
+		
+		changeSidebarValue();
+	});
+	
+	$sidePrev.mousedown(function(){
+		$textWindow.scrollTop($textWindow.scrollTop()-50);
+		changeSidebarValue();
+	});
+	
+	$sideNext.mousedown(function(){
+		$textWindow.scrollTop($textWindow.scrollTop()+50);
+		changeSidebarValue();
 	});
 	
 	$sidebar.find(".ui-slider-range").hide();
@@ -172,7 +201,7 @@ $.fn.modalWindow = function(options) { //imgFace
 				
 					$text.html(text);
 					
-					if($text.height() > 385){
+					if($text.height() > twH){
 						$sideNext.css({
 							background:"url('images/sideNext_hover.gif') no-repeat"
 						});
@@ -194,6 +223,28 @@ $.fn.modalWindow = function(options) { //imgFace
 	$(window).load(function(){resize();});
 	$(window).resize(function(){resize();});
 	$(window).scroll(function(){resize();});
+	
+	function changeSidebarCss(){
+		var v = $sidebar.slider( "option", "value");
+		var max = $text.height() > twH ?  $text.height() - twH : twH;
+		if(v < 20){
+			$sidePrev.css({background:"url('images/sidePrev_hover.gif') no-repeat"});
+			$sideNext.css({background:"url('images/sideNext_out.gif') no-repeat"});
+		}else if(v > max - 20){
+			$sidePrev.css({background:"url('images/sidePrev_out.gif') no-repeat"});
+			$sideNext.css({background:"url('images/sideNext_hover.gif') no-repeat"});
+		}else{
+			$sidePrev.css({background:"url('images/sidePrev_hover.gif') no-repeat"});
+			$sideNext.css({background:"url('images/sideNext_hover.gif') no-repeat"});
+		}
+	}
+	
+	function changeSidebarValue(){
+		var max = $text.height() > twH ?  $text.height() - twH : twH;
+		$sidebar.slider( "option", "max", max);
+		$sidebar.slider({value:max - $textWindow.scrollTop()});
+		changeSidebarCss();
+	}
 	
 	function resize(){
 		var w=$(window).width(), h=$(window).height();
