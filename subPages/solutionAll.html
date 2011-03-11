@@ -13,6 +13,16 @@
 							prevOut:"subPrev-out",
 							scrollAmount:860
 							});
+	
+	
+	//热门图片效果
+	$(".images").children("div").each(function(){
+		$(this).imgFace({hotTop:-6,
+						hotLeft:108,
+						faceTop:0,
+						faceLeft:0
+						});
+	});
 </script>
 <style type="text/css">
 	.rollWindow .images div{
