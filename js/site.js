@@ -51,7 +51,6 @@ $(function(){ // 页面整体效果
 	var containerH = h-$top.height()-$floor.height();
 	var isSide = false;
 	var locationHref;
-	var isPressCtrl = false;
 	
 	init();
 	
@@ -104,6 +103,9 @@ $(function(){ // 页面整体效果
 		},
 		stop: function(event,ui) {
 			//isSide = false;
+		},
+		change: function(event,ui){
+			
 		}
 	});
 	
@@ -129,13 +131,6 @@ $(function(){ // 页面整体效果
 	
 	$topMenus.click(function(){
 		isSide = false;
-	});
-	
-	// ctrl + 鼠标左键 滚动
-	$container.mousedown(function(e){
-		if(1 == e.which && isPressCtrl){
-			alert(e.clientX);
-		}
 	});
 	
 	function autoLoadPage(){
@@ -233,6 +228,7 @@ $(function(){ // 页面整体效果
 		if((containerH-pageH) > 0){moveMargin = (containerH-pageH)/2;}
 		$window.css({width:w,height:h});
 		$container.css({height:containerH,width:pageNum*pageW*3});
+		$moveContainer.css({height:containerH});
 		$moveContainer.css({marginTop:moveMargin});
 		$top.width(w);
 		$floor.width(w);
@@ -338,21 +334,54 @@ $(function(){ // 页面整体效果
 	var attributes = { id:'bgFlash', name:'bgFlash' };
 	swfobject.embedSWF('images/flash_bg.swf','flashBackground','100%',h,'9.0.115','',false, params, attributes);
 	
+	var $cover = $("<div class='cover'></div>").css({
+			position:"absolute",
+			width:"100%",
+			height:"100%",
+			cursor:"move",
+			opacity:0,
+			top:0,
+			zIndex:10001,
+			background:"red"
+			});
+	
 	$(document).keydown(function(event){
-		mousePosition = "";
-		//alert(event.keyCode);
-		
 		if(event.keyCode == 37 || event.keyCode == 38 ){
 			$prev.click();
+			
 		}else if(event.keyCode == 39 || event.keyCode == 40 ){
 			$next.click();
-		}if(event.keyCode == 17){
-			isPressCtrl = true;
+			
+		}if(event.keyCode == 18){
+			$moveContainer.draggable({ axis: "x" ,cursor: "move",
+				drag:function(event, ui){
+					var uiLeft = Math.abs(ui.offset.left);
+					
+					var flashMoveSize = $flashBg.width() / (pageW * (pageNum*2+2)) * uiLeft;
+					$flashBg.css({left:-flashMoveSize});
+					
+					currentPage = Math.round(uiLeft / pageW);
+					
+					var hashName = $topMenus.eq(currentPage).data("pageInfo").name;
+					if(locationHref != hashName){
+						window.location.href = "#" + hashName;
+					}
+				},
+				start:function(event, ui){
+					isSide = true;
+					
+				},stop:function(event, ui){
+					
+					
+				}
+			});
 		}
-		
 	}).keyup(function(){
-		isPressCtrl = false;
+		$moveContainer.draggable( "destroy" );
 	});
+	
+	
+	
 });
 
 /************************** subPage --ajax --title **************************/
