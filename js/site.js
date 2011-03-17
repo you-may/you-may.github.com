@@ -51,6 +51,7 @@ $(function(){ // 页面整体效果
 	var containerH = h-$top.height()-$floor.height();
 	var isSide = false;
 	var locationHref;
+	var isPassCtrl = false;
 	
 	init();
 	
@@ -87,12 +88,15 @@ $(function(){ // 页面整体效果
 		max: pageW * pageNum- $(window).width(),
 		slide: function( event, ui ) {
 			$moveContainer.css({left:-ui.value});
+			
 			var flashMoveSize = $flashBg.width() / (pageW * (pageNum*2+2)) * ui.value;
+			
 			$flashBg.css({left:-flashMoveSize});
 			
 			currentPage = Math.round(ui.value / pageW);
 			
 			var hashName = $topMenus.eq(currentPage).data("pageInfo").name;
+			
 			if(locationHref != hashName){
 				window.location.href = "#" + hashName;
 			}
@@ -105,7 +109,21 @@ $(function(){ // 页面整体效果
 			//isSide = false;
 		},
 		change: function(event,ui){
-			
+			if(isPassCtrl){
+				$moveContainer.css({left:-ui.value});
+				
+				var flashMoveSize = $flashBg.width() / (pageW * (pageNum*2+2)) * ui.value;
+				
+				$flashBg.css({left:-flashMoveSize});
+				
+				currentPage = Math.round(ui.value / pageW);
+				
+				var hashName = $topMenus.eq(currentPage).data("pageInfo").name;
+				
+				if(locationHref != hashName){
+					window.location.href = "#" + hashName;
+				}
+			}
 		}
 	});
 	
@@ -334,50 +352,60 @@ $(function(){ // 页面整体效果
 	var attributes = { id:'bgFlash', name:'bgFlash' };
 	swfobject.embedSWF('images/flash_bg.swf','flashBackground','100%',h,'9.0.115','',false, params, attributes);
 	
-	var $cover = $("<div class='cover'></div>").css({
+	var $dragCover = $("<div class='dragCover'></div>").css({
 			position:"absolute",
 			width:"100%",
 			height:"100%",
 			cursor:"move",
-			opacity:0,
+			opacity:0.1,
 			top:0,
 			zIndex:10001,
-			background:"red"
+			background:"red",
+			display:"none"
 			});
+	$("body").append($dragCover);
 	
+	var isRepeatPassCtrl = false;
 	$(document).keydown(function(event){
+		//$("body").append($dragCover);
+		
+		isPassCtrl = true;
+		isSide = true;
 		if(event.keyCode == 37 || event.keyCode == 38 ){
 			$prev.click();
 			
 		}else if(event.keyCode == 39 || event.keyCode == 40 ){
 			$next.click();
 			
-		}if(event.keyCode == 18){
-			$moveContainer.draggable({ axis: "x" ,cursor: "move",
-				drag:function(event, ui){
-					var uiLeft = Math.abs(ui.offset.left);
+		}if(event.keyCode == 17){
+			if(isRepeatPassCtrl == false){
+				var ml = $moveContainer.offset().left;
+				var x,sliderValue;
+				$dragCover.show();
+				
+				$dragCover.bind("mousedown",function(e){
+					x = e.clientX;
+					sliderValue = $scrollbar.slider("value");
 					
-					var flashMoveSize = $flashBg.width() / (pageW * (pageNum*2+2)) * uiLeft;
-					$flashBg.css({left:-flashMoveSize});
+					$dragCover.bind("mousemove",function(e){
+						$scrollbar.slider({value: sliderValue +(x - e.clientX)});
+					});
 					
-					currentPage = Math.round(uiLeft / pageW);
-					
-					var hashName = $topMenus.eq(currentPage).data("pageInfo").name;
-					if(locationHref != hashName){
-						window.location.href = "#" + hashName;
-					}
-				},
-				start:function(event, ui){
-					isSide = true;
-					
-				},stop:function(event, ui){
-					
-					
-				}
-			});
+				}).bind("mouseup",function(){
+					$dragCover.unbind("mousemove");
+					isRepeatPassCtrl = false;
+				});
+			}
+			
+			isRepeatPassCtrl = true;
 		}
 	}).keyup(function(){
-		$moveContainer.draggable( "destroy" );
+		$dragCover.unbind("mousemove");
+		$dragCover.unbind("mouseup");
+		$dragCover.unbind("mousedown");
+		isRepeatPassCtrl = false;
+		isPassCtrl = false;
+		$dragCover.hide();
 	});
 	
 	
