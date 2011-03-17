@@ -158,20 +158,20 @@ $(function(){ // 页面整体效果
 		}
 		
 		if(!$autoLoadPage.data("pageInfo").state){
-			$autoLoadPage = $autoLoadPage.next();
+			$autoLoadPage = $autoLoadPage.next("div");
 			autoLoadPage();
 			
 		}else{
 			var url = $autoLoadPage.data("pageInfo").name;
 			loadByParameter($autoLoadPage,url,false);
-			$autoLoadPage = $autoLoadPage.next();
+			$autoLoadPage = $autoLoadPage.next("div");
 		}
 	}
 	
 	function loadSubPage(hash){
 		var p = $("." + hash).parent();
 		var prevP = p.prev();
-		var nextP = p.next();
+		var nextP = p.next("div");
 		
 		loadByParameter(p,hash,true);
 		
@@ -352,18 +352,19 @@ $(function(){ // 页面整体效果
 	var attributes = { id:'bgFlash', name:'bgFlash' };
 	swfobject.embedSWF('images/flash_bg.swf','flashBackground','100%',h,'9.0.115','',false, params, attributes);
 	
-	var $dragCover = $("<div class='dragCover'></div>").css({
+	var $dragCover = $("<span class='dragCover'></span>").css({
 			position:"absolute",
 			width:"100%",
 			height:"100%",
 			cursor:"move",
-			opacity:0.1,
+			opacity:0,
 			top:0,
 			zIndex:10001,
 			background:"red",
 			display:"none"
 			});
-	$("body").append($dragCover);
+	$moveContainer.css({position:"inherit"});
+	$moveContainer.append($dragCover);
 	
 	var isRepeatPassCtrl = false;
 	$(document).keydown(function(event){
@@ -381,28 +382,27 @@ $(function(){ // 页面整体效果
 			if(isRepeatPassCtrl == false){
 				var ml = $moveContainer.offset().left;
 				var x,sliderValue;
-				$dragCover.show();
+				$dragCover.css({display:"block"});
 				
-				$dragCover.bind("mousedown",function(e){
+				$moveContainer.bind("mousedown",function(e){
 					x = e.clientX;
 					sliderValue = $scrollbar.slider("value");
 					
-					$dragCover.bind("mousemove",function(e){
+					$moveContainer.bind("mousemove",function(e){
 						$scrollbar.slider({value: sliderValue +(x - e.clientX)});
 					});
 					
 				}).bind("mouseup",function(){
-					$dragCover.unbind("mousemove");
-					isRepeatPassCtrl = false;
+					$moveContainer.unbind("mousemove");
 				});
 			}
 			
 			isRepeatPassCtrl = true;
 		}
 	}).keyup(function(){
-		$dragCover.unbind("mousemove");
-		$dragCover.unbind("mouseup");
-		$dragCover.unbind("mousedown");
+		$moveContainer.unbind("mousemove");
+		$moveContainer.unbind("mouseup");
+		$moveContainer.unbind("mousedown");
 		isRepeatPassCtrl = false;
 		isPassCtrl = false;
 		$dragCover.hide();
