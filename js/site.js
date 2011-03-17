@@ -363,7 +363,6 @@ $(function(){ // 页面整体效果
 			background:"red",
 			display:"none"
 			});
-	$moveContainer.css({position:"inherit"});
 	$moveContainer.append($dragCover);
 	
 	var isRepeatPassCtrl = false;
