@@ -5,19 +5,18 @@
 <title>无标题文档</title>
 
 <script type="text/javascript">
-
+	var params = { wmode:'transparent',flashvars: "",quality:'Low',scale:'NoBorder' };
+	var attributes = { id:'aboutFlash', name:'aboutFlash' };
+	swfobject.embedSWF('images/aboutUs.swf','aboutFlbg',779,308,'9.0.115','',false, params, attributes);
 </script>
 
 <style type="text/css">
 	.aboutFlash{
-		width:779px;
+		width:979px;
 		height:310px;
 		top:-35px;
 		margin-left:180px;
 		position:absolute;
-		background:url(images/about_bg.png) no-repeat right;
-		_background:none; 
-		_filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src="images/about_bg.png" ,sizingMethod="crop"); 
 	}
 	.aboutContent{
 		position:absolute;
@@ -75,7 +74,6 @@
 
 </head>
 <body>
-	<div class="aboutFlash"></div>
 	<div class="aboutContent">
 		<div style="height:255px;">
 			<p style="margin-bottom:4px; color:#339ACD; font-size:30px; font-weight:bold;" class="font-yy">
@@ -108,6 +106,9 @@
 				</span>
 			</div>
 		</div>
+	</div>
+	<div class="aboutFlash">
+		<div class id="aboutFlbg"></div>
 	</div>
 </body>
 </html>
