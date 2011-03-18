@@ -13,6 +13,12 @@ $(function(){ // 页面整体效果
 	var $next = $(".next"); //下一页按钮
 	var $topMenus = $(".nav").find("a");//头部按钮
 	var $scrollbar = $(".mainSlider");
+	var $nav = $(".nav").addClass("nav nav1");
+	
+	$topMenus.hide();
+	buildNav();
+	$prev.hide();
+	$next.hide();
 	
 	var buildPages = $topMenus.each(function(index){
 		var hf = $(this).attr("href");
@@ -150,6 +156,36 @@ $(function(){ // 页面整体效果
 	$topMenus.click(function(){
 		isSide = false;
 	});
+	
+	function buildNav(){
+		var h = 30;
+		var w = 80;
+		var top = $nav.offset().top;
+		var position = [[0,29] , [50,69] , [90,110] , [130,149] , [167,189]];
+		
+		$nav.mousemove(function(e){
+			var x = e.clientX;
+			var y = e.clientY;
+			
+			for(var i=0; i<position.length; i++){
+			
+				var leftY = position[i][0];
+				var rightY = position[i][1];
+				
+				var offsetY = (rightY - leftY) / w;
+				
+				var minY = offsetY * x + leftY + top/2;
+				var maxY = minY + h + top/2;
+				
+				if(y >= minY && y <= maxY){
+					$nav.css({cursor:"pointer"}).removeClass().addClass("nav nav"+ (i + 1));
+					return;
+				}else{
+					$nav.css({cursor:""});
+				}
+			}
+		});
+	}	
 	
 	function autoLoadPage(){
 		if(!$autoLoadPage.size() > 0){
@@ -376,7 +412,7 @@ $(function(){ // 页面整体效果
 		}else if(event.keyCode == 39 || event.keyCode == 40 ){
 			$next.click();
 			
-		}if(event.keyCode == 17){
+		}else if(event.keyCode == 17){
 			if(isRepeatPassCtrl == false){
 				var ml = $moveContainer.offset().left;
 				var x,sliderValue;
