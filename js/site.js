@@ -1,4 +1,4 @@
-
+﻿
 /************************** 页面整体效果 **************************/
 
 $(function(){ // 页面整体效果
@@ -363,11 +363,11 @@ $(function(){ // 页面整体效果
 			background:"red",
 			display:"none"
 			});
-	$moveContainer.append($dragCover);
+	//$moveContainer.append($dragCover);
+	$("body").append($dragCover);
 	
 	var isRepeatPassCtrl = false;
 	$(document).keydown(function(event){
-		//$("body").append($dragCover);
 		
 		isPassCtrl = true;
 		isSide = true;
@@ -383,16 +383,16 @@ $(function(){ // 页面整体效果
 				var x,sliderValue;
 				$dragCover.css({display:"block"});
 				
-				$moveContainer.bind("mousedown",function(e){
+				$dragCover.bind("mousedown",function(e){
 					x = e.clientX;
 					sliderValue = $scrollbar.slider("value");
 					
-					$moveContainer.bind("mousemove",function(e){
+					$dragCover.bind("mousemove",function(e){
 						$scrollbar.slider({value: sliderValue +(x - e.clientX)});
 					});
 					
 				}).bind("mouseup",function(){
-					$moveContainer.unbind("mousemove");
+					$dragCover.unbind("mousemove");
 					
 					if($.browser.mozilla){
 						$(document).keyup();
@@ -403,9 +403,9 @@ $(function(){ // 页面整体效果
 			isRepeatPassCtrl = true;
 		}
 	}).keyup(function(){
-		$moveContainer.unbind("mousemove");
-		$moveContainer.unbind("mouseup");
-		$moveContainer.unbind("mousedown");
+		$dragCover.unbind("mousemove");
+		$dragCover.unbind("mouseup");
+		$dragCover.unbind("mousedown");
 		isRepeatPassCtrl = false;
 		isPassCtrl = false;
 		$dragCover.hide();
