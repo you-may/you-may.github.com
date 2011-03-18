@@ -393,6 +393,7 @@ $(function(){ // 页面整体效果
 					
 				}).bind("mouseup",function(){
 					$moveContainer.unbind("mousemove");
+					$(document).keyup();
 				});
 			}
 			

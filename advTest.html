@@ -1,0 +1,82 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>无标题文档</title>
+
+<script type="text/javascript" src="js/jquery-1.4.2.min.js"></script>
+
+<style type="text/css">
+	.nav{
+		width:76px;
+		height:208px;
+		margin:auto 0px;
+	}
+	
+	.p1{
+		background:url(test_image/p1.png) no-repeat;
+	}
+	
+	.p2{
+		background:url(test_image/p2.png) no-repeat;
+	}
+	
+	.p3{
+		background:url(test_image/p3.png) no-repeat;
+	}
+	
+	.p4{
+		background:url(test_image/p4.png) no-repeat;
+	}
+	
+	.p5{
+		background:url(test_image/p5.png) no-repeat;
+	}
+</style>
+
+<script language="javascript">
+	
+	$(function(){
+		var $nav = $(".nav");
+		var h = 30;
+		var w = 80;
+		var position = [[0,29] , [50,69] , [90,110] , [130,149] , [167,189]];
+		
+		$nav.mousemove(function(e){
+			var x = e.clientX;
+			var y = e.clientY;
+			
+			for(var i=0; i<position.length; i++){
+			
+				var leftY = position[i][0];
+				var rightY = position[i][1];
+				
+				var offsetY = (rightY - leftY) / w;
+				
+				var minY = offsetY * x + leftY;
+				var maxY = minY + h;
+				
+				$(".show").html("minY: "+minY+"<br/>maxY: "+maxY+"<br/>x: "+x+"<br/>y: "+y);
+				
+				if(y >= minY && y <= maxY){
+					$nav.css({cursor:"pointer"}).removeClass().addClass("nav p"+ (i + 1));
+					return;
+				}else{
+					$nav.css({cursor:""});
+				}
+			}
+		});
+		
+	});
+
+</script>
+
+
+</head>
+<body>
+	<div class="nav p1">
+    	
+	</div>
+	<div class="show"></div>
+</body>
+</html>
