@@ -1,0 +1,151 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>无标题文档</title>
+
+<script type="text/javascript">
+	var nttNav = "";
+	
+	$(".nttWindow .rollPage").each(function(i){
+		nttNav += "<li>" + (i+1) + "</li>";
+	});
+	
+	$(".nttNav").html(nttNav);
+	
+	$(".nttWindow").roll({prevID: '.subPrev',
+							nextID: '.subNext',
+							nextHover:"subNext-hover",
+							nextOut:"subNext-out",
+							prevHover:"subPrev-hover",
+							prevOut:"subPrev-out",
+							scrollAmount:950,
+							listID:".nttNav",
+							listHoverCss:"nttNav-hover",
+							listOutCss:"nttNav-out"
+							});
+	
+</script>
+
+<style type="text/css">
+
+.nttWindow{
+	width:950px;
+	height:428px;
+}
+
+.nttWindow img{
+	width:617px;
+	height:424px;
+}
+
+.nttNav{
+	position:absolute;
+	top:-36px;
+	left:450px;
+}
+
+.nttNav li{
+	float:left;
+	border:1px solid #D5D5D5;
+	width:24px;
+	height:24px;
+	text-align:center;
+	margin-right:3px;
+	line-height:26px;
+}
+
+.nttNav-hover{
+	background:#39AEE7;
+	color:white;
+}
+
+.nttNav-out{
+	background:#E8E8E8;
+	color:#666666;
+}
+
+.ntt .subPrev{
+	left:-38px;
+	top:180px;
+}
+
+.ntt .subNext{
+	left:960px;
+	top:180px;
+}
+
+.rollPage{
+	width:950px;
+}
+
+.rollPage .fr{
+	width:318px;
+	line-height:23px;
+}
+
+.rollPage .fl{
+	width:618px; 
+	height:424px
+}
+
+.rollPage .fr p{
+	text-indent:2em;
+}
+
+</style>
+
+</head>
+<body>
+	<div class="ntt" style="position:relative">
+		<ul class="nttNav">
+		</ul>
+		<a href="javascript:void(0)" class="subPrev subPrev-out"></a>
+		<a href="javascript:void(0)" class="subNext subNext-hover"></a>
+		<div class="nttWindow">
+			<div class="rollPage">
+				<div class="fl">
+					<img src="solution/websiteCreation/ASMS/images/ASMS_1.jpg" alt="" />
+				</div>
+				<div class="fr">
+					<b>项目背景:</b>
+					<p>广州市元镁计算机科技有限公司以软件开发、企业邮件服务、系统集成为主业，利用自身长期积累的技术经验、先进的网络技术和优质的服务为客户提供全面的企业信息化解决方案。公司理念：让科技更好地服务于人类。</p>
+					<b>服务类型:</b>
+					<p>平台开发</p>
+				</div>
+			</div>
+			
+			<div class="rollPage">
+				<div class="fl">
+					<img src="solution/websiteCreation/ASMS/images/ASMS_2.jpg" alt="" />
+				</div>
+				<div class="fr">
+					<b>项目背景:</b>
+					<p>广州市元镁计算机科技有限公司以软件开发、企业邮件服务、系统集成为主业，利用自身长期积累的技术经验、先进的网络技术和优质的服务为客户提供全面的企业信息化解决方案。公司理念：让科技更好地服务于人类。</p>
+					<b>服务类型:</b>
+					<p>平台开发</p>
+				</div>
+			</div>
+			
+		</div>
+	</div>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
