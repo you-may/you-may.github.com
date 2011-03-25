@@ -1,0 +1,110 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>无标题文档</title>
+
+<script type="text/javascript">
+	$(".rollWindow").roll({prevID: '.subPrev',
+							nextID: '.subNext',
+							nextHover:"subNext-hover",
+							nextOut:"subNext-out",
+							prevHover:"subPrev-hover",
+							prevOut:"subPrev-out",
+							scrollAmount:860
+							});
+	
+	
+	//热门图片效果
+	$(".images").children("div").each(function(){
+		$(this).imgFace({hotTop:-6,
+						hotLeft:108,
+						faceTop:0,
+						faceLeft:0
+						});
+	});
+</script>
+<style type="text/css">
+	.rollWindow .images div{
+		float:left;
+		line-height:20px;
+		margin-right:23px;
+		margin-top:15px;
+		position:relative;
+	}
+	.rollWindow .images {
+		width:860px;
+	}
+	.rollWindow{
+		width:858px;
+		height:314px;
+		margin-left:5px;
+	}
+</style>
+
+</head>
+<body>
+	<div class="guiding">
+		<span>/ 解决方案 /</span>
+		<a>全部</a>
+	</div>
+	<div style="padding:0px 40px 0px 40px; position:relative">
+		<a href="javascript:void(0)" class="subPrev subPrev-out"></a>
+		<a href="javascript:void(0)" class="subNext subNext-hover"></a>
+		<div class="rollWindow">
+			<div class="images">
+				<div class="hot" _action="solution/websiteCreation/webSchool/index.html" _actionType="dialogNoModel" _enTitle="Network platform to support education" title="网络支教平台" >
+					<img src="images/05.jpg" alt=""/>
+					<p class="tr s11"><font class="A0 s11">DATE：</font>2010/02/10</p>
+					<p style="color:#39AEE7">网络支教平台</p>
+				</div>
+				<div>
+					<img src="images/02.jpg" alt=""/>
+					<p class="tr s11"><font class="A0 s11">DATE：</font>2010/02/10</p>
+					<p style="color:#39AEE7">网络支教平台</p>
+				</div>
+				<div>
+					<img src="images/03.jpg" alt=""/>
+					<p class="tr s11"><font class="A0 s11">DATE：</font>2010/02/10</p>
+					<p style="color:#39AEE7">网络支教平台</p>
+				</div>
+				<div>
+					<img src="images/04.jpg" alt=""/>
+					<p class="tr s11"><font class="A0 s11">DATE：</font>2010/02/10</p>
+					<p style="color:#39AEE7">网络支教平台</p>
+				</div>
+				<div style="margin-right:0px">
+					<img src="images/05.jpg" alt=""/>
+					<p class="tr s11"><font class="A0 s11">DATE：</font>2010/02/10</p>
+					<p style="color:#39AEE7">网络支教平台</p>
+				</div>
+				<div class="hot">
+					<img src="images/01.jpg" alt=""/>
+					<p class="tr s11"><font class="A0 s11">DATE：</font>2010/02/10</p>
+					<p style="color:#39AEE7">网络支教平台</p>
+				</div>
+				<div>
+					<img src="images/02.jpg" alt=""/>
+					<p class="tr s11"><font class="A0 s11">DATE：</font>2010/02/10</p>
+					<p style="color:#39AEE7">网络支教平台</p>
+				</div>
+				<div>
+					<img src="images/03.jpg" alt=""/>
+					<p class="tr s11"><font class="A0 s11">DATE：</font>2010/02/10</p>
+					<p style="color:#39AEE7">网络支教平台</p>
+				</div>
+				<div class="hot">
+					<img src="images/04.jpg" alt=""/>
+					<p class="tr s11"><font class="A0 s11">DATE：</font>2010/02/10</p>
+					<p style="color:#39AEE7">网络支教平台</p>
+				</div>
+				<div style="margin-right:0px">
+					<img src="images/05.jpg" alt=""/>
+					<p class="tr s11"><font class="A0 s11">DATE：</font>2010/02/10</p>
+					<p style="color:#39AEE7">网络支教平台</p>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

@@ -368,8 +368,6 @@ $(function(){ // 页面整体效果
 	var isRepeatPassCtrl = false;
 	$(document).keydown(function(event){
 		
-		isPassCtrl = true;
-		isSide = true;
 		if(event.keyCode == 37 || event.keyCode == 38 ){
 			$prev.click();
 			
@@ -377,6 +375,8 @@ $(function(){ // 页面整体效果
 			$next.click();
 			
 		}if(event.keyCode == 17){
+			isPassCtrl = true;
+			isSide = true;
 			if(isRepeatPassCtrl == false){
 				var ml = $moveContainer.offset().left;
 				var x,sliderValue;

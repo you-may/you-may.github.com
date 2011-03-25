@@ -5,6 +5,14 @@
 <title>无标题文档</title>
 
 <script type="text/javascript">
+	var nttNav = "";
+	
+	$(".nttWindow .rollPage").each(function(i){
+		nttNav += "<li>" + (i+1) + "</li>";
+	});
+	
+	$(".nttNav").html(nttNav);
+	
 	$(".nttWindow").roll({prevID: '.subPrev',
 							nextID: '.subNext',
 							nextHover:"subNext-hover",
@@ -16,6 +24,7 @@
 							listHoverCss:"nttNav-hover",
 							listOutCss:"nttNav-out"
 							});
+	
 </script>
 
 <style type="text/css">
@@ -23,6 +32,11 @@
 .nttWindow{
 	width:950px;
 	height:428px;
+}
+
+.nttWindow img{
+	width:617px;
+	height:424px;
 }
 
 .nttNav{
@@ -85,16 +99,13 @@
 <body>
 	<div class="ntt" style="position:relative">
 		<ul class="nttNav">
-			<li>1</li>
-			<li>2</li>
-			<li>3</li>
 		</ul>
 		<a href="javascript:void(0)" class="subPrev subPrev-out"></a>
 		<a href="javascript:void(0)" class="subNext subNext-hover"></a>
 		<div class="nttWindow">
 			<div class="rollPage">
 				<div class="fl">
-					<img src="images/solution_1.jpg" alt="" />
+					<img src="solution/websiteCreation/webSchool/images/solution_1.jpg" alt="" />
 				</div>
 				<div class="fr">
 					<b>项目背景:</b>
@@ -106,19 +117,7 @@
 			
 			<div class="rollPage">
 				<div class="fl">
-					<img src="images/solution_1.jpg" alt="" />
-				</div>
-				<div class="fr">
-					<b>项目背景:</b>
-					<p>广州市元镁计算机科技有限公司以软件开发、企业邮件服务、系统集成为主业，利用自身长期积累的技术经验、先进的网络技术和优质的服务为客户提供全面的企业信息化解决方案。公司理念：让科技更好地服务于人类。</p>
-					<b>服务类型:</b>
-					<p>平台开发</p>
-				</div>
-			</div>
-			
-			<div class="rollPage">
-				<div class="fl">
-					<img src="images/solution_1.jpg" alt="" />
+					<img src="solution/websiteCreation/webSchool/images/solution_2.jpg" alt="" />
 				</div>
 				<div class="fr">
 					<b>项目背景:</b>

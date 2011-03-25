@@ -1,4 +1,7 @@
 ﻿
+/************************** navAnimate **************************/
+
+
 /************************** 页面整体效果 **************************/
 
 $(function(){ // 页面整体效果
@@ -14,7 +17,9 @@ $(function(){ // 页面整体效果
 	var $topMenus = $(".nav").find("a");//头部按钮
 	var $scrollbar = $(".mainSlider");
 	var $nav = $(".nav").addClass("nav nav1");
+	var $navContainer = $("<div></div>").addClass("navContainer");
 	
+	$nav.wrap($navContainer);
 	$topMenus.hide();
 	buildNav();
 	$prev.hide();
@@ -178,7 +183,19 @@ $(function(){ // 页面整体效果
 				var maxY = minY + h + top/2;
 				
 				if(y >= minY && y <= maxY){
-					$nav.css({cursor:"pointer"}).removeClass().addClass("nav nav"+ (i + 1));
+					$nav.unbind("click");
+					$nav.css({cursor:"pointer"}).removeClass().addClass("nav nav"+ (i + 1))
+					.bind("click",function(){
+						isSide = false;
+						var hashName = $topMenus.eq(i).data("pageInfo").name;
+					
+						if(locationHref != hashName){
+							window.location.href = "#" + hashName;
+						}
+					}).mouseout(function(){
+						$nav.removeClass().addClass("nav nav"+ (currentPage + 1));
+					});
+					
 					return;
 				}else{
 					$nav.css({cursor:""});
@@ -365,6 +382,7 @@ $(function(){ // 页面整体效果
 		}
 		
 		$topMenus.eq(currentPage).removeClass().addClass("nav-hover").siblings().removeClass().addClass("nav-out");
+		$nav.removeClass().addClass("nav nav"+ (currentPage + 1));
 	}
 	
 	function init(){

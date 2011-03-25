@@ -5,80 +5,183 @@
 <title>无标题文档</title>
 
 <script type="text/javascript" src="js/jquery-1.4.2.min.js"></script>
+<script type="text/javascript" src="js/jquery-ui-1.8.10.custom.min.js"></script>
 
 <style type="text/css">
-	.nav{
-		width:76px;
-		height:208px;
-		margin:auto 0px;
+	.subNav {
+		margin-bottom:20px;
+		margin-left:10px;
 	}
 	
-	.p1{
-		background:url(test_image/p1.png) no-repeat;
+	.kbd {
+		top:100px;
+		margin-bottom:20px;
+		margin-left:10px;
+	}
+
+	.kbd a{
+		width:174px;
+		height:42px;
+		display:block;
+		border:1px solid #B0E0FF;
+		text-align:center;
+		padding-top:10px;
+		font-weight:bold;
+		font-size:14px;
+		margin-right:10px;
+		cursor:pointer;
+		text-decoration:none;
+		font-family:Arial,"幼圆";
+		margin-bottom:10px;
+	}
+
+	.subNav a{
+		width:174px;
+		height:42px;
+		display:inline-block;
+		border:1px solid #B0E0FF;
+		text-align:center;
+		padding-top:10px;
+		font-weight:bold;
+		font-size:14px;
+		margin-right:10px;
+		cursor:pointer;
+		text-decoration:none;
+		font-family:Arial,"幼圆";
+	}
+		
+	.subNav-hover{
+		width:176px;
+		height:54px;
+		background:#39aee7;
+		top:0px;
+		color:white;
 	}
 	
-	.p2{
-		background:url(test_image/p2.png) no-repeat;
-	}
-	
-	.p3{
-		background:url(test_image/p3.png) no-repeat;
-	}
-	
-	.p4{
-		background:url(test_image/p4.png) no-repeat;
-	}
-	
-	.p5{
-		background:url(test_image/p5.png) no-repeat;
-	}
 </style>
 
 <script language="javascript">
+	$(function(){
+		$.fn.navAnimate = function(options) { //navAnimate
+			var opts = $.extend({}, $.fn.navAnimate.defaults, options);
+			
+			var $nav = $(this).css({position:"relative"});
+			var $btns = $nav.find("a");
+			var $btnContainer = $("<div></div>").css({position:"absolute",top:0,zIndex:100});
+			var $move = $("<div></div>").addClass(opts.moveClass).css({zIndex:99,position:"absolute"});
+			
+			$nav.append($move);
+			$btns.wrapAll($btnContainer);
+			
+			var hoverColor = $move.css("color");
+			var outColor = $btns.css("color");
+			var direction = opts.direction == "lateral" ? true : false;
+			
+			$btns.eq(0).css({color:hoverColor});
+			
+			var moveBgH = $move.height();
+			
+			$btns.each(function(i){
+				$(this).data("data",{index:i});
+			});
+			
+			$btns.click(function(){
+				var left = $(this).position().left;
+				var top = $(this).position().top;
+				var $btn = $(this);
+				
+				var animate1 , animate2 , animate3;
+				
+				$btns.css({color:outColor});
+				
+				if(direction){
+					animate1 = {height:1,top:top + moveBgH/2,opacity:0.5};
+					animate2 = {left:left};
+					animate3 = {height:moveBgH,top:top,opacity:1};
+					
+				}else{
+					animate1 = {height:1,top:top + moveBgH/2,opacity:0.5};
+					animate2 = {top:top};
+					animate3 = {height:moveBgH,left:left,opacity:1};
+				}
+				
+				//$move.animate(animate1,500);
+				var o = {};
+				$move.toggle("explode",o,500);
+				
+				$move.animate(animate2,300);
+				
+				$move.toggle("explode",o,500);
+				$move.animate(animate3,100,function(){
+					$btn.css({color:hoverColor}).siblings().css({color:outColor});
+					
+				});
+				
+			}).hover(function(){
+				$nav.append("<div class='navAnimate-hover" + $(this).data("data").index + "'></div>");
+				
+				var $hover = $(".navAnimate-hover" + $(this).data("data").index);
+				
+				$hover.addClass(opts.hoverClass).css({
+					opacity:0,
+					zIndex:98,
+					position:"absolute",
+					top:$(this).position().top,
+					left:$(this).position().left
+				});
+					
+				$hover.animate({opacity:0.2},300);
+				
+			},function(){
+				var $hover = $(".navAnimate-hover" + $(this).data("data").index);
+				
+				$hover.animate({opacity:0},300,function(){
+					$hover.remove();
+				});
+				
+			});
+			
+		};
+		$.fn.navAnimate.defaults = {
+			moveClass:"",
+			hoverClass:"",
+			direction:"lateral" //vertical纵向 lateral横向
+		};
+		$.fn.navAnimate.setDefaults = function(settings) {
+			$.extend($.fn.navAnimate.defaults, settings);
+		};
+	});
 	
 	$(function(){
-		var $nav = $(".nav");
-		var h = 30;
-		var w = 80;
-		var position = [[0,29] , [50,69] , [90,110] , [130,149] , [167,189]];
-		
-		$nav.mousemove(function(e){
-			var x = e.clientX;
-			var y = e.clientY;
-			
-			for(var i=0; i<position.length; i++){
-			
-				var leftY = position[i][0];
-				var rightY = position[i][1];
-				
-				var offsetY = (rightY - leftY) / w;
-				
-				var minY = offsetY * x + leftY;
-				var maxY = minY + h;
-				
-				$(".show").html("minY: "+minY+"<br/>maxY: "+maxY+"<br/>x: "+x+"<br/>y: "+y);
-				
-				if(y >= minY && y <= maxY){
-					$nav.css({cursor:"pointer"}).removeClass().addClass("nav p"+ (i + 1));
-					return;
-				}else{
-					$nav.css({cursor:""});
-				}
-			}
+		$(".subNav").navAnimate({
+			moveClass:"subNav-hover",
+			hoverClass:"subNav-hover"
 		});
 		
+		$(".kbd").navAnimate({
+			moveClass:"subNav-hover",
+			hoverClass:"subNav-hover",
+			direction:"vertical"
+		});
 	});
-
 </script>
 
 
 </head>
 <body>
-	<div class="nav p1">
-    	
+	<div class="subNav">
+		<a href="javascript:void(0)" _action="subPages/solutionAll.html">全部<br/>CONTACT</a>
+		<a href="javascript:void(0)" _action="">网站创作<br/>MESSAGE</a>
+		<a href="javascript:void(0)" _action="">系统优化<br/>MESSAGE</a>
+		<a href="javascript:void(0)" _action="">数据库<br/>MESSAGE</a>
+		<a href="javascript:void(0)" _action="">软件开发<br/>MESSAGE</a>
 	</div>
-	<div class="show">
-	
+	<div class="kbd">
+		<a href="javascript:void(0)" _action="subPages/solutionAll.html">全部<br/>CONTACT</a>
+		<a href="javascript:void(0)" _action="">网站创作<br/>MESSAGE</a>
+		<a href="javascript:void(0)" _action="">系统优化<br/>MESSAGE</a>
+		<a href="javascript:void(0)" _action="">数据库<br/>MESSAGE</a>
+		<a href="javascript:void(0)" _action="">软件开发<br/>MESSAGE</a>
 	</div>
 </body>
 </html>
