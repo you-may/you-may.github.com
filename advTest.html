@@ -105,13 +105,13 @@
 					animate3 = {height:moveBgH,left:left,opacity:1};
 				}
 				
-				//$move.animate(animate1,500);
-				var o = {};
-				$move.toggle("explode",o,500);
+				$move.animate(animate1,500);
+				//var o = {};
+				//$move.toggle("explode",o,500);
 				
 				$move.animate(animate2,300);
 				
-				$move.toggle("explode",o,500);
+				//$move.toggle("explode",o,500);
 				$move.animate(animate3,100,function(){
 					$btn.css({color:hoverColor}).siblings().css({color:outColor});
 					

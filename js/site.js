@@ -95,6 +95,8 @@ $(function(){ // 页面整体效果
 			
 			currentPage = Math.round(ui.value / pageW);
 			
+			menuCss();
+			
 			var hashName = $topMenus.eq(currentPage).data("pageInfo").name;
 			
 			if(locationHref != hashName){
@@ -117,6 +119,8 @@ $(function(){ // 页面整体效果
 				$flashBg.css({left:-flashMoveSize});
 				
 				currentPage = Math.round(ui.value / pageW);
+				
+				menuCss();
 				
 				var hashName = $topMenus.eq(currentPage).data("pageInfo").name;
 				
@@ -423,7 +427,7 @@ $.fn.subPage = function(options) { //subPage --ajax --title
 	var opts = $.extend({}, $.fn.subPage.defaults, options);
 
 	var $subPage = $(this); 
-	var $subNav = $subPage.find(".subNav");
+	var $subNav = $subPage.find(".subNav").css({position:"relative"});
 	var $slideDir = $subPage.find(".slideDir div");
 	var $subContainer = $subPage.find(".subContainer");
 	
@@ -431,25 +435,105 @@ $.fn.subPage = function(options) { //subPage --ajax --title
 	var pageSize = $subNav.find("a").size();
 	var aW = ($subNav.width()-15*pageSize)/pageSize;
 	var path = $subNav.find("a:first").attr("_action");
+
 	
-	$subNav.find("a").each(function(i){
+	
+	var $btns = $subNav.find("a");
+	var $btnContainer = $("<div></div>").css({position:"absolute",top:0,zIndex:100});
+	var $move = $("<div></div>").addClass(opts.moveClass).css({zIndex:99,position:"absolute",width:aW + 1});
+	
+	$subNav.append($move);
+	$btns.wrapAll($btnContainer);
+	
+	var hoverColor = $move.css("color");
+	var outColor = $btns.css("color");
+	var direction = opts.direction == "lateral" ? true : false;
+	
+	$btns.eq(0).css({color:hoverColor});
+	
+	var moveBgH = $move.height();
+	
+	$subNav.append("<div class='navAnimate-bg'></div>");
 		
+		var $bg = $(".navAnimate-bg");
+		
+		$bg.addClass(opts.hoverClass).css({
+				opacity:0.1,
+				zIndex:97,
+				position:"absolute",
+				top:0,
+				left:0,
+				width:$subNav.width() - 21
+		});
+	
+	$btns.each(function(i){
+		$(this).data("data",{index:i});
 		$(this).data("pageInfo",{num: i});
 		
-	});
+	}).hover(function(){
+			$subNav.append("<div class='navAnimate-hover" + $(this).data("data").index + "'></div>");
+			
+			var $hover = $(".navAnimate-hover" + $(this).data("data").index);
+			
+			$hover.addClass(opts.hoverClass).css({
+				opacity:0,
+				zIndex:98,
+				position:"absolute",
+				top:$(this).position().top,
+				left:$(this).position().left,
+				width:aW + 1
+			});
+				
+			$hover.animate({opacity:0.2},300);
+			
+		},function(){
+			var $hover = $(".navAnimate-hover" + $(this).data("data").index);
+			
+			$hover.animate({opacity:0},300,function(){
+				$hover.remove();
+			});
+			
+		});
 	
 	slideDirMove();
 	loadSubContainer(path);
 	
-	$subNav.find("a").mouseout(function(){
-		navCss();
-	}).click(function(){
+	$btns.click(function(){
 		index = $(this).data("pageInfo").num;
 		path = $(this).attr("_action");
-		slideDirMove();
+		
+		var left = $(this).position().left;
+		var top = $(this).position().top;
+		var $btn = $(this);
+		
+		var animate1 , animate2 , animate3;
+		
+		$btns.css({color:outColor});
+		
+		if(direction){
+			animate1 = {height:1,top:top + moveBgH/2,opacity:0.5};
+			animate2 = {left:left};
+			animate3 = {height:moveBgH,top:top,opacity:1};
+			
+		}else{
+			animate1 = {height:1,top:top + moveBgH/2,opacity:0.5};
+			animate2 = {top:top};
+			animate3 = {height:moveBgH,left:left,opacity:1};
+		}
+		
+		$move.animate(animate1,500,function(){
+			slideDirMove();
+		});
+		
+		$move.animate(animate2,300);
+		
+		$move.animate(animate3,100,function(){
+			$btn.css({color:hoverColor}).siblings().css({color:outColor});
+			
+		});
 	});
 	
-	$subNav.find("a").css({width:aW});
+	$btns.css({width:aW});
 	
 	function loadSubContainer(path){
 		$.ajax({
@@ -464,22 +548,19 @@ $.fn.subPage = function(options) { //subPage --ajax --title
 	
 	function slideDirMove(){
 		$slideDir.animate({left:aW/2+index*opts.moveSize-2},500,function(){
-			navCss();
-			
 			if(path != ""){
 				loadSubContainer(path);
 			}
 			
 		});
 	}
-
-	function navCss(){
-		$subNav.find("a").eq(index).removeClass().addClass("subNav-hover").siblings().removeClass().addClass("subNav-out");
-	}
 	
 };
 $.fn.subPage.defaults = {
-	moveSize: 190
+	moveSize: 190,
+	moveClass:"subNav-hover",
+	hoverClass:"subNav-hover",
+	direction:"lateral" //vertical纵向 lateral横向
 };
 $.fn.subPage.setDefaults = function(settings) {
     $.extend($.fn.subPage.defaults, settings);
@@ -647,21 +728,41 @@ $.fn.roll = function(options) {
 	}
 	
 	var ShowAD=function(i){
-		if(dir == 'left')
-			container.animate({"left":-i*options.scrollAmount},options.speed,function(){
-				changeListClass(i);
-				changeCss();
-			});
-		else
-			container.animate({"top":-i*options.scrollAmount},options.speed,function(){
-				changeListClass(i);
-				changeCss();
-			});
+		var opts, scrollSize = i*options.scrollAmount;
+		
+		if(dir == 'left'){
+		
+			if(index == pagers - 1 && pagers > 1){
+				scrollSize = items.eq(pagers-1).outerWidth();
+			}
+			
+			opts = {"left":-scrollSize};
+		}
+		
+		else{
+		
+			if(index == pagers - 1 && pagers > 1){
+				scrollSize = items.eq(pagers-1).outerHeight();
+			}
+			
+			opts = {"top":-scrollSize};
+		}
+		
+		container.animate(opts,options.speed,function(){
+			changeListClass(i);
+			changeCss();
+		});
 	};
+	
+	if(pagers == 1){
+		$next.removeClass(options.prevHover).addClass(options.nextOut);
+	}
 	
 	function changeCss(){
 		if(options.prevHover != 'no' && options.prevOut != 'no' && options.nextHover != 'no' && options.nextOut != 'no'){
-			if(index == 0){
+			if(pagers == 1){
+				$next.removeClass(options.prevHover).addClass(options.nextOut);
+			}else if(index == 0){
 				$next.removeClass(options.nextOut).addClass(options.nextHover);
 				$prev.removeClass(options.prevHover).addClass(options.prevOut);
 			}else if(index == pagers-1){
@@ -851,7 +952,8 @@ $.fn.modalWindow = function(options) { //imgFace
 			background:"",
 			width:"100%",
 			padding:"2px",
-			border:"1px #A0A0A0 dotted"
+			border:"1px #A0A0A0 dotted",
+			background: 'url("images/model_bg2.gif") no-repeat'
 		});
 		
 	}else{
@@ -957,11 +1059,14 @@ $.fn.modalWindow = function(options) { //imgFace
 	
 	function changeSidebarCss(){
 		var v = $sidebar.slider( "option", "value");
-		var max = $text.height() > twH ?  $text.height() - twH : twH;
-		if(v < 20){
+		var max = $text.height() > twH ?  $text.height() - twH - 20 : twH - 20;
+		if($text.height() <= twH){
+			$sidePrev.css({background:"url('images/sidePrev_out.gif') no-repeat"});
+			$sideNext.css({background:"url('images/sideNext_out.gif') no-repeat"});
+		}else if(v < 20){
 			$sidePrev.css({background:"url('images/sidePrev_hover.gif') no-repeat"});
 			$sideNext.css({background:"url('images/sideNext_out.gif') no-repeat"});
-		}else if(v > max - 20){
+		}else if(v > max){
 			$sidePrev.css({background:"url('images/sidePrev_out.gif') no-repeat"});
 			$sideNext.css({background:"url('images/sideNext_hover.gif') no-repeat"});
 		}else{
@@ -1008,7 +1113,94 @@ $.fn.modalWindow.setDefaults = function(settings) {
     $.extend($.fn.modalWindow.defaults, settings);
 };
 
-
+$.fn.navAnimate = function(options) { //navAnimate
+	var opts = $.extend({}, $.fn.navAnimate.defaults, options);
+	
+	var $nav = $(this).css({position:"relative"});
+	var $btns = $nav.find("a");
+	var $btnContainer = $("<div></div>").css({position:"absolute",top:0,zIndex:100});
+	var $move = $("<div></div>").addClass(opts.moveClass).css({zIndex:99,position:"absolute"});
+	
+	$nav.append($move);
+	$btns.wrapAll($btnContainer);
+	
+	var hoverColor = $move.css("color");
+	var outColor = $btns.css("color");
+	var direction = opts.direction == "lateral" ? true : false;
+	
+	$btns.eq(0).css({color:hoverColor});
+	
+	var moveBgH = $move.height();
+	
+	$btns.each(function(i){
+		$(this).data("data",{index:i});
+	});
+	
+	$btns.click(function(){
+		var left = $(this).position().left;
+		var top = $(this).position().top;
+		var $btn = $(this);
+		
+		var animate1 , animate2 , animate3;
+		
+		$btns.css({color:outColor});
+		
+		if(direction){
+			animate1 = {height:1,top:top + moveBgH/2,opacity:0.5};
+			animate2 = {left:left};
+			animate3 = {height:moveBgH,top:top,opacity:1};
+			
+		}else{
+			animate1 = {height:1,top:top + moveBgH/2,opacity:0.5};
+			animate2 = {top:top};
+			animate3 = {height:moveBgH,left:left,opacity:1};
+		}
+		
+		$move.animate(animate1,500);
+		//var o = {};
+		//$move.toggle("explode",o,500);
+		
+		$move.animate(animate2,300);
+		
+		//$move.toggle("explode",o,500);
+		$move.animate(animate3,100,function(){
+			$btn.css({color:hoverColor}).siblings().css({color:outColor});
+			
+		});
+		
+	}).hover(function(){
+		$nav.append("<div class='navAnimate-hover" + $(this).data("data").index + "'></div>");
+		
+		var $hover = $(".navAnimate-hover" + $(this).data("data").index);
+		
+		$hover.addClass(opts.hoverClass).css({
+			opacity:0,
+			zIndex:98,
+			position:"absolute",
+			top:$(this).position().top,
+			left:$(this).position().left
+		});
+			
+		$hover.animate({opacity:0.2},300);
+		
+	},function(){
+		var $hover = $(".navAnimate-hover" + $(this).data("data").index);
+		
+		$hover.animate({opacity:0},300,function(){
+			$hover.remove();
+		});
+		
+	});
+	
+};
+$.fn.navAnimate.defaults = {
+	moveClass:"",
+	hoverClass:"",
+	direction:"lateral" //vertical纵向 lateral横向
+};
+$.fn.navAnimate.setDefaults = function(settings) {
+	$.extend($.fn.navAnimate.defaults, settings);
+};
 
 
 

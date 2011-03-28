@@ -209,6 +209,7 @@ ul, li {
 .subNav {
 	margin-bottom:20px;
 	margin-left:10px;
+	height:54px;
 }
 
 .subNav a{
@@ -226,10 +227,6 @@ ul, li {
 	font-family:Arial,"幼圆";;
 }
 
-.subNav a:hover{
-	border:1px solid #39aee7;
-}
-
 .subNav-hover{
 	color:white;
 	background:#39aee7;
@@ -238,6 +235,27 @@ ul, li {
 .subNav-out{
 	background:#D1ECFF;
 	color:#2B9BD2;
+}
+
+.subNav a{
+	height:42px;
+	display:inline-block;
+	border:1px solid #B0E0FF;
+	text-align:center;
+	padding-top:10px;
+	font-weight:bold;
+	font-size:14px;
+	margin-right:10px;
+	cursor:pointer;
+	text-decoration:none;
+	font-family:Arial,"幼圆";
+}
+	
+.subNav-hover{
+	height:54px;
+	background:#39aee7;
+	top:0px;
+	color:white;
 }
 
 .slideDir{
