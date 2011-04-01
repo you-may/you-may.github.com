@@ -732,8 +732,8 @@ $.fn.roll = function(options) {
 		
 		if(dir == 'left'){
 		
-			if(index == pagers - 1 && pagers > 1){
-				scrollSize = items.eq(pagers-1).outerWidth();
+			if(i == pagers - 1 && pagers > 1){
+				scrollSize = items.eq(pagers-1).outerWidth()*i;
 			}
 			
 			opts = {"left":-scrollSize};
@@ -741,8 +741,8 @@ $.fn.roll = function(options) {
 		
 		else{
 		
-			if(index == pagers - 1 && pagers > 1){
-				scrollSize = items.eq(pagers-1).outerHeight();
+			if(i == pagers - 1 && pagers > 1){
+				scrollSize = items.eq(pagers-1).outerHeight()*i;
 			}
 			
 			opts = {"top":-scrollSize};
