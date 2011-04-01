@@ -49,9 +49,6 @@ ul, li {
 .mainContainer{
 	position:absolute;
 	z-index:1;
-	background: url(../images/top_bg.png) repeat-x;
-	_background:none; 
-	_filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src="images/top_bg.png" ,sizingMethod="crop"); 
 }
 
 .top{
@@ -63,7 +60,7 @@ ul, li {
 	height:71px;
 	margin:15px 0px 0px 20px; 
 	float:left;
-	background: url(../images/top_logo.gif) repeat-x;
+	background: url(../images/top_logo.gif) no-repeat;
 }
 
 .nav{
