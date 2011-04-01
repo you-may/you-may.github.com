@@ -53,59 +53,107 @@ ul, li {
 
 .top{
 	height:100px;
+	background: url(../images/nav_bg.gif) repeat-x;
 }
 
 .logo{
-	width:178px;
-	height:71px;
-	margin:15px 0px 0px 20px; 
+	width:280px;
+	height:52px;
 	float:left;
-	background: url(../images/top_logo.gif) no-repeat;
+	line-height:52px;
+	font-size:14px;
+	color:#666666;
+	font-family:Arial,"幼圆";
+	font-weight:bold;
+	padding-left:150px;
+	background: url(../images/top_Llogo.gif) no-repeat left;
+}
+
+.logo  b{
+	font-size:15px;
+	color:#ffffff;
+	font-family:Arial,"幼圆";
+	font-weight:bold;
 }
 
 .nav{
-	margin-top: 20px;
-	margin-right: 20px;
-}
-
-.nav-hover{
-	background: url(../images/menu_hover.png) no-repeat;
-	_background:none; 
-	_filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src="images/menu_hover.png" ,sizingMethod="crop"); 
-}
-
-.nav-out{
-	background: url(../images/menu_out.png) no-repeat;
-	_background:none; 
-	_filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src="images/menu_out.png" ,sizingMethod="crop"); 
+	width:576px;
+	height:52px;
+	background: url(../images/top_Rlogo.gif) no-repeat right;
 }
 
 .nav a{
-	width:117px;
-	height:37px;
-	line-height:34px;
+	width:60px;
+	height:52px;
+	line-height:52px;
 	display:inline-block;
 	cursor:pointer;
-	text-align:center;
+	text-align:left;
 	font-size:14px;
-	color:#7A7979;
+	color:#ffffff;
 	font-weight:bold;
-	margin-right:7px;
 	text-decoration:none;
+	margin-left:26px;
 	font-family:Arial,"幼圆";
 }
 
-.nav a:hover{
-	background: url(../images/menu_hover.png) no-repeat;
-	_background:none; 
-	_filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src="images/menu_hover.png" ,sizingMethod="crop"); 
+.nav-about{
+	background: url(../images/nav_1h.gif) no-repeat left center;
+	padding-left:18px;
+}
+
+.nav-about:hover{
+	background: url(../images/nav_1o.gif) no-repeat left center;
+	color:#666666;
+	padding-left:18px;
+}
+
+.nav-goodAt{
+	background: url(../images/nav_2h.gif) no-repeat left center;
+	padding-left:16px;
+}
+
+.nav-goodAt:hover{
+	background: url(../images/nav_2o.gif) no-repeat left center;
+	padding-left:16px;
+	color:#666666;
+}
+
+.nav-solution{
+	background: url(../images/nav_3h.gif) no-repeat left center;
+	padding-left:18px;
+	padding-left:18px;
+}
+
+.nav-solution:hover{
+	background: url(../images/nav_3o.gif) no-repeat left center;
+	padding-left:18px;
+	color:#666666;
+}
+
+.nav-contact{
+	background: url(../images/nav_4h.gif) no-repeat left center;
+	padding-left:22px;
+}
+
+.nav-contact:hover{
+	background: url(../images/nav_4o.gif) no-repeat left center;
+	padding-left:22px;
+	color:#666666;
+}
+
+.nav-joinUs{
+	background: url(../images/nav_5h.gif) no-repeat left center;
+	padding-left:22px;
+}
+
+.nav-joinUs:hover{
+	background: url(../images/nav_5o.gif) no-repeat left center;
+	padding-left:22px;	
+	color:#666666;
 }
 
 .mainSlider{
-	position:absolute;
-	top: -20px;
-	left: 50px;
-	z-index:10000;
 	cursor: pointer;
 }
 
@@ -134,7 +182,7 @@ ul, li {
 }
 
 .container{
-	height:100px;
+	height:500px;
 	position:relative;
 	background: url(../images/floor_bg.png) repeat-x bottom;
 	_background:none; 

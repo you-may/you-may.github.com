@@ -240,18 +240,18 @@ $(function(){ // 页面整体效果
 	function windowSize(){
 		w = $(window).width(); 
 		h = $(window).height();
-		var moveMargin = 0;
+		//var moveMargin = 0;
 		
-		$scrollbar.css({width:w - 100,top:h-70});
+		$scrollbar.css({width:w});
 		
 		if(w < minW){w = minW;}
 		if(h < minH){h = minH;}
 		containerH = h-$top.height()-$floor.height();
-		if((containerH-pageH) > 0){moveMargin = (containerH-pageH)/2;}
+		//if((containerH-pageH) > 0){moveMargin = (containerH-pageH)/2;}
 		$window.css({width:w,height:h});
-		$container.css({height:containerH,width:pageNum*pageW*3});
-		$moveContainer.css({height:containerH});
-		$moveContainer.css({marginTop:moveMargin});
+		$container.css({width:pageNum*pageW*3});
+		//$moveContainer.css({height:containerH});
+		//$moveContainer.css({marginTop:moveMargin});
 		$top.width(w);
 		$floor.width(w);
 		$prev.animate({left:$(window).scrollLeft(),top:containerH/2+$top.height()-$prev.height()/2},{queue:false},10);
@@ -332,7 +332,7 @@ $(function(){ // 页面整体效果
 			$next.attr({"class":"next next-hover"});
 		}
 		
-		$topMenus.eq(currentPage).removeClass().addClass("nav-hover").siblings().removeClass().addClass("nav-out");
+		//$topMenus.eq(currentPage).removeClass().addClass("nav-hover").siblings().removeClass().addClass("nav-out");
 	}
 	
 	function init(){
