@@ -42,8 +42,9 @@ ul, li {
 .bgFlash{
 	position:absolute;
 	width:2000px;
-	height:700px;
+	height:600px;
 	z-index:0;
+	background:white;
 }
 
 .mainContainer{
@@ -54,6 +55,10 @@ ul, li {
 .top{
 	height:100px;
 	background: url(../images/nav_bg.gif) repeat-x;
+}
+
+body{
+	background:#B4CFDC;
 }
 
 .logo{
@@ -162,8 +167,7 @@ ul, li {
 }
 
 .floor{
-	height:49px;
-	background:#39aee7 url(../images/floor.jpg) repeat-x;
+	height:149px;
 }
 
 .copyright{
@@ -174,11 +178,6 @@ ul, li {
 }
 
 .fLogo{
-	width:100px;
-	height:49px;
-	float:right; 
-	margin-right:20px;
-	background:url(../images/floor_logo.jpg) repeat-x;
 }
 
 .container{

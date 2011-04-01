@@ -261,7 +261,7 @@ $(function(){ // 页面整体效果
 			$flashBg.css({left:-($flashBg.width()-w)});
 		}
 		
-		$("#bgFlash").height(h);
+		//$("#bgFlash").height(h);
 	}
 	
 	$prev.css({left:$(window).scrollLeft(),top:containerH/2+$top.height()-$prev.height()/2});
@@ -354,7 +354,7 @@ $(function(){ // 页面整体效果
 	// background flash
 	var params = { wmode:'transparent',flashvars: "",quality:'Low',scale:'NoBorder' };
 	var attributes = { id:'bgFlash', name:'bgFlash' };
-	swfobject.embedSWF('images/flash_bg.swf','flashBackground','100%',h,'9.0.115','',false, params, attributes);
+	swfobject.embedSWF('images/flash_bg.swf','flashBackground','100%',500,'9.0.115','',false, params, attributes);
 	
 	var $dragCover = $("<div class='dragCover'></div>").css({
 			position:"absolute",
