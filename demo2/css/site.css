@@ -324,7 +324,6 @@ body{
 .slideDir{
 	height:10px;
 	position:relative;
-	background:url(../images/slide_dirBg.gif) repeat-x bottom;
 }
 
 .slideDir div{
@@ -336,7 +335,6 @@ body{
 
 .subContainer{
 	height:370px;
-	background: white url(../images/slide_dirBg.gif) repeat-x bottom;
 }
 
 

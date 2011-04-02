@@ -460,6 +460,10 @@ $.fn.subPage = function(options) { //subPage --ajax --title
 	var $subNav = $subPage.find(".subNav").css({position:"relative"});
 	var $slideDir = $subPage.find(".slideDir div");
 	var $subContainer = $subPage.find(".subContainer");
+	var $cornerd = $subPage.find(".cornerd");
+	
+	$subPage.find(".cor").corner("5px").css({background:"white"});
+	$cornerd.css({background:"#C0DBE8",padding:"1px 2px 2px 1px"}).corner("cc:#ffffff 6px");
 	
 	var index = 0;
 	var pageSize = $subNav.find("a").size();
