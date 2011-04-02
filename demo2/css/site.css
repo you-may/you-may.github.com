@@ -53,7 +53,7 @@ ul, li {
 }
 
 .top{
-	height:100px;
+	height:87px;
 	background: url(../images/nav_bg.gif) repeat-x;
 }
 
@@ -170,14 +170,33 @@ body{
 	height:149px;
 }
 
+.floor-link{
+	height:115px;
+	width:100%;
+	background: url(../images/floor_link.gif) no-repeat center;
+}
+
 .copyright{
 	float:left; 
-	line-height:49px; 
-	color:white; 
+	line-height:30px; 
+	color:#666666; 
 	margin-left:20px;
 }
 
 .fLogo{
+	text-align:right;
+	height:30px;
+	line-height:30px;
+}
+
+.fLogo a{
+	text-decoration:none;
+	color:#666666;
+	margin-right:25px;
+}
+
+.fLogo img{
+	vertical-align:text-bottom;
 }
 
 .container{

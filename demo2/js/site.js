@@ -14,6 +14,9 @@ $(function(){ // 页面整体效果
 	var $topMenus = $(".nav").find("a");//头部按钮
 	var $scrollbar = $(".mainSlider");
 	
+	$prev.hide();
+	$next.hide();
+	
 	var buildPages = $topMenus.each(function(index){
 		var hf = $(this).attr("href");
 		var name = hf.substring(hf.indexOf("#")+1,hf.length);
@@ -85,11 +88,11 @@ $(function(){ // 页面整体效果
 		range: "min",
 		value: 1,
 		min: 1,
-		max: pageW * pageNum- $(window).width(),
+		max: pageW * pageNum - $(window).width(),
 		slide: function( event, ui ) {
 			$moveContainer.css({left:-ui.value});
 			
-			var flashMoveSize = $flashBg.width() / (pageW * (pageNum*2+2)) * ui.value;
+			var flashMoveSize = $flashBg.width() / (pageW * (pageNum*2+8.5)) * ui.value;
 			
 			$flashBg.css({left:-flashMoveSize});
 			
@@ -114,7 +117,7 @@ $(function(){ // 页面整体效果
 			if(isPassCtrl){
 				$moveContainer.css({left:-ui.value});
 				
-				var flashMoveSize = $flashBg.width() / (pageW * (pageNum*2+2)) * ui.value;
+				var flashMoveSize = $flashBg.width() / (pageW * (pageNum*2+8.5)) * ui.value;
 				
 				$flashBg.css({left:-flashMoveSize});
 				
@@ -241,17 +244,18 @@ $(function(){ // 页面整体效果
 		w = $(window).width(); 
 		h = $(window).height();
 		//var moveMargin = 0;
-		
-		$scrollbar.css({width:w});
+		//alert($scrollbar.slider("option","max"));
 		
 		if(w < minW){w = minW;}
 		if(h < minH){h = minH;}
+		$scrollbar.css({width:w-150});
 		containerH = h-$top.height()-$floor.height();
 		//if((containerH-pageH) > 0){moveMargin = (containerH-pageH)/2;}
-		$window.css({width:w,height:h});
+		$window.css({width:w,height:$top.height()+$container.height()+$floor.height()+$scrollbar.height()});
 		$container.css({width:pageNum*pageW*3});
 		//$moveContainer.css({height:containerH});
 		//$moveContainer.css({marginTop:moveMargin});
+		$sideBg.css({width:w+10});
 		$top.width(w);
 		$floor.width(w);
 		$prev.animate({left:$(window).scrollLeft(),top:containerH/2+$top.height()-$prev.height()/2},{queue:false},10);
@@ -261,6 +265,7 @@ $(function(){ // 页面整体效果
 			$flashBg.css({left:-($flashBg.width()-w)});
 		}
 		
+		//movePage();
 		//$("#bgFlash").height(h);
 	}
 	
@@ -334,6 +339,31 @@ $(function(){ // 页面整体效果
 		
 		//$topMenus.eq(currentPage).removeClass().addClass("nav-hover").siblings().removeClass().addClass("nav-out");
 	}
+	
+	var $sideBg = $("<div></div>").css({
+		width:w+10,
+		height:14,
+		background:"#70ADCA",
+		position:"absolute",
+		top:0,
+		marginLeft:-10
+	});
+	
+	$scrollbar.append($sideBg).css({
+		height:14,
+		marginLeft:7
+	}).find("a").css({
+		width:50,
+		height:12,
+		background:"url(images/side_bg.gif) no-repeat",
+		border:"0px",
+		top:1,
+		padding:"0px 50px"
+	}).click(function(){
+		$(this).blur();
+	}).mouseout(function(){
+		$(this).blur();
+	});
 	
 	function init(){
 		var dialogObj = $("[_actionType='dialog']");
