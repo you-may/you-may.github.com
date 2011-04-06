@@ -384,7 +384,7 @@ $(function(){ // 页面整体效果
 	// background flash
 	var params = { wmode:'transparent',flashvars: "",quality:'Low',scale:'NoBorder' };
 	var attributes = { id:'bgFlash', name:'bgFlash' };
-	swfobject.embedSWF('images/flash_bg.swf','flashBackground','100%',500,'9.0.115','',false, params, attributes);
+	swfobject.embedSWF('images/flash_bg.swf','flashBackground','100%',600,'9.0.115','',false, params, attributes);
 	
 	var $dragCover = $("<div class='dragCover'></div>").css({
 			position:"absolute",
@@ -466,18 +466,21 @@ $.fn.subPage = function(options) { //subPage --ajax --title
 	$cornerd.css({background:"#C0DBE8",padding:"1px 2px 2px 1px"}).corner("cc:#ffffff 6px");
 	
 	var index = 0;
-	var pageSize = $subNav.find("a").size();
+	var pageSize = $subNav.find("li").size();
 	var aW = ($subNav.width()-15*pageSize)/pageSize;
-	var path = $subNav.find("a:first").attr("_action");
+	var path = $subNav.find("li:first").attr("_action");
 
 	
 	
-	var $btns = $subNav.find("a");
+	var $btns = $subNav.find("li");
 	var $btnContainer = $("<div></div>").css({position:"absolute",top:0,zIndex:100});
 	var $move = $("<div></div>").addClass(opts.moveClass).css({zIndex:99,position:"absolute",width:aW + 1});
 	
 	$subNav.append($move);
 	$btns.wrapAll($btnContainer);
+	
+	$btns.find("em:first").addClass("emFirst");
+	$btns.find("em:last").addClass("emLast");
 	
 	var hoverColor = $move.css("color");
 	var outColor = $btns.css("color");

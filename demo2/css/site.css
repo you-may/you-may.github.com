@@ -202,9 +202,6 @@ body{
 .container{
 	height:500px;
 	position:relative;
-	background: url(../images/floor_bg.png) repeat-x bottom;
-	_background:none; 
-	_filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src="images/floor_bg.png" ,sizingMethod="crop"); 
 }
 
 .moveContainer{
@@ -275,35 +272,10 @@ body{
 	height:54px;
 }
 
-.subNav a{
+.subNav li{
 	width:174px;
 	height:42px;
 	display:inline-block;
-	border:1px solid #B0E0FF;
-	text-align:center;
-	padding-top:10px;
-	font-weight:bold;
-	font-size:14px;
-	margin-right:10px;
-	cursor:pointer;
-	text-decoration:none;
-	font-family:Arial,"幼圆";;
-}
-
-.subNav-hover{
-	color:white;
-	background:#39aee7;
-}
-
-.subNav-out{
-	background:#D1ECFF;
-	color:#2B9BD2;
-}
-
-.subNav a{
-	height:42px;
-	display:inline-block;
-	border:1px solid #B0E0FF;
 	text-align:center;
 	padding-top:10px;
 	font-weight:bold;
@@ -312,13 +284,28 @@ body{
 	cursor:pointer;
 	text-decoration:none;
 	font-family:Arial,"幼圆";
+	color:#078ACA;
+}
+
+.emFirst{
+	color:#AACBDA;
+	font-size:14px;
+}
+
+.emLast{
+	color:#078ACA;
+	font-family:"微软雅黑";
+	font-size:18px;
+}
+
+.subNav-out{
+	color:#078ACA;
 }
 	
 .subNav-hover{
 	height:54px;
-	background:#39aee7;
 	top:0px;
-	color:white;
+	color:#078ACA;
 }
 
 .slideDir{
