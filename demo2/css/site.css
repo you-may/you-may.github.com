@@ -53,7 +53,7 @@ ul, li {
 }
 
 .top{
-	height:87px;
+	height:85px;
 	background: url(../images/nav_bg.gif) repeat-x;
 }
 
@@ -269,7 +269,7 @@ body{
 .subNav {
 	margin-bottom:20px;
 	margin-left:10px;
-	height:54px;
+	height:30px;
 }
 
 .subNav li{
@@ -277,7 +277,6 @@ body{
 	height:42px;
 	display:inline-block;
 	text-align:center;
-	padding-top:10px;
 	font-weight:bold;
 	font-size:14px;
 	margin-right:10px;
@@ -321,7 +320,7 @@ body{
 }
 
 .subContainer{
-	height:370px;
+	height:382px;
 }
 
 

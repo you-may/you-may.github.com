@@ -473,11 +473,10 @@ $.fn.subPage = function(options) { //subPage --ajax --title
 	
 	
 	var $btns = $subNav.find("li");
-	var $btnContainer = $("<div></div>").css({position:"absolute",top:0,zIndex:100});
 	var $move = $("<div></div>").addClass(opts.moveClass).css({zIndex:99,position:"absolute",width:aW + 1});
 	
 	$subNav.append($move);
-	$btns.wrapAll($btnContainer);
+	$subPage.find("ul").css({position:"absolute",top:0,zIndex:100});
 	
 	$btns.find("em:first").addClass("emFirst");
 	$btns.find("em:last").addClass("emLast");
@@ -508,29 +507,8 @@ $.fn.subPage = function(options) { //subPage --ajax --title
 		$(this).data("pageInfo",{num: i});
 		
 	}).hover(function(){
-			$subNav.append("<div class='navAnimate-hover" + $(this).data("data").index + "'></div>");
 			
-			var $hover = $(".navAnimate-hover" + $(this).data("data").index);
-			
-			$hover.addClass(opts.hoverClass).css({
-				opacity:0,
-				zIndex:98,
-				position:"absolute",
-				top:$(this).position().top,
-				left:$(this).position().left,
-				width:aW + 1
-			});
-				
-			$hover.animate({opacity:0.2},300);
-			
-		},function(){
-			var $hover = $(".navAnimate-hover" + $(this).data("data").index);
-			
-			$hover.animate({opacity:0},300,function(){
-				$hover.remove();
-			});
-			
-		});
+	});
 	
 	slideDirMove();
 	loadSubContainer(path);
@@ -538,36 +516,7 @@ $.fn.subPage = function(options) { //subPage --ajax --title
 	$btns.click(function(){
 		index = $(this).data("pageInfo").num;
 		path = $(this).attr("_action");
-		
-		var left = $(this).position().left;
-		var top = $(this).position().top;
-		var $btn = $(this);
-		
-		var animate1 , animate2 , animate3;
-		
-		$btns.css({color:outColor});
-		
-		if(direction){
-			animate1 = {height:1,top:top + moveBgH/2,opacity:0.5};
-			animate2 = {left:left};
-			animate3 = {height:moveBgH,top:top,opacity:1};
-			
-		}else{
-			animate1 = {height:1,top:top + moveBgH/2,opacity:0.5};
-			animate2 = {top:top};
-			animate3 = {height:moveBgH,left:left,opacity:1};
-		}
-		
-		$move.animate(animate1,500,function(){
-			slideDirMove();
-		});
-		
-		$move.animate(animate2,300);
-		
-		$move.animate(animate3,100,function(){
-			$btn.css({color:hoverColor}).siblings().css({color:outColor});
-			
-		});
+		slideDirMove();
 	});
 	
 	$btns.css({width:aW});
