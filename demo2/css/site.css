@@ -327,7 +327,7 @@ body{
 	width:28px;
 	height:18px;
 	cursor:pointer;
-	background:url(../images/subPrev_hover.png) no-repeat;
+	background:url(../images/subPrev_out.png) no-repeat;
 }
 
 .subPrev-out{
@@ -335,7 +335,7 @@ body{
 	width:28px;
 	height:18px;
 	cursor:pointer;
-	background:url(../images/subPrev_out.png) no-repeat;
+	background:url(../images/subPrev_hover.png) no-repeat;
 }
 
 .subNext-hover{
@@ -343,7 +343,7 @@ body{
 	width:28px;
 	height:18px;
 	cursor:pointer;
-	background:url(../images/subNext_hover.png) no-repeat;
+	background:url(../images/subNext_out.png) no-repeat;
 }
 
 .subNext-out{
@@ -351,7 +351,7 @@ body{
 	width:28px;
 	height:18px;
 	cursor:pointer;
-	background:url(../images/subNext_out.png) no-repeat;
+	background:url(../images/subNext_hover.png) no-repeat;
 }
 
 .navList-out{
@@ -359,6 +359,7 @@ body{
 	width:24px;
 	height:18px;
 	cursor:pointer;
+	text-align:center;
 	background:url(../images/navList_out.gif) no-repeat;
 }
 
@@ -367,6 +368,8 @@ body{
 	width:24px;
 	height:18px;
 	cursor:pointer;
+	color:white;
+	text-align:center;
 	background:url(../images/navList_hover.gif) no-repeat;
 }
 

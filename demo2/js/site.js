@@ -563,7 +563,8 @@ $.fn.imgFace = function(options) { //imgFace
 	var $imgHot = $("<span></span>").addClass("imgHot").css({top:opts.hotTop,left:opts.hotLeft});
 	
 	$imgCtn.append($imgFace).css({position:"relative"});
-	if($imgCtn.attr("class") == "hot"){
+	
+	if($imgCtn.hasClass("hot")){
 		$imgCtn.append($imgHot);
 	}
 	
@@ -602,8 +603,8 @@ $.fn.roll = function(options) {
 	var $prev,$next;
 	
 	if(options.prevID != 'no' && options.nextID != 'no'){
-		$prev = $window.prev().prev();
-		$next = $window.prev();
+		$prev = $window.prev().find("a:first");
+		$next = $window.prev().find("a:last");
 	}
 	
 	if(options.listID != 'no'){
@@ -734,10 +735,9 @@ $.fn.roll = function(options) {
 			opts = {"top":-scrollSize};
 		}
 		
-		container.animate(opts,options.speed,function(){
-			changeListClass(i);
-			changeCss();
-		});
+		container.animate(opts,options.speed,function(){ });
+		changeListClass(i);
+		changeCss();
 	};
 	
 	if(pagers == 1){
