@@ -42,9 +42,10 @@ ul, li {
 .bgFlash{
 	position:absolute;
 	width:2000px;
-	height:600px;
+	height:595px;
 	z-index:0;
 	background:white;
+	overflow:hidden;
 }
 
 .mainContainer{
@@ -200,7 +201,7 @@ body{
 }
 
 .container{
-	height:500px;
+	height:499px;
 	position:relative;
 }
 
@@ -216,8 +217,8 @@ body{
 }
 
 .pageContainer{
-	margin-left:37px;
-	margin-right:37px;
+	margin-left:62px;
+	margin-right:62px;
 }
 
 .prev-hover{
@@ -267,22 +268,18 @@ body{
 /**** pc *****/
 
 .subNav {
-	margin-bottom:20px;
-	margin-left:10px;
-	height:30px;
+	height:42px;
 }
 
 .subNav li{
 	width:174px;
-	height:42px;
-	display:inline-block;
+	float:left;
 	text-align:center;
 	font-weight:bold;
 	font-size:14px;
-	margin-right:10px;
 	cursor:pointer;
 	text-decoration:none;
-	font-family:Arial,"幼圆";
+	font-family:Arial;
 	color:#078ACA;
 }
 
@@ -294,7 +291,8 @@ body{
 .emLast{
 	color:#078ACA;
 	font-family:"微软雅黑";
-	font-size:18px;
+	font-size:16px;
+	letter-spacing:2px;
 }
 
 .subNav-out{
@@ -308,80 +306,68 @@ body{
 }
 
 .slideDir{
-	height:10px;
+	height:7px;
 	position:relative;
 }
 
 .slideDir div{
-	width:19px;
-	height:10px;
+	width:13px;
+	height:7px;
 	position:absolute;
 	background:url(../images/slide_dir.gif) no-repeat;
 }
 
 .subContainer{
-	height:382px;
+	height:393px;
 }
 
 
 .subPrev-hover{
 	display:block;
-	width:30px;
-	height:54px;
+	width:28px;
+	height:18px;
 	cursor:pointer;
-	position:absolute;
-	top:110px;
-	left:3px;
-	_left:-42px;
-	z-index:99;
 	background:url(../images/subPrev_hover.png) no-repeat;
-	_background:none; 
-	_filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src="images/subPrev_hover.png" ,sizingMethod="crop"); 
 }
 
 .subPrev-out{
 	display:block;
-	top:110px;
-	left:3px;
-	_left:-42px;
-	width:30px;
-	height:54px;
+	width:28px;
+	height:18px;
 	cursor:pointer;
-	position:absolute;
-	z-index:99;
 	background:url(../images/subPrev_out.png) no-repeat;
-	_background:none; 
-	_filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src="images/subPrev_out.png" ,sizingMethod="crop"); 
 }
 
 .subNext-hover{
 	display:block;
-	top:110px;
-	left:917px;
-	_left:872px;
-	width:30px;
-	height:54px;
+	width:28px;
+	height:18px;
 	cursor:pointer;
-	position:absolute;
-	z-index:99;
 	background:url(../images/subNext_hover.png) no-repeat;
-	_background:none; 
-	_filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src="images/subNext_hover.png" ,sizingMethod="crop"); 
 }
 
 .subNext-out{
 	display:block;
-	top:110px;
-	left:917px;
-	_left:872px;
-	width:30px;
-	height:54px;
+	width:28px;
+	height:18px;
 	cursor:pointer;
-	position:absolute;
-	z-index:99;
 	background:url(../images/subNext_out.png) no-repeat;
-	_background:none; 
-	_filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src="images/subNext_out.png" ,sizingMethod="crop"); 
+}
+
+.navList-out{
+	display:block;
+	width:24px;
+	height:18px;
+	cursor:pointer;
+	background:url(../images/navList_out.gif) no-repeat;
+}
+
+.navList-hover{
+	display:block;
+	width:24px;
+	height:18px;
+	cursor:pointer;
+	background:url(../images/navList_hover.gif) no-repeat;
 }
 
 .guiding{

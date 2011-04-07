@@ -467,7 +467,7 @@ $.fn.subPage = function(options) { //subPage --ajax --title
 	
 	var index = 0;
 	var pageSize = $subNav.find("li").size();
-	var aW = ($subNav.width()-15*pageSize)/pageSize;
+	var aW = ($subNav.width())/pageSize;
 	var path = $subNav.find("li:first").attr("_action");
 
 	
