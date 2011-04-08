@@ -23,7 +23,7 @@
 					type:'POST',
 					dataType:'text',
 					success:function(text){
-						$jusContent.html(text);
+						$jusContent.hide().html(text).fadeIn(1000);
 					}
 				});
 			});

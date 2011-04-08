@@ -7,44 +7,67 @@
 <script type="text/javascript">
 	var params = { wmode:'transparent',flashvars: "",quality:'Low',scale:'NoBorder' };
 	var attributes = { id:'aboutFlash', name:'aboutFlash' };
-	swfobject.embedSWF('images/aboutUs.swf','aboutFlbg',779,308,'9.0.115','',false, params, attributes);
+	//swfobject.embedSWF('images/aboutUs.swf','aboutFlbg',779,308,'9.0.115','',false, params, attributes);
+	
+	$(function(){
+		var $curlyList = $(".about div");
+		var curly = "<dl class='curly' style='margin:0px'><img src='images/curly.gif' alt='' /></dl>";
+		
+		$curlyList.each(function(){
+			$(this).append(curly);
+			var $curly = $(this).find(".curly");
+			var $img = $(this).find("img").css({width:1,height:1,marginTop:36,marginLeft:36});
+			
+			$(this).hover(function(){
+				$img.css({opacity:1}).animate({width:36,height:36,marginTop:0,marginLeft:0});
+			},function(){
+				$img.animate({width:0,height:0,marginTop:36,marginLeft:36,opacity:0});
+			});
+		});
+	});
 </script>
 
 <style type="text/css">
 	.aboutFlash{
-		width:839px;
+		width:800px;
 		height:310px;
 		top:-35px;
-		margin-left:180px;
+		margin-left:155px;
 		position:absolute;
+		background:url(images/aboutFlash_bg.png) no-repeat;
+		_background:none; 
+		_filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src="images/aboutFlash_bg.png" ,sizingMethod="crop"); 
 	}
 	.aboutContent{
 		position:absolute;
+		padding-top:14px;
 	}
 	.about div{
 		display:block;
 		clear:right; 
-		width:309px;
-		height:300px;
-		margin-right:8px;
+		width:302px;
+		height:180px;
 		text-decoration:none;
+		position:relative;
 	}
-	.about div:hover{
-		background:url(images/aboutBg_hover.png) no-repeat;
-		_background:none; 
-		_filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src="images/aboutBg_hover.png" ,sizingMethod="crop"); 
-	}
-	.about div span{
-		margin:14px 5px 0px 14px;
+	.about div dl{
+		margin:8px 15px 0px 14px;
 		display:block;
 		line-height:23px;
 	}
-	.about div b{
+	.curly{
+		width:41px;
+		height:41px;
+		top:141px;
+		left:258px;
+		position:absolute;
+	}
+	.about dl b{
 		float:left; 
 		width:100px; 
 		height:80px;
 	}
-	.about div p{
+	.about dl p{
 		font-size:13px;
 		color:#39AEE7;
 		font-weight:bold;
@@ -76,34 +99,34 @@
 <body>
 	<div class="aboutContent">
 		<div style="height:255px;">
-			<p style="margin-bottom:4px; color:#339ACD; font-size:30px; font-weight:bold;" class="font-yy">
+			<p style="margin-bottom:4px; color:#339ACD; font-size:26px; font-weight:bold;" class="font-yy">
 				让科技更好地服务于人类
 			</p>
-			<span style="width:240px; color:#339ACD; font-size:13px; font-weight:bold; display:block; line-height:23px" class="font-yy">
+			<span style="width:215px; color:#339ACD; display:block; line-height:23px" >
 				1945年，世界上出现了第一台电子数字计算机“ENIAC”，标志着人类终于拥有可以替代人类脑力劳动的工具。今天，随着科技的发展，计算机应用的网络散播在生活的每一个角落，与我们的日常生活息息相关。
 			</span>
 		</div>
 		<div class="about">
 			<div _action="aboutUs/introduction.html" _actionType="dialog" _enTitle="introduction" title="公司简介" class="about-out fl">
-				<span>
+				<dl>
 					<b class="introduction"></b>
 					<p>元镁简介 Introduction</p>
 					广州市元镁计算机科技有限公司以软件开发、企业邮件服务、系统集成为主业，利用自身长期积累的技术经验、先进的网络技术和优质的服务为客户提供全面的企业信息化解决方案。
-				</span>
+				</dl>
 			</div>
 			<div _action="aboutUs/culture.html" _actionType="dialog"  _enTitle="introduction" title="公司简介"  class="about-out fl">
-				<span>
+				<dl>
 					<b class="philosophy"></b>
 					<p>元镁文化Culture</p>
 					企业愿景-让科技更好地服务于人类。企业定位-提高企业的管理和生产效益、方便人们的生活需求。企业精神-诚信务实，高效创新。发展哲学-工欲善其事，必先利其器。服务理念-思您所需，做您所想。
-				</span>
+				</dl>
 			</div>
 			<div _action="aboutUs/honor.html" _actionType="dialog"  _enTitle="introduction" title="公司简介"  class="about-out fr" style="margin-right:0px;">
-				<span>
+				<dl>
 					<b class="advances"></b>
 					<p>元镁荣誉 Honor</p>
 					IOS资格认证
-				</span>
+				</dl>
 			</div>
 		</div>
 	</div>

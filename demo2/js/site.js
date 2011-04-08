@@ -510,16 +510,13 @@ $.fn.subPage = function(options) { //subPage --ajax --title
 			
 	});
 	
-	slideDirMove();
-	loadSubContainer(path);
+	$btns.css({width:aW});
 	
 	$btns.click(function(){
 		index = $(this).data("pageInfo").num;
 		path = $(this).attr("_action");
-		slideDirMove();
-	});
-	
-	$btns.css({width:aW});
+		slideDirMove($(this).position().left + $(this).width()/2 - 5);
+	}).eq(0).click();
 	
 	function loadSubContainer(path){
 		$.ajax({
@@ -527,13 +524,13 @@ $.fn.subPage = function(options) { //subPage --ajax --title
 			type:'POST',
 			dataType:'text',
 			success:function(text){
-				$subContainer.html(text);
+				$subContainer.hide().html(text).fadeIn(1000);
 			}
 		});
 	}
 	
-	function slideDirMove(){
-		$slideDir.animate({left:aW/2+index*opts.moveSize-2},500,function(){
+	function slideDirMove(size){
+		$slideDir.animate({left:size},500,function(){
 			if(path != ""){
 				loadSubContainer(path);
 			}
