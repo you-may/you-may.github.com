@@ -368,6 +368,7 @@ $(function(){ // 页面整体效果
 	function init(){
 		var dialogObj = $("[_actionType='dialog']");
 		var dialogNoModelObj = $("[_actionType='dialogNoModel']");
+		var dialogAutoObj = $("[_actionType='dialogAuto']");
 		
 		dialogObj.die("click");
 		dialogObj.live("click",function(){
@@ -377,6 +378,11 @@ $(function(){ // 页面整体效果
 		dialogNoModelObj.die("click");
 		dialogNoModelObj.live("click",function(){
 			$(this).modalWindow({useModel:false});
+		});
+		
+		dialogAutoObj.die("click");
+		dialogAutoObj.live("click",function(){
+			$(this).modalWindow({useModel:false,contextW:800,contextH:300});
 		});
 		
 	}
@@ -851,13 +857,12 @@ $.fn.modalWindow = function(options) { //imgFace
 					
 	var $title = $("<div></div>").css({
 					width:"100%",
-					height:60
+					height:55
 					});
 					
 	var $titleText = $("<div></div>").css({
 					float:"left",
-					fontSize:30,
-					fontFamily:"幼圆",
+					fontSize:22,
 					fontWeight:"bold"
 					});
 	
@@ -870,19 +875,25 @@ $.fn.modalWindow = function(options) { //imgFace
 					background:"url('images/cancel.gif') no-repeat"
 					});
 	
+	var $corner = $("<div></div>").css({
+					background:"#078ACA",
+					width: opts.contextW - 40,
+					height: opts.contextH - 55,
+					position:"relative",
+					padding:"1px 2px 2px 1px"
+					});
+	
 	var $context = $("<div></div>").css({
 					clear:"both",
-					height:428,
-					width:915,
 					position:"relative",
 					padding:20,
-					background:"url('images/model_bg.gif') no-repeat"
+					background:"white"
 					});
 					
 	var $textWindow = $("<div></div>").css({
 					overflow:"auto",//"hidden",
 					position:"relative",
-					height:385,
+					height: opts.contextH - 95,
 					marginTop:0,
 					overflowY:"hidden",
 					overflowX:"hidden"
@@ -891,8 +902,7 @@ $.fn.modalWindow = function(options) { //imgFace
 	var $text = $("<div></div>").css({
 					lineHeight:"28px",
 					textIndent:"2em",
-					position:"absolute",
-					width:875
+					position:"absolute"
 					});
 	
 	var $sidebarWindow = $("<div></div>").css({
@@ -900,7 +910,7 @@ $.fn.modalWindow = function(options) { //imgFace
 					width:23,
 					position:"absolute",
 					top:0,
-					left:928
+					left:opts.contextW - 22
 					});
 					
 	var $sidePrev = $("<div></div>").css({
@@ -931,29 +941,32 @@ $.fn.modalWindow = function(options) { //imgFace
 	$textWindow.append($text);
 	
 	if(!opts.useModel){
-		$context.css({
-			background:"",
+		$corner.css({
 			width:"100%",
-			padding:"2px",
-			border:"1px #A0A0A0 dotted",
-			background: 'url("images/model_bg2.gif") no-repeat'
+			height:"100%"
 		});
+		$context.height(opts.contextH - 40);
+		$context.append($textWindow);
 		
+		$textWindow.css({height:opts.contextH - 10});
 	}else{
 		$context.append($textWindow,$sidebarWindow);
 	}
 	
-	$container.append($title,$context);
+	$corner.append($context);
+	$container.append($title,$corner);
+	$corner.corner("cc:#F9F9F9 6px");
+	$context.corner("5px");
 	
 	$sidebarWindow.append($sidePrev,$sidebar,$sideNext);
 	
 	var title = $contextual.attr("title");
 	var english = $contextual.attr("_enTitle").toUpperCase();
-	var str = title + "<br/><font style='font-size:12px;color:#9C9E9C'>&nbsp;" + english + "</font>";
+	var str = title + "<br/><font style='font-size:12px;color:#707070'>&nbsp;" + english + "</font>";
 	var action = $contextual.attr("_action");
 	var twH = $textWindow.height();
 	
-	$titleText.html(str);
+	$titleText.html(str).addClass("CC078ACA FFSOFT").css({letterSpacing:1});
 	
 	$sidebar.slider({
 		orientation: 'vertical',
@@ -1014,7 +1027,6 @@ $.fn.modalWindow = function(options) { //imgFace
 			type:'get',
 			dataType:'html',
 			success:function(text){
-				if(opts.useModel){
 				
 					$text.html(text);
 					
@@ -1023,10 +1035,6 @@ $.fn.modalWindow = function(options) { //imgFace
 							background:"url('images/sideNext_hover.gif') no-repeat"
 						});
 					}
-					
-				}else{
-					$context.html(text);
-				}
 			}
 		});
 	}
@@ -1095,6 +1103,9 @@ $.fn.modalWindow.defaults = {
 $.fn.modalWindow.setDefaults = function(settings) {
     $.extend($.fn.modalWindow.defaults, settings);
 };
+
+
+
 
 $.fn.navAnimate = function(options) { //navAnimate
 	var opts = $.extend({}, $.fn.navAnimate.defaults, options);

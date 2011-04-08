@@ -12,7 +12,6 @@
 	.msgInput{
 		float:left;
 		width:522px;
-		margin-left:80px;
 		display:inline;
 	}
 	
@@ -20,6 +19,7 @@
 		float:left;
 		width:260px;
 		margin-bottom:20px;
+		line-height:16px;
 	}
 	
 	.msgInput div input{
@@ -33,14 +33,7 @@
 
 </head>
 <body>
-	<div class="guiding">
-		<b style="float:left">
-		<span>/ 联系我们 /</span>
-		<a>在线留言</a>
-		</b>
-		<b style="color:#ccc; float:right">您可以通过 填写以下 简单信息与我们联系，我们会在收到需求后的 三个工作日 内给您回复</b>
-	</div>
-	<div style="padding:15px 40px 0px 40px; clear:both;">
+	<div style="clear:both;">
 		<form>
 			<div class="msgInput">
 				<div>
@@ -75,9 +68,9 @@
 				</div>
 			</div>
 			<div style="float:left">
-				<p style="color:#ccc;">MESSAGE CONTENTS</p>
-				<p>您的留言</p>
-				<p><textarea style="width:195px; height:147px;margin-top:8px;border:1px solid #ccc;" name="" cols="" rows=""></textarea></p>	
+				<p style="color:#ccc; line-height:16px;">MESSAGE CONTENTS</p>
+				<p style=" line-height:16px;">您的留言</p>
+				<p><textarea style="width:195px; height:150px;margin-top:8px;border:1px solid #ccc;" name="" cols="" rows=""></textarea></p>	
 				<p><input style="margin-top:20px;" type="image" src="images/msg_submit.gif"/></p>
 			</div>
 		</form>

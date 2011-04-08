@@ -21,7 +21,8 @@
 			$(this).hover(function(){
 				$img.css({opacity:1}).animate({width:36,height:36,marginTop:0,marginLeft:0});
 			},function(){
-				$img.animate({width:0,height:0,marginTop:36,marginLeft:36,opacity:0});
+				$img.stop();
+				$img.animate({width:0,height:0,marginTop:36,marginLeft:36,opacity:0},300);
 			});
 		});
 	});
