@@ -61,14 +61,14 @@ $(function(){ // 页面整体效果
 	
 	//监听url hash值修改
 	$.router(function(hash) {
-		
 		if("" == hash || null == hash){
 			hash = $topMenus.eq(0).data("pageInfo").name;
 		}
 		
 		locationHref = hash;
 		loadSubPage(hash);
-		
+		$(".navigation").data("page",{index:currentPage});
+		navigation();
 	});
 	
 	var autoLoadSubPage = setInterval(function(){
@@ -234,6 +234,7 @@ $(function(){ // 页面整体效果
 			if(target == hash){
 				$(this).blur(); 
 				currentPage = $(this).data("pageInfo").num;
+				$(".navigation").data("page",{index:currentPage});
 				movePage();
 			}
 			
@@ -346,6 +347,22 @@ $(function(){ // 页面整体效果
 		$m.removeClass().addClass($m.data("navCss").name + "-hover").siblings().each(function(){
 			$(this).removeClass().addClass($(this).data("navCss").name);
 		});
+	}
+	
+	function navigation(){
+		var $navs = $pages.eq(currentPage).find("title");
+		var $navigation = $(".navigation");
+		var str = "";
+		
+		$navs.each(function(i){
+			if(i == 0){
+				str += "> <b>"+ $(this).html() +"</b> ";
+			}else{
+				str += "> "+ $(this).html();
+			}
+		});
+		
+		$navigation.html(str);
 	}
 	
 	var $sideBg = $("<div></div>").css({
@@ -518,6 +535,7 @@ $.fn.subPage = function(options) { //subPage --ajax --title
 			dataType:'text',
 			success:function(text){
 				$subContainer.hide().html(text).fadeIn(1000);
+				navigation();
 			}
 		});
 	}
@@ -530,6 +548,24 @@ $.fn.subPage = function(options) { //subPage --ajax --title
 		if(path != ""){
 			loadSubContainer(path);
 		}
+	}
+	
+	function navigation(){
+		var $navigation = $(".navigation");
+		var $pages = $(".moveContainer").find(".page");
+		var currentPage = $navigation.data("page").index;
+		var $navs = $pages.eq(currentPage).find("title");
+		var str = "";
+		
+		$navs.each(function(i){
+			if(i == 0){
+				str += "> <b>"+ $(this).html() +"</b> ";
+			}else{
+				str += "> "+ $(this).html();
+			}
+		});
+		
+		$navigation.html(str);
 	}
 	
 };

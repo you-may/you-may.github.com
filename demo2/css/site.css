@@ -77,7 +77,7 @@ body{
 	background:#B4CFDC;
 }
 
-.logo{
+.navigation{
 	width:280px;
 	height:52px;
 	float:left;
@@ -90,7 +90,7 @@ body{
 	background: url(../images/top_Llogo.gif) no-repeat left;
 }
 
-.logo  b{
+.navigation  b{
 	font-size:15px;
 	color:#ffffff;
 	font-family:Arial,"幼圆";
@@ -373,8 +373,9 @@ body{
 .emLast-hover{
 	color:#3B3B3B;
 	font-family:"微软雅黑";
-	font-size:16px;
+	font-size:18px;
 	letter-spacing:2px;
+	line-height:20px;
 }
 
 .subNav-out{

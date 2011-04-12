@@ -2,211 +2,329 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>无标题文档</title>
+<title>网站创作</title>
 
 <script type="text/javascript">
-	$(".rollWindow").roll({prevID: '.subPrev',
+	
+	var staNav = "";
+	
+	$(".staWindow .images").each(function(i){
+		staNav += "<li>" + (i+1) + "</li>";
+	});
+	
+	$(".staNav ul").html(staNav);
+	
+	$(".staWindow").roll({prevID: '.subPrev',
 							nextID: '.subNext',
 							nextHover:"subNext-hover",
 							nextOut:"subNext-out",
 							prevHover:"subPrev-hover",
 							prevOut:"subPrev-out",
-							scrollAmount:860
+							scrollAmount:900,
+							listID:".staNav",
+							listHoverCss:"navList-hover",
+							listOutCss:"navList-out"
 							});
 	
 	
 	//热门图片效果
-	$(".images").children("div").each(function(){
+	$(".staWindow .imgFrame").each(function(){
 		$(this).imgFace({hotTop:-6,
-						hotLeft:108,
+						hotLeft:85,
 						faceTop:0,
 						faceLeft:0
 						});
 	});
+	
 </script>
 <style type="text/css">
-	.rollWindow .images div{
+	.staWindow .img{
 		float:left;
-		line-height:20px;
-		margin-right:23px;
-		margin-top:15px;
 		position:relative;
+		width:289px;
+		height:120px;
+		background:url(images/sta_bg.gif) no-repeat;
 	}
-	.rollWindow .images {
-		width:860px;
+	.staWindow .img div{
+		float:left;
 	}
-	.rollWindow{
-		width:858px;
-		height:314px;
-		margin-left:5px;
+	.staWindow .imgFrame{
+		background:5px 0px no-repeat;
 	}
+	.staWindow .context{
+		padding-top:10px;
+		line-height:17px;
+		width:130px;
+		padding-left:2px;
+	}
+	.staWindow .images {
+		width:900px;
+	}
+	.staWindow{
+		width:875px;
+		height:370px;
+		padding-top:19px;
+	}
+	.staNav{
+		position:absolute;
+		top:360px;
+		right:15px;
+		z-index:100;
+	}
+	.staNav *{
+		float:left;
+		margin:0px 2px;
+		line-height:18px;
+	}
+	
+	
 </style>
 
 </head>
 <body>
-	<div class="guiding">
-		<span>/ 解决方案 /</span>
-		<a>网站创作</a>
-	</div>
-	<div style="padding:0px 40px 0px 40px; position:relative">
-		<a href="javascript:void(0)" class="subPrev subPrev-out"></a>
-		<a href="javascript:void(0)" class="subNext subNext-hover"></a>
-		<div class="rollWindow">
+	<div style="padding:0px 0px 0px 10px; position:relative">
+		<div class="staNav">
+			<a href="javascript:void(0)" class="subPrev subPrev-out"></a>
+			<ul class="navList"> </ul>
+			<a href="javascript:void(0)" class="subNext subNext-hover"></a>
+		</div>
+		<div class="staWindow">
 			<div class="images">
-				<div class="hot" _action="solution/websiteCreation/webSchool/index.html" _actionType="dialogNoModel" _enTitle="Network platform to support education" title="网络支教平台" >
-					<img src="images/05.jpg" alt=""/>
-					<p class="tr s11"><font class="A0 s11">DATE：</font>2010/02/10</p>
-					<p style="color:#39AEE7">网络支教平台</p>
+				<div class="img" _action="solution/websiteCreation/webSchool/index.html" _actionType="dialogNoModel" _enTitle="Network platform to support education" title="网络支教平台" >
+					<div class="hot imgFrame" style="background-image:url(images/05.jpg)">
+						<img src="images/sta_imgf.gif" alt=""/>
+					</div>
+					<div class="context">
+						<p style="color:#AACBDA">DATE：2010/02/10</p>
+						<p style="color:#666666; font-weight:bold;">网络支教平台</p>
+						<p style="color:#378BB3; padding-top:10px;">广州元镁计算机科技有限公司</p>
+					</div>
 				</div>
-				<div>
-					<img src="images/02.jpg" alt=""/>
-					<p class="tr s11"><font class="A0 s11">DATE：</font>2010/02/10</p>
-					<p style="color:#39AEE7">网络支教平台</p>
+				
+				<div class="img"  _action="solution/websiteCreation/ASMS/index.html" _actionType="dialogNoModel" _enTitle="arts school management system" title="艺术学校系统管理" >
+					<div class="hot imgFrame" style="background-image:url(images/ASMS_logo.jpg)">
+						<img src="images/sta_imgf.gif" alt=""/>
+					</div>
+					<div class="context">
+						<p style="color:#AACBDA">DATE：2010/02/10</p>
+						<p style="color:#666666; font-weight:bold;">艺术学校系统管理</p>
+						<p style="color:#378BB3; padding-top:10px;">广州元镁计算机科技有限公司</p>
+					</div>
 				</div>
-				<div>
-					<img src="images/03.jpg" alt=""/>
-					<p class="tr s11"><font class="A0 s11">DATE：</font>2010/02/10</p>
-					<p style="color:#39AEE7">网络支教平台</p>
+				
+				<div class="img" _action="solution/websiteCreation/BFA/index.html" _actionType="dialogNoModel" _enTitle="bfa" title="BFA" >
+					<div class="imgFrame" style="background-image:url(images/BFA_logo.jpg)">
+						<img src="images/sta_imgf.gif" alt=""/>
+					</div>
+					<div class="context">
+						<p style="color:#AACBDA">DATE：2010/02/10</p>
+						<p style="color:#666666; font-weight:bold;">BFA</p>
+						<p style="color:#378BB3; padding-top:10px;">广州元镁计算机科技有限公司</p>
+					</div>
 				</div>
-				<div>
-					<img src="images/04.jpg" alt=""/>
-					<p class="tr s11"><font class="A0 s11">DATE：</font>2010/02/10</p>
-					<p style="color:#39AEE7">网络支教平台</p>
+				
+				<div class="img"  _action="solution/websiteCreation/ELCM/index.html" _actionType="dialogNoModel" _enTitle="early learning center management" title="早教中心管理系统" >
+					<div class="hot imgFrame" style="background-image:url(images/ELCM_logo.jpg)">
+						<img src="images/sta_imgf.gif" alt=""/>
+					</div>
+					<div class="context">
+						<p style="color:#AACBDA">DATE：2010/02/10</p>
+						<p style="color:#666666; font-weight:bold;">早教中心管理系统</p>
+						<p style="color:#378BB3; padding-top:10px;">广州元镁计算机科技有限公司</p>
+					</div>
 				</div>
-				<div style="margin-right:0px">
-					<img src="images/05.jpg" alt=""/>
-					<p class="tr s11"><font class="A0 s11">DATE：</font>2010/02/10</p>
-					<p style="color:#39AEE7">网络支教平台</p>
+				
+				<div class="img" style="margin-right: 0px;" _action="solution/websiteCreation/GZAX/index.html" _actionType="dialogNoModel" _enTitle="GZAX" title="安监协会网站" >
+					<div class="imgFrame" style="background-image:url(images/GZAX_logo.jpg)">
+						<img src="images/sta_imgf.gif" alt=""/>
+					</div>
+					<div class="context">
+						<p style="color:#AACBDA">DATE：2010/02/10</p>
+						<p style="color:#666666; font-weight:bold;">安监协会网站</p>
+						<p style="color:#378BB3; padding-top:10px;">广州元镁计算机科技有限公司</p>
+					</div>
 				</div>
-				<div class="hot">
-					<img src="images/01.jpg" alt=""/>
-					<p class="tr s11"><font class="A0 s11">DATE：</font>2010/02/10</p>
-					<p style="color:#39AEE7">网络支教平台</p>
+				
+				<div class="img" _action="solution/websiteCreation/OILGAS/index.html" _actionType="dialogNoModel" _enTitle="OILGAS" title="广东油汽商会网站" >
+					<div class="imgFrame" style="background-image:url(images/OILGAS_logo.jpg)">
+						<img src="images/sta_imgf.gif" alt=""/>
+					</div>
+					<div class="context">
+						<p style="color:#AACBDA">DATE：2010/02/10</p>
+						<p style="color:#666666; font-weight:bold;">广东油汽商会网站</p>
+						<p style="color:#378BB3; padding-top:10px;">广州元镁计算机科技有限公司</p>
+					</div>
 				</div>
-				<div>
-					<img src="images/02.jpg" alt=""/>
-					<p class="tr s11"><font class="A0 s11">DATE：</font>2010/02/10</p>
-					<p style="color:#39AEE7">网络支教平台</p>
+				
+				<div class="img" _action="solution/websiteCreation/RBM/index.html" _actionType="dialogNoModel" _enTitle="RBMs" title="在线定房管理系统" >
+					<div class="imgFrame" style="background-image:url(images/RBM_logo.jpg)">
+						<img src="images/sta_imgf.gif" alt=""/>
+					</div>
+					<div class="context">
+						<p style="color:#AACBDA">DATE：2010/02/10</p>
+						<p style="color:#666666; font-weight:bold;">在线定房管理系统</p>
+						<p style="color:#378BB3; padding-top:10px;">广州元镁计算机科技有限公司</p>
+					</div>
 				</div>
-				<div>
-					<img src="images/03.jpg" alt=""/>
-					<p class="tr s11"><font class="A0 s11">DATE：</font>2010/02/10</p>
-					<p style="color:#39AEE7">网络支教平台</p>
-				</div>
-				<div class="hot">
-					<img src="images/04.jpg" alt=""/>
-					<p class="tr s11"><font class="A0 s11">DATE：</font>2010/02/10</p>
-					<p style="color:#39AEE7">网络支教平台</p>
-				</div>
-				<div style="margin-right:0px">
-					<img src="images/05.jpg" alt=""/>
-					<p class="tr s11"><font class="A0 s11">DATE：</font>2010/02/10</p>
-					<p style="color:#39AEE7">网络支教平台</p>
-				</div>
+				
 			</div>
+			
 			<div class="images">
-				<div>
-					<img src="images/01.jpg" alt=""/>
-					<p class="tr s11"><font class="A0 s11">DATE：</font>2010/02/10</p>
-					<p style="color:#39AEE7">网络支教平台</p>
+				<div class="img" _action="solution/websiteCreation/webSchool/index.html" _actionType="dialogNoModel" _enTitle="Network platform to support education" title="网络支教平台" >
+					<div class="hot imgFrame" style="background-image:url(images/05.jpg)">
+						<img src="images/sta_imgf.gif" alt=""/>
+					</div>
+					<div class="context">
+						<p style="color:#AACBDA">DATE：2010/02/10</p>
+						<p style="color:#666666; font-weight:bold;">网络支教平台</p>
+						<p style="color:#378BB3; padding-top:10px;">广州元镁计算机科技有限公司</p>
+					</div>
 				</div>
-				<div>
-					<img src="images/02.jpg" alt=""/>
-					<p class="tr s11"><font class="A0 s11">DATE：</font>2010/02/10</p>
-					<p style="color:#39AEE7">网络支教平台</p>
+				
+				<div class="img"  _action="solution/websiteCreation/ASMS/index.html" _actionType="dialogNoModel" _enTitle="arts school management system" title="艺术学校系统管理" >
+					<div class="hot imgFrame" style="background-image:url(images/ASMS_logo.jpg)">
+						<img src="images/sta_imgf.gif" alt=""/>
+					</div>
+					<div class="context">
+						<p style="color:#AACBDA">DATE：2010/02/10</p>
+						<p style="color:#666666; font-weight:bold;">艺术学校系统管理</p>
+						<p style="color:#378BB3; padding-top:10px;">广州元镁计算机科技有限公司</p>
+					</div>
 				</div>
-				<div>
-					<img src="images/03.jpg" alt=""/>
-					<p class="tr s11"><font class="A0 s11">DATE：</font>2010/02/10</p>
-					<p style="color:#39AEE7">网络支教平台</p>
+				
+				<div class="img" _action="solution/websiteCreation/BFA/index.html" _actionType="dialogNoModel" _enTitle="bfa" title="BFA" >
+					<div class="imgFrame" style="background-image:url(images/BFA_logo.jpg)">
+						<img src="images/sta_imgf.gif" alt=""/>
+					</div>
+					<div class="context">
+						<p style="color:#AACBDA">DATE：2010/02/10</p>
+						<p style="color:#666666; font-weight:bold;">BFA</p>
+						<p style="color:#378BB3; padding-top:10px;">广州元镁计算机科技有限公司</p>
+					</div>
 				</div>
-				<div>
-					<img src="images/04.jpg" alt=""/>
-					<p class="tr s11"><font class="A0 s11">DATE：</font>2010/02/10</p>
-					<p style="color:#39AEE7">网络支教平台</p>
+				
+				<div class="img"  _action="solution/websiteCreation/ELCM/index.html" _actionType="dialogNoModel" _enTitle="early learning center management" title="早教中心管理系统" >
+					<div class="hot imgFrame" style="background-image:url(images/ELCM_logo.jpg)">
+						<img src="images/sta_imgf.gif" alt=""/>
+					</div>
+					<div class="context">
+						<p style="color:#AACBDA">DATE：2010/02/10</p>
+						<p style="color:#666666; font-weight:bold;">早教中心管理系统</p>
+						<p style="color:#378BB3; padding-top:10px;">广州元镁计算机科技有限公司</p>
+					</div>
 				</div>
-				<div style="margin-right:0px">
-					<img src="images/05.jpg" alt=""/>
-					<p class="tr s11"><font class="A0 s11">DATE：</font>2010/02/10</p>
-					<p style="color:#39AEE7">网络支教平台</p>
+				
+				<div class="img" style="margin-right: 0px;" _action="solution/websiteCreation/GZAX/index.html" _actionType="dialogNoModel" _enTitle="GZAX" title="安监协会网站" >
+					<div class="imgFrame" style="background-image:url(images/GZAX_logo.jpg)">
+						<img src="images/sta_imgf.gif" alt=""/>
+					</div>
+					<div class="context">
+						<p style="color:#AACBDA">DATE：2010/02/10</p>
+						<p style="color:#666666; font-weight:bold;">安监协会网站</p>
+						<p style="color:#378BB3; padding-top:10px;">广州元镁计算机科技有限公司</p>
+					</div>
 				</div>
-				<div>
-					<img src="images/01.jpg" alt=""/>
-					<p class="tr s11"><font class="A0 s11">DATE：</font>2010/02/10</p>
-					<p style="color:#39AEE7">网络支教平台</p>
+				
+				<div class="img" _action="solution/websiteCreation/OILGAS/index.html" _actionType="dialogNoModel" _enTitle="OILGAS" title="广东油汽商会网站" >
+					<div class="imgFrame" style="background-image:url(images/OILGAS_logo.jpg)">
+						<img src="images/sta_imgf.gif" alt=""/>
+					</div>
+					<div class="context">
+						<p style="color:#AACBDA">DATE：2010/02/10</p>
+						<p style="color:#666666; font-weight:bold;">广东油汽商会网站</p>
+						<p style="color:#378BB3; padding-top:10px;">广州元镁计算机科技有限公司</p>
+					</div>
 				</div>
-				<div>
-					<img src="images/02.jpg" alt=""/>
-					<p class="tr s11"><font class="A0 s11">DATE：</font>2010/02/10</p>
-					<p style="color:#39AEE7">网络支教平台</p>
+				
+				<div class="img" _action="solution/websiteCreation/RBM/index.html" _actionType="dialogNoModel" _enTitle="RBMs" title="在线定房管理系统" >
+					<div class="imgFrame" style="background-image:url(images/RBM_logo.jpg)">
+						<img src="images/sta_imgf.gif" alt=""/>
+					</div>
+					<div class="context">
+						<p style="color:#AACBDA">DATE：2010/02/10</p>
+						<p style="color:#666666; font-weight:bold;">在线定房管理系统</p>
+						<p style="color:#378BB3; padding-top:10px;">广州元镁计算机科技有限公司</p>
+					</div>
 				</div>
-				<div>
-					<img src="images/03.jpg" alt=""/>
-					<p class="tr s11"><font class="A0 s11">DATE：</font>2010/02/10</p>
-					<p style="color:#39AEE7">网络支教平台</p>
+				
+			</div><div class="images">
+				<div class="img" _action="solution/websiteCreation/webSchool/index.html" _actionType="dialogNoModel" _enTitle="Network platform to support education" title="网络支教平台" >
+					<div class="hot imgFrame" style="background-image:url(images/05.jpg)">
+						<img src="images/sta_imgf.gif" alt=""/>
+					</div>
+					<div class="context">
+						<p style="color:#AACBDA">DATE：2010/02/10</p>
+						<p style="color:#666666; font-weight:bold;">网络支教平台</p>
+						<p style="color:#378BB3; padding-top:10px;">广州元镁计算机科技有限公司</p>
+					</div>
 				</div>
-				<div class="hot">
-					<img src="images/04.jpg" alt=""/>
-					<p class="tr s11"><font class="A0 s11">DATE：</font>2010/02/10</p>
-					<p style="color:#39AEE7">网络支教平台</p>
+				
+				<div class="img"  _action="solution/websiteCreation/ASMS/index.html" _actionType="dialogNoModel" _enTitle="arts school management system" title="艺术学校系统管理" >
+					<div class="hot imgFrame" style="background-image:url(images/ASMS_logo.jpg)">
+						<img src="images/sta_imgf.gif" alt=""/>
+					</div>
+					<div class="context">
+						<p style="color:#AACBDA">DATE：2010/02/10</p>
+						<p style="color:#666666; font-weight:bold;">艺术学校系统管理</p>
+						<p style="color:#378BB3; padding-top:10px;">广州元镁计算机科技有限公司</p>
+					</div>
 				</div>
-				<div style="margin-right:0px">
-					<img src="images/05.jpg" alt=""/>
-					<p class="tr s11"><font class="A0 s11">DATE：</font>2010/02/10</p>
-					<p style="color:#39AEE7">网络支教平台</p>
+				
+				<div class="img" _action="solution/websiteCreation/BFA/index.html" _actionType="dialogNoModel" _enTitle="bfa" title="BFA" >
+					<div class="imgFrame" style="background-image:url(images/BFA_logo.jpg)">
+						<img src="images/sta_imgf.gif" alt=""/>
+					</div>
+					<div class="context">
+						<p style="color:#AACBDA">DATE：2010/02/10</p>
+						<p style="color:#666666; font-weight:bold;">BFA</p>
+						<p style="color:#378BB3; padding-top:10px;">广州元镁计算机科技有限公司</p>
+					</div>
 				</div>
-			</div>
-			<div class="images">
-				<div>
-					<img src="images/01.jpg" alt=""/>
-					<p class="tr s11"><font class="A0 s11">DATE：</font>2010/02/10</p>
-					<p style="color:#39AEE7">网络支教平台</p>
+				
+				<div class="img"  _action="solution/websiteCreation/ELCM/index.html" _actionType="dialogNoModel" _enTitle="early learning center management" title="早教中心管理系统" >
+					<div class="hot imgFrame" style="background-image:url(images/ELCM_logo.jpg)">
+						<img src="images/sta_imgf.gif" alt=""/>
+					</div>
+					<div class="context">
+						<p style="color:#AACBDA">DATE：2010/02/10</p>
+						<p style="color:#666666; font-weight:bold;">早教中心管理系统</p>
+						<p style="color:#378BB3; padding-top:10px;">广州元镁计算机科技有限公司</p>
+					</div>
 				</div>
-				<div>
-					<img src="images/02.jpg" alt=""/>
-					<p class="tr s11"><font class="A0 s11">DATE：</font>2010/02/10</p>
-					<p style="color:#39AEE7">网络支教平台</p>
+				
+				<div class="img" style="margin-right: 0px;" _action="solution/websiteCreation/GZAX/index.html" _actionType="dialogNoModel" _enTitle="GZAX" title="安监协会网站" >
+					<div class="imgFrame" style="background-image:url(images/GZAX_logo.jpg)">
+						<img src="images/sta_imgf.gif" alt=""/>
+					</div>
+					<div class="context">
+						<p style="color:#AACBDA">DATE：2010/02/10</p>
+						<p style="color:#666666; font-weight:bold;">安监协会网站</p>
+						<p style="color:#378BB3; padding-top:10px;">广州元镁计算机科技有限公司</p>
+					</div>
 				</div>
-				<div>
-					<img src="images/03.jpg" alt=""/>
-					<p class="tr s11"><font class="A0 s11">DATE：</font>2010/02/10</p>
-					<p style="color:#39AEE7">网络支教平台</p>
+				
+				<div class="img" _action="solution/websiteCreation/OILGAS/index.html" _actionType="dialogNoModel" _enTitle="OILGAS" title="广东油汽商会网站" >
+					<div class="imgFrame" style="background-image:url(images/OILGAS_logo.jpg)">
+						<img src="images/sta_imgf.gif" alt=""/>
+					</div>
+					<div class="context">
+						<p style="color:#AACBDA">DATE：2010/02/10</p>
+						<p style="color:#666666; font-weight:bold;">广东油汽商会网站</p>
+						<p style="color:#378BB3; padding-top:10px;">广州元镁计算机科技有限公司</p>
+					</div>
 				</div>
-				<div>
-					<img src="images/04.jpg" alt=""/>
-					<p class="tr s11"><font class="A0 s11">DATE：</font>2010/02/10</p>
-					<p style="color:#39AEE7">网络支教平台</p>
+				
+				<div class="img" _action="solution/websiteCreation/RBM/index.html" _actionType="dialogNoModel" _enTitle="RBMs" title="在线定房管理系统" >
+					<div class="imgFrame" style="background-image:url(images/RBM_logo.jpg)">
+						<img src="images/sta_imgf.gif" alt=""/>
+					</div>
+					<div class="context">
+						<p style="color:#AACBDA">DATE：2010/02/10</p>
+						<p style="color:#666666; font-weight:bold;">在线定房管理系统</p>
+						<p style="color:#378BB3; padding-top:10px;">广州元镁计算机科技有限公司</p>
+					</div>
 				</div>
-				<div style="margin-right:0px">
-					<img src="images/05.jpg" alt=""/>
-					<p class="tr s11"><font class="A0 s11">DATE：</font>2010/02/10</p>
-					<p style="color:#39AEE7">网络支教平台</p>
-				</div>
-				<div>
-					<img src="images/01.jpg" alt=""/>
-					<p class="tr s11"><font class="A0 s11">DATE：</font>2010/02/10</p>
-					<p style="color:#39AEE7">网络支教平台</p>
-				</div>
-				<div>
-					<img src="images/02.jpg" alt=""/>
-					<p class="tr s11"><font class="A0 s11">DATE：</font>2010/02/10</p>
-					<p style="color:#39AEE7">网络支教平台</p>
-				</div>
-				<div>
-					<img src="images/03.jpg" alt=""/>
-					<p class="tr s11"><font class="A0 s11">DATE：</font>2010/02/10</p>
-					<p style="color:#39AEE7">网络支教平台</p>
-				</div>
-				<div>
-					<img src="images/04.jpg" alt=""/>
-					<p class="tr s11"><font class="A0 s11">DATE：</font>2010/02/10</p>
-					<p style="color:#39AEE7">网络支教平台</p>
-				</div>
-				<div style="margin-right:0px">
-					<img src="images/05.jpg" alt=""/>
-					<p class="tr s11"><font class="A0 s11">DATE：</font>2010/02/10</p>
-					<p style="color:#39AEE7">网络支教平台</p>
-				</div>
+				
 			</div>
 		</div>
 	</div>
