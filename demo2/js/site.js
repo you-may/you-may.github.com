@@ -26,6 +26,7 @@ $(function(){ // 页面整体效果
 		$moveContainer.append(p);
 		
 		$(this).data("pageInfo",{num:index,name:name,state:true});
+		$(this).data("navCss",{name:$(this).attr("class")});
 		p.data("pageInfo",{num:index,name:name,state:true});
 		
 	});
@@ -79,8 +80,8 @@ $(function(){ // 页面整体效果
 	$(window).resize(function(){windowSize();});
 	
 	$(window).scroll(function(){
-		$next.animate({left:$(window).width()-$next.width()+$(window).scrollLeft()},{queue:false},10);	
-		$prev.animate({left:$(window).scrollLeft()},{queue:false},10);	
+		//$next.animate({left:$(window).width()-$next.width()+$(window).scrollLeft()},{queue:false},10);	
+		//$prev.animate({left:$(window).scrollLeft()},{queue:false},10);	
 	});
 	
 	// 拖动条
@@ -156,6 +157,10 @@ $(function(){ // 页面整体效果
 	
 	$topMenus.click(function(){
 		isSide = false;
+	}).hover(function(){
+		$(this).removeClass().addClass($(this).data("navCss").name + "-hover");
+	},function(){
+		menuCss();
 	});
 	
 	function autoLoadPage(){
@@ -258,8 +263,8 @@ $(function(){ // 页面整体效果
 		$sideBg.css({width:w+10});
 		$top.width(w);
 		$floor.width(w);
-		$prev.animate({left:$(window).scrollLeft(),top:containerH/2+$top.height()-$prev.height()/2},{queue:false},10);
-		$next.animate({left:$(window).width()-$next.width()+$(window).scrollLeft(),top:containerH/2+$top.height()-$prev.height()/2},{queue:false},10);
+		//$prev.animate({left:$(window).scrollLeft(),top:containerH/2+$top.height()-$prev.height()/2},{queue:false},10);
+		//$next.animate({left:$(window).width()-$next.width()+$(window).scrollLeft(),top:containerH/2+$top.height()-$prev.height()/2},{queue:false},10);
 		
 		if(($flashBg.width() + $flashBg.offset().left) < w){
 			$flashBg.css({left:-($flashBg.width()-w)});
@@ -269,8 +274,8 @@ $(function(){ // 页面整体效果
 		//$("#bgFlash").height(h);
 	}
 	
-	$prev.css({left:$(window).scrollLeft(),top:containerH/2+$top.height()-$prev.height()/2});
-	$next.css({left:$(window).width()-$next.width()+$(window).scrollLeft(),top:containerH/2+$top.height()-$prev.height()/2});
+	//$prev.css({left:$(window).scrollLeft(),top:containerH/2+$top.height()-$prev.height()/2});
+	//$next.css({left:$(window).width()-$next.width()+$(window).scrollLeft(),top:containerH/2+$top.height()-$prev.height()/2});
 	
 	function movePage(){
 		menuCss();
@@ -324,20 +329,23 @@ $(function(){ // 页面整体效果
 	}
 	
 	function menuCss(){
-		if(currentPage < 1){
-			$prev.attr({"class":"prev prev-out"});
-			$next.attr({"class":"next next-hover"});
+		//if(currentPage < 1){
+		//	$prev.attr({"class":"prev prev-out"});
+		//	$next.attr({"class":"next next-hover"});
 			
-		}else if(currentPage == pageNum-1){
-			$next.attr({"class":"next next-out"});
-			$prev.attr({"class":"prev prev-hover"});
+		//}else if(currentPage == pageNum-1){
+		//	$next.attr({"class":"next next-out"});
+		//	$prev.attr({"class":"prev prev-hover"});
 			
-		}else{
-			$prev.attr({"class":"prev prev-hover"});
-			$next.attr({"class":"next next-hover"});
-		}
+		//}else{
+		//	$prev.attr({"class":"prev prev-hover"});
+		//	$next.attr({"class":"next next-hover"});
+		//}
 		
-		//$topMenus.eq(currentPage).removeClass().addClass("nav-hover").siblings().removeClass().addClass("nav-out");
+		var $m = $topMenus.eq(currentPage);
+		$m.removeClass().addClass($m.data("navCss").name + "-hover").siblings().each(function(){
+			$(this).removeClass().addClass($(this).data("navCss").name);
+		});
 	}
 	
 	var $sideBg = $("<div></div>").css({
@@ -479,34 +487,8 @@ $.fn.subPage = function(options) { //subPage --ajax --title
 	
 	
 	var $btns = $subNav.find("li");
-	var $move = $("<div></div>").addClass(opts.moveClass).css({zIndex:99,position:"absolute",width:aW + 1});
 	
-	$subNav.append($move);
 	$subPage.find("ul").css({position:"absolute",top:0,zIndex:100});
-	
-	$btns.find("em:first").addClass("emFirst");
-	$btns.find("em:last").addClass("emLast");
-	
-	var hoverColor = $move.css("color");
-	var outColor = $btns.css("color");
-	var direction = opts.direction == "lateral" ? true : false;
-	
-	$btns.eq(0).css({color:hoverColor});
-	
-	var moveBgH = $move.height();
-	
-	$subNav.append("<div class='navAnimate-bg'></div>");
-		
-		var $bg = $(".navAnimate-bg");
-		
-		$bg.addClass(opts.hoverClass).css({
-				opacity:0.1,
-				zIndex:97,
-				position:"absolute",
-				top:0,
-				left:0,
-				width:$subNav.width() - 21
-		});
 	
 	$btns.each(function(i){
 		$(this).data("data",{index:i});
@@ -519,6 +501,11 @@ $.fn.subPage = function(options) { //subPage --ajax --title
 	$btns.css({width:aW});
 	
 	$btns.click(function(){
+		$(this).find("em:first").removeClass().addClass("emFirst-hover");
+		$(this).find("em:last").removeClass().addClass("emLast-hover");
+		$(this).siblings().find("em:first").removeClass().addClass("emFirst");
+		$(this).siblings().find("em:last").removeClass().addClass("emLast");
+		
 		index = $(this).data("pageInfo").num;
 		path = $(this).attr("_action");
 		slideDirMove($(this).position().left + $(this).width()/2 - 5);
@@ -537,11 +524,12 @@ $.fn.subPage = function(options) { //subPage --ajax --title
 	
 	function slideDirMove(size){
 		$slideDir.animate({left:size},500,function(){
-			if(path != ""){
-				loadSubContainer(path);
-			}
 			
 		});
+		
+		if(path != ""){
+			loadSubContainer(path);
+		}
 	}
 	
 };
@@ -945,10 +933,13 @@ $.fn.modalWindow = function(options) { //imgFace
 			width:"100%",
 			height:"100%"
 		});
+		$text.css({textIndent:"0em"});
+		
 		$context.height(opts.contextH - 40);
 		$context.append($textWindow);
 		
-		$textWindow.css({height:opts.contextH - 10});
+		$textWindow.css({height:opts.contextH - 10,overflow:"visible"});
+		
 	}else{
 		$context.append($textWindow,$sidebarWindow);
 	}

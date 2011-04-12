@@ -7,7 +7,7 @@
 <script type="text/javascript">
 	var params = { wmode:'transparent',flashvars: "",quality:'Low',scale:'NoBorder' };
 	var attributes = { id:'aboutFlash', name:'aboutFlash' };
-	//swfobject.embedSWF('images/aboutUs.swf','aboutFlbg',779,308,'9.0.115','',false, params, attributes);
+	swfobject.embedSWF('images/aboutUs.swf','aboutFlbg',953,292,'9.0.115','',false, params, attributes);
 	
 	$(function(){
 		var $curlyList = $(".about div");
@@ -19,6 +19,7 @@
 			var $img = $(this).find("img").css({width:1,height:1,marginTop:36,marginLeft:36});
 			
 			$(this).hover(function(){
+				$img.stop();
 				$img.css({opacity:1}).animate({width:36,height:36,marginTop:0,marginLeft:0});
 			},function(){
 				$img.stop();
@@ -32,12 +33,9 @@
 	.aboutFlash{
 		width:800px;
 		height:310px;
-		top:-35px;
-		margin-left:155px;
+		top:-20px;
+		margin-left:-15px;
 		position:absolute;
-		background:url(images/aboutFlash_bg.png) no-repeat;
-		_background:none; 
-		_filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src="images/aboutFlash_bg.png" ,sizingMethod="crop"); 
 	}
 	.aboutContent{
 		position:absolute;

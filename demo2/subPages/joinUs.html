@@ -15,17 +15,23 @@
 		
 		$jusNavList.click(function(){
 			var top = $(this).position().top + 17;
-			var path = $(this).attr("action")
+			var path = $(this).attr("action");
+			
+			$(this).find("b").css({color:"#3B3B3B"});
+			$(this).siblings().find("b").css({color:"#078ACA"});
+			$(this).find("p").css({color:"#9c9c9c"});
+			$(this).siblings().find("p").css({color:"#AACBDA"});
 			
 			$jusSide.animate({top:top},500,function(){
-				$.ajax({
-					url:path,
-					type:'POST',
-					dataType:'text',
-					success:function(text){
-						$jusContent.hide().html(text).fadeIn(1000);
-					}
-				});
+			});
+			
+			$.ajax({
+				url:path,
+				type:'POST',
+				dataType:'text',
+				success:function(text){
+					$jusContent.hide().html(text).fadeIn(1000);
+				}
 			});
 			
 		}).eq(0).click();

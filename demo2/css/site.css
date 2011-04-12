@@ -111,64 +111,67 @@ body{
 	cursor:pointer;
 	text-align:left;
 	font-size:14px;
-	color:#ffffff;
 	font-weight:bold;
 	text-decoration:none;
 	margin-left:26px;
 	font-family:Arial,"幼圆";
 }
 
-.nav-about{
+.navAbout{
 	background: url(../images/nav_1h.gif) no-repeat left center;
 	padding-left:18px;
+	color:#ffffff;
 }
 
-.nav-about:hover{
+.navAbout-hover{
 	background: url(../images/nav_1o.gif) no-repeat left center;
 	color:#666666;
 	padding-left:18px;
 }
 
-.nav-goodAt{
+.navGoodAt{
 	background: url(../images/nav_2h.gif) no-repeat left center;
 	padding-left:16px;
+	color:#ffffff;
 }
 
-.nav-goodAt:hover{
+.navGoodAt-hover{
 	background: url(../images/nav_2o.gif) no-repeat left center;
 	padding-left:16px;
 	color:#666666;
 }
 
-.nav-solution{
+.navSolution{
 	background: url(../images/nav_3h.gif) no-repeat left center;
 	padding-left:18px;
-	padding-left:18px;
+	color:#ffffff;
 }
 
-.nav-solution:hover{
+.navSolution-hover{
 	background: url(../images/nav_3o.gif) no-repeat left center;
 	padding-left:18px;
 	color:#666666;
 }
 
-.nav-contact{
+.navContact{
 	background: url(../images/nav_4h.gif) no-repeat left center;
 	padding-left:22px;
+	color:#ffffff;
 }
 
-.nav-contact:hover{
+.navContact-hover{
 	background: url(../images/nav_4o.gif) no-repeat left center;
 	padding-left:22px;
 	color:#666666;
 }
 
-.nav-joinUs{
+.navJoinUs{
 	background: url(../images/nav_5h.gif) no-repeat left center;
 	padding-left:22px;
+	color:#ffffff;
 }
 
-.nav-joinUs:hover{
+.navJoinUs-hover{
 	background: url(../images/nav_5o.gif) no-repeat left center;
 	padding-left:22px;	
 	color:#666666;
@@ -280,6 +283,58 @@ body{
 	_filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src="images/next_out.png" ,sizingMethod="crop"); 
 }
 
+.inPagePrev-hover{
+	display:block;
+	width:30px;
+	height:54px;
+	cursor:pointer;
+	position:absolute;
+	top:190px;
+	left:-60px;
+	_left:-42px;
+	z-index:99;
+	background:url(../images/inPagePrev_hover.gif) no-repeat;
+}
+
+.inPagePrev-out{
+	display:block;
+	top:190px;
+	left:-60px;
+	_left:-42px;
+	width:30px;
+	height:54px;
+	cursor:pointer;
+	position:absolute;
+	z-index:99;
+	background:url(../images/inPagePrev_out.gif) no-repeat;
+}
+
+.inPageNext-hover{
+	display:block;
+	top:190px;
+	left:940px;
+	_left:872px;
+	width:30px;
+	height:54px;
+	cursor:pointer;
+	position:absolute;
+	z-index:99;
+	background:url(../images/inPageNext_hover.gif) no-repeat;
+}
+
+.inPageNext-out{
+	display:block;
+	top:190px;
+	left:940px;
+	_left:872px;
+	width:30px;
+	height:54px;
+	cursor:pointer;
+	position:absolute;
+	z-index:99;
+	background:url(../images/inPageNext_out.gif) no-repeat;
+}
+
 /**** pc *****/
 
 .subNav {
@@ -305,6 +360,18 @@ body{
 
 .emLast{
 	color:#078ACA;
+	font-family:"微软雅黑";
+	font-size:16px;
+	letter-spacing:2px;
+}
+
+.emFirst-hover{
+	color:#9c9c9c;
+	font-size:14px;
+}
+
+.emLast-hover{
+	color:#3B3B3B;
 	font-family:"微软雅黑";
 	font-size:16px;
 	letter-spacing:2px;

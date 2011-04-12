@@ -13,13 +13,13 @@
 	
 	$(".nttNav").html(nttNav);
 	
-	$(".nttWindow").roll({prevID: '.subPrev',
-							nextID: '.subNext',
-							nextHover:"subNext-hover",
-							nextOut:"subNext-out",
-							prevHover:"subPrev-hover",
-							prevOut:"subPrev-out",
-							scrollAmount:950,
+	$(".nttWindow").roll({prevID: '.inPagePrev',
+							nextID: '.inPageNext',
+							nextHover:"inPageNext-hover",
+							nextOut:"inPageNext-out",
+							prevHover:"inPagePrev-hover",
+							prevOut:"inPagePrev-out",
+							scrollAmount:910,
 							listID:".nttNav",
 							listHoverCss:"nttNav-hover",
 							listOutCss:"nttNav-out"
@@ -30,7 +30,7 @@
 <style type="text/css">
 
 .nttWindow{
-	width:950px;
+	width:910px;
 	height:428px;
 }
 
@@ -41,7 +41,7 @@
 
 .nttNav{
 	position:absolute;
-	top:-36px;
+	top:-58px;
 	left:450px;
 }
 
@@ -76,17 +76,18 @@
 }
 
 .rollPage{
-	width:950px;
+	width:910px;
 }
 
 .rollPage .fr{
-	width:318px;
+	width:290px;
 	line-height:23px;
 }
 
 .rollPage .fl{
-	width:618px; 
-	height:424px
+	width:608px; 
+	height:424px;
+	overflow:hidden;
 }
 
 .rollPage .fr p{
@@ -95,13 +96,17 @@
 
 </style>
 
+</style>
+
 </head>
 <body>
 	<div class="ntt" style="position:relative">
 		<ul class="nttNav">
 		</ul>
-		<a href="javascript:void(0)" class="subPrev subPrev-out"></a>
-		<a href="javascript:void(0)" class="subNext subNext-hover"></a>
+		<div>
+			<a href="javascript:void(0)" class="inPagePrev inPagePrev-out"></a>
+			<a href="javascript:void(0)" class="inPageNext inPageNext-hover"></a>
+		</div>
 		<div class="nttWindow">
 			<div class="rollPage">
 				<div class="fl">
