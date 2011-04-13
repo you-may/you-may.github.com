@@ -1,5 +1,6 @@
 ﻿
 /************************** 页面整体效果 **************************/
+var pageTitle = ".pageTitle";
 
 $(function(){ // 页面整体效果
 	var $window = $(".window");//可视窗口
@@ -350,7 +351,7 @@ $(function(){ // 页面整体效果
 	}
 	
 	function navigation(){
-		var $navs = $pages.eq(currentPage).find("title");
+		var $navs = $pages.eq(currentPage).find(pageTitle);
 		var $navigation = $(".navigation");
 		var str = "";
 		
@@ -554,7 +555,7 @@ $.fn.subPage = function(options) { //subPage --ajax --title
 		var $navigation = $(".navigation");
 		var $pages = $(".moveContainer").find(".page");
 		var currentPage = $navigation.data("page").index;
-		var $navs = $pages.eq(currentPage).find("title");
+		var $navs = $pages.eq(currentPage).find(pageTitle);
 		var str = "";
 		
 		$navs.each(function(i){
@@ -857,7 +858,7 @@ $.fn.modalWindow = function(options) { //imgFace
 	
 	var $windowBg = $("<div></div>").css({
 					width:"100%",
-					height:"100%",
+					height:$(".window").height(),
 					opacity:0.8,
 					zIndex:10001,
 					position:"absolute",
@@ -1110,7 +1111,7 @@ $.fn.modalWindow = function(options) { //imgFace
 		if(w < minW){w = minW;}
 		if(h < minH){h = minH;}
 		
-		$windowBg.css({width:w,height:h});
+		$windowBg.css({width:w,height:$(".window").height()});
 		$window.css({width:w,height:h});
 		$container.css({marginTop: (h - $container.height())/2 - 10});
 	}

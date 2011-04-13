@@ -76,6 +76,9 @@ ul, li {
 body{
 	background:#B4CFDC;
 }
+p.pageTitle{
+	display:none;
+}
 
 .navigation{
 	width:280px;
@@ -186,7 +189,6 @@ body{
 }
 
 .floor{
-	height:149px;
 }
 
 .floor-link{
@@ -196,14 +198,14 @@ body{
 }
 
 .copyright{
-	float:left; 
-	line-height:30px; 
+	line-height:20px; 
 	color:#666666; 
 	margin-left:20px;
+	text-align:center;
 }
 
 .fLogo{
-	text-align:right;
+	text-align:center;
 	height:30px;
 	line-height:30px;
 }
