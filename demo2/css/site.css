@@ -197,28 +197,7 @@ p.pageTitle{
 	background: url(../images/floor_link.gif) no-repeat center;
 }
 
-.copyright{
-	line-height:20px; 
-	color:#666666; 
-	margin-left:20px;
-	text-align:center;
-}
 
-.fLogo{
-	text-align:center;
-	height:30px;
-	line-height:30px;
-}
-
-.fLogo a{
-	text-decoration:none;
-	color:#666666;
-	margin-right:25px;
-}
-
-.fLogo img{
-	vertical-align:text-bottom;
-}
 
 .container{
 	height:499px;
