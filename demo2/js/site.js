@@ -916,12 +916,9 @@ $.fn.modalWindow = function(options) { //imgFace
 					});
 					
 	var $textWindow = $("<div></div>").css({
-					overflow:"auto",//"hidden",
 					position:"relative",
 					height: opts.contextH - 95,
-					marginTop:0,
-					overflowY:"hidden",
-					overflowX:"hidden"
+					marginTop:0
 					});
 					
 	var $text = $("<div></div>").css({
@@ -975,10 +972,14 @@ $.fn.modalWindow = function(options) { //imgFace
 		$context.height(opts.contextH - 40);
 		$context.append($textWindow);
 		
-		$textWindow.css({height:opts.contextH - 10,overflow:"visible"});
+		$textWindow.css({height:opts.contextH - 10});
 		
 	}else{
 		$context.append($textWindow,$sidebarWindow);
+		$textWindow.css({overflow:"auto",
+						overflowY:"hidden",
+						overflowX:"hidden"
+		});
 	}
 	
 	$corner.append($context);
