@@ -63,6 +63,10 @@ ul, li {
 	overflow:hidden;
 }
 
+.hide{
+	display:none;
+}
+
 .mainContainer{
 	position:absolute;
 	z-index:1;
