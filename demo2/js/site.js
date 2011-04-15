@@ -491,18 +491,17 @@ $.fn.subPage = function(options) { //subPage --ajax --title
 	var $subPage = $(this); 
 	var $subNav = $subPage.find(".subNav").css({position:"relative"});
 	var $slideDir = $subPage.find(".slideDir div");
-	var $subContainer = $subPage.find(".subContainer");
+	var $subContainer = $subPage.find(".subContainer").css({position:"relative"});
 	var $cornerd = $subPage.find(".cornerd");
 	
 	$subPage.find(".cor").corner("5px").css({background:"white"});
 	$cornerd.css({background:"#C0DBE8",padding:"1px 2px 2px 1px"}).corner("cc:#ffffff 6px");
+	var $face = $("<div></div>").css({position:"absolute",background:"white",top:0,left:0});
 	
 	var index = 0;
 	var pageSize = $subNav.find("li").size();
 	var aW = ($subNav.width())/pageSize;
 	var path = $subNav.find("li:first").attr("_action");
-
-	
 	
 	var $btns = $subNav.find("li");
 	
@@ -535,7 +534,8 @@ $.fn.subPage = function(options) { //subPage --ajax --title
 			type:'POST',
 			dataType:'text',
 			success:function(text){
-				$subContainer.hide().html(text).fadeIn(1000);
+				$subContainer.html(text).append($face);
+				$face.css({width:$subContainer.width(),height:$subContainer.height(),opacity:1}).animate({opacity:0},1000);
 				navigation();
 			}
 		});

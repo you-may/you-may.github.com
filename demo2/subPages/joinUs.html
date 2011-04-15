@@ -11,7 +11,8 @@
 		
 		var $jusSide = $(".jusBottom .fl div");
 		var $jusNavList = $(".jusNav li");
-		var $jusContent = $(".jusBottom .fr");
+		var $jusContent = $(".jusBottom .fr").css({position:"relative"});
+		var $face = $("<div></div>").css({position:"absolute",background:"white",top:0,left:0});
 		
 		$jusNavList.click(function(){
 			var top = $(this).position().top + 17;
@@ -30,7 +31,8 @@
 				type:'POST',
 				dataType:'text',
 				success:function(text){
-					$jusContent.hide().html(text).fadeIn(1000);
+					$jusContent.html(text).append($face);
+					$face.css({width:$jusContent.width(),height:$jusContent.height(),opacity:1}).animate({opacity:0},1000);
 				}
 			});
 			
