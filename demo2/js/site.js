@@ -535,7 +535,6 @@ $.fn.subPage = function(options) { //subPage --ajax --title
 		
 		if(currentPage != index){
 			slideDirMove($(this).position().left + $(this).width()/2 - 5);
-			$face.stop().css({opacity:0});
 		}
 		
 	}).eq(0).click();
@@ -550,10 +549,10 @@ $.fn.subPage = function(options) { //subPage --ajax --title
 				currentPage = index;
 				$subContainer.html(text).append($face);
 				
-				$face.css({width:$subContainer.width(),height:$subContainer.height(),opacity:1,background:"white"}).show()
-					.animate({opacity:0},1000,
-					
-					function(){
+				$face.stop().css({opacity:0});
+				$face.show().css({width:$subContainer.width(),height:$subContainer.height(),opacity:1,background:"white"});
+				
+				$face.animate({opacity:0},1000,function(){
 						$(this).hide();
 					});
 					
