@@ -336,7 +336,7 @@ $(function(){ // 页面整体效果
 			$(this).removeClass().addClass($(this).data("navCss").name);
 		});
 		$move = $(".nav-move");
-		$move.css({left:$m.position().left + $m.data("data").index,opacity:0}).animate({opacity:1},500);
+		$move.hide().css({left:$m.position().left + $m.data("data").index}).show();
 	}
 	
 	function navigation(){

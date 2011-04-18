@@ -77,7 +77,7 @@ body{
 }
 
 .top{
-	height:85px;
+	height:90px;
 	position:relative;
 	background: url(../images/nav_bg.gif) repeat-x;
 }
@@ -135,7 +135,7 @@ p.pageTitle{
 
 .nav a{
 	width:60px;
-	height:18px;
+	height:15px;
 	display:inline-block;
 	cursor:pointer;
 	text-align:left;
@@ -149,90 +149,120 @@ p.pageTitle{
 
 .navAbout{
 	background: url(../images/nav_1h.png) no-repeat left center;
+	_background:none; 
+	_filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src="images/nav_1h.png" ,sizingMethod="crop"); 
 	padding-left:18px;
 	color:#ffffff;
 }
 
 .navAbout-hover{
 	background: url(../images/nav_1o.png) no-repeat left center;
+	_background:none; 
+	_filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src="images/nav_1h.png" ,sizingMethod="crop"); 
 	color:#666666;
 	padding-left:18px;
 }
 
 .navAbout:hover{
 	background: url(../images/nav_1o.png) no-repeat left center;
+	_background:none; 
+	_filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src="images/nav_1h.png" ,sizingMethod="crop"); 
 	color:#666666;
 	padding-left:18px;
 }
 
 .navGoodAt{
 	background: url(../images/nav_2h.png) no-repeat left center;
+	_background:none; 
+	_filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src="images/nav_2h.png" ,sizingMethod="crop"); 
 	padding-left:16px;
 	color:#ffffff;
 }
 
 .navGoodAt-hover{
 	background: url(../images/nav_2o.png) no-repeat left center;
+	_background:none; 
+	_filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src="images/nav_2h.png" ,sizingMethod="crop"); 
 	padding-left:16px;
 	color:#666666;
 }
 
 .navGoodAt:hover{
 	background: url(../images/nav_2o.png) no-repeat left center;
+	_background:none; 
+	_filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src="images/nav_2h.png" ,sizingMethod="crop"); 
 	padding-left:16px;
 	color:#666666;
 }
 
 .navSolution{
 	background: url(../images/nav_3h.png) no-repeat left center;
+	_background:none; 
+	_filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src="images/nav_3h.png" ,sizingMethod="crop"); 
 	padding-left:18px;
 	color:#ffffff;
 }
 
 .navSolution-hover{
 	background: url(../images/nav_3o.png) no-repeat left center;
+	_background:none; 
+	_filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src="images/nav_3h.png" ,sizingMethod="crop"); 
 	padding-left:18px;
 	color:#666666;
 }
 
 .navSolution:hover{
 	background: url(../images/nav_3o.png) no-repeat left center;
+	_background:none; 
+	_filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src="images/nav_3h.png" ,sizingMethod="crop"); 
 	padding-left:18px;
 	color:#666666;
 }
 
 .navContact{
 	background: url(../images/nav_4h.png) no-repeat left center;
+	_background:none; 
+	_filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src="images/nav_4h.png" ,sizingMethod="crop"); 
 	padding-left:22px;
 	color:#ffffff;
 }
 
 .navContact-hover{
 	background: url(../images/nav_4o.png) no-repeat left center;
+	_background:none; 
+	_filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src="images/nav_4h.png" ,sizingMethod="crop"); 
 	padding-left:22px;
 	color:#666666;
 }
 
 .navContact:hover{
 	background: url(../images/nav_4o.png) no-repeat left center;
+	_background:none; 
+	_filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src="images/nav_4h.png" ,sizingMethod="crop"); 
 	padding-left:22px;
 	color:#666666;
 }
 
 .navJoinUs{
 	background: url(../images/nav_5h.png) no-repeat left center;
+	_background:none; 
+	_filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src="images/nav_5h.png" ,sizingMethod="crop"); 
 	padding-left:22px;
 	color:#ffffff;
 }
 
 .navJoinUs-hover{
 	background: url(../images/nav_5o.png) no-repeat left center;
+	_background:none; 
+	_filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src="images/nav_5h.png" ,sizingMethod="crop"); 
 	padding-left:22px;	
 	color:#666666;
 }
 
 .navJoinUs:hover{
 	background: url(../images/nav_5o.png) no-repeat left center;
+	_background:none; 
+	_filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src="images/nav_5h.png" ,sizingMethod="crop"); 
 	padding-left:22px;	
 	color:#666666;
 }
