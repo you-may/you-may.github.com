@@ -158,7 +158,7 @@ p.pageTitle{
 .navAbout-hover{
 	background: url(../images/nav_1o.png) no-repeat left center;
 	_background:none; 
-	_filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src="images/nav_1h.png" ,sizingMethod="crop"); 
+	_filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src="images/nav_1o.png" ,sizingMethod="crop"); 
 	color:#666666;
 	padding-left:18px;
 }
@@ -166,7 +166,7 @@ p.pageTitle{
 .navAbout:hover{
 	background: url(../images/nav_1o.png) no-repeat left center;
 	_background:none; 
-	_filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src="images/nav_1h.png" ,sizingMethod="crop"); 
+	_filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src="images/nav_1o.png" ,sizingMethod="crop"); 
 	color:#666666;
 	padding-left:18px;
 }
@@ -182,7 +182,7 @@ p.pageTitle{
 .navGoodAt-hover{
 	background: url(../images/nav_2o.png) no-repeat left center;
 	_background:none; 
-	_filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src="images/nav_2h.png" ,sizingMethod="crop"); 
+	_filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src="images/nav_2o.png" ,sizingMethod="crop"); 
 	padding-left:16px;
 	color:#666666;
 }
@@ -190,7 +190,7 @@ p.pageTitle{
 .navGoodAt:hover{
 	background: url(../images/nav_2o.png) no-repeat left center;
 	_background:none; 
-	_filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src="images/nav_2h.png" ,sizingMethod="crop"); 
+	_filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src="images/nav_2o.png" ,sizingMethod="crop"); 
 	padding-left:16px;
 	color:#666666;
 }
@@ -206,7 +206,7 @@ p.pageTitle{
 .navSolution-hover{
 	background: url(../images/nav_3o.png) no-repeat left center;
 	_background:none; 
-	_filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src="images/nav_3h.png" ,sizingMethod="crop"); 
+	_filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src="images/nav_3o.png" ,sizingMethod="crop"); 
 	padding-left:18px;
 	color:#666666;
 }
@@ -214,7 +214,7 @@ p.pageTitle{
 .navSolution:hover{
 	background: url(../images/nav_3o.png) no-repeat left center;
 	_background:none; 
-	_filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src="images/nav_3h.png" ,sizingMethod="crop"); 
+	_filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src="images/nav_3o.png" ,sizingMethod="crop"); 
 	padding-left:18px;
 	color:#666666;
 }
@@ -230,7 +230,7 @@ p.pageTitle{
 .navContact-hover{
 	background: url(../images/nav_4o.png) no-repeat left center;
 	_background:none; 
-	_filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src="images/nav_4h.png" ,sizingMethod="crop"); 
+	_filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src="images/nav_4o.png" ,sizingMethod="crop"); 
 	padding-left:22px;
 	color:#666666;
 }
@@ -238,7 +238,7 @@ p.pageTitle{
 .navContact:hover{
 	background: url(../images/nav_4o.png) no-repeat left center;
 	_background:none; 
-	_filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src="images/nav_4h.png" ,sizingMethod="crop"); 
+	_filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src="images/nav_4o.png" ,sizingMethod="crop"); 
 	padding-left:22px;
 	color:#666666;
 }
@@ -254,7 +254,7 @@ p.pageTitle{
 .navJoinUs-hover{
 	background: url(../images/nav_5o.png) no-repeat left center;
 	_background:none; 
-	_filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src="images/nav_5h.png" ,sizingMethod="crop"); 
+	_filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src="images/nav_5o.png" ,sizingMethod="crop"); 
 	padding-left:22px;	
 	color:#666666;
 }
@@ -262,7 +262,7 @@ p.pageTitle{
 .navJoinUs:hover{
 	background: url(../images/nav_5o.png) no-repeat left center;
 	_background:none; 
-	_filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src="images/nav_5h.png" ,sizingMethod="crop"); 
+	_filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src="images/nav_5o.png" ,sizingMethod="crop"); 
 	padding-left:22px;	
 	color:#666666;
 }
