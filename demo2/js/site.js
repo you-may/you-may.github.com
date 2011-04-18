@@ -496,12 +496,13 @@ $.fn.subPage = function(options) { //subPage --ajax --title
 	
 	$subPage.find(".cor").corner("5px").css({background:"white"});
 	$cornerd.css({background:"#C0DBE8",padding:"1px 2px 2px 1px"}).corner("cc:#ffffff 6px");
-	var $face = $("<div></div>").css({position:"absolute",background:"white",top:0,left:0});
+	var $face = $("<div></div>").css({position:"absolute",top:0,left:0,background:"white"});
 	
 	var index = 0;
 	var pageSize = $subNav.find("li").size();
 	var aW = ($subNav.width())/pageSize;
 	var path = $subNav.find("li:first").attr("_action");
+	var loading = true;
 	
 	var $btns = $subNav.find("li");
 	
@@ -509,7 +510,7 @@ $.fn.subPage = function(options) { //subPage --ajax --title
 	
 	$btns.each(function(i){
 		$(this).data("data",{index:i});
-		$(this).data("pageInfo",{num: i});
+		$(this).data("pageInfo",{num: i,currentPage:false});
 		
 	}).hover(function(){
 			
@@ -525,7 +526,11 @@ $.fn.subPage = function(options) { //subPage --ajax --title
 		
 		index = $(this).data("pageInfo").num;
 		path = $(this).attr("_action");
-		slideDirMove($(this).position().left + $(this).width()/2 - 5);
+		
+		if($(this).data("pageInfo").currentPage){
+			slideDirMove($(this).position().left + $(this).width()/2 - 5);
+		}
+		
 	}).eq(0).click();
 	
 	function loadSubContainer(path){
@@ -534,19 +539,34 @@ $.fn.subPage = function(options) { //subPage --ajax --title
 			type:'POST',
 			dataType:'text',
 			success:function(text){
+			
 				$subContainer.html(text).append($face);
-				$face.show().css({width:$subContainer.width(),height:$subContainer.height(),opacity:1}).animate({opacity:0},1000,function(){$(this).hide();});
+				
+				$face.show().css({width:$subContainer.width(),height:$subContainer.height(),opacity:1,background:"white"})
+					.animate({opacity:0},1000,
+					
+					function(){
+						$(this).hide();
+					});
+					
 				navigation();
 			}
 		});
 	}
 	
 	function slideDirMove(size){
+	
 		$slideDir.animate({left:size},500,function(){
-			
 		});
 		
 		if(path != ""){
+			
+			setTimeout(function(){
+			
+					$face.css({background:"white url(images/loading.gif) center no-repeat"});
+					
+			},1000);
+			
 			loadSubContainer(path);
 		}
 	}
