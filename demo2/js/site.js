@@ -503,6 +503,8 @@ $.fn.subPage = function(options) { //subPage --ajax --title
 	var aW = ($subNav.width())/pageSize;
 	var path = $subNav.find("li:first").attr("_action");
 	var loading = true;
+	var currentPage = -1;
+	var faceStop = null;
 	
 	var $btns = $subNav.find("li");
 	
@@ -510,7 +512,7 @@ $.fn.subPage = function(options) { //subPage --ajax --title
 	
 	$btns.each(function(i){
 		$(this).data("data",{index:i});
-		$(this).data("pageInfo",{num: i,currentPage:false});
+		$(this).data("pageInfo",{num: i});
 		
 	}).hover(function(){
 			
@@ -527,8 +529,13 @@ $.fn.subPage = function(options) { //subPage --ajax --title
 		index = $(this).data("pageInfo").num;
 		path = $(this).attr("_action");
 		
-		if($(this).data("pageInfo").currentPage){
+		if(faceStop != null){
+			clearTimeout(faceStop);
+		}
+		
+		if(currentPage != index){
 			slideDirMove($(this).position().left + $(this).width()/2 - 5);
+			$face.stop().css({opacity:0});
 		}
 		
 	}).eq(0).click();
@@ -540,9 +547,10 @@ $.fn.subPage = function(options) { //subPage --ajax --title
 			dataType:'text',
 			success:function(text){
 			
+				currentPage = index;
 				$subContainer.html(text).append($face);
 				
-				$face.show().css({width:$subContainer.width(),height:$subContainer.height(),opacity:1,background:"white"})
+				$face.css({width:$subContainer.width(),height:$subContainer.height(),opacity:1,background:"white"}).show()
 					.animate({opacity:0},1000,
 					
 					function(){
@@ -561,7 +569,7 @@ $.fn.subPage = function(options) { //subPage --ajax --title
 		
 		if(path != ""){
 			
-			setTimeout(function(){
+			faceStop = setTimeout(function(){
 			
 					$face.css({background:"white url(images/loading.gif) center no-repeat"});
 					
