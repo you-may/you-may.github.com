@@ -49,6 +49,10 @@ ul, li {
 .s17{font-size:17px;}
 .s30{font-size:30px;}
 
+body{
+	background: url(../images/body_bg.gif);
+}
+
 .window{
 	position:relative;
 	overflow:hidden;
@@ -77,9 +81,6 @@ ul, li {
 	background: url(../images/nav_bg.gif) repeat-x;
 }
 
-body{
-	background:#B4CFDC;
-}
 p.pageTitle{
 	display:none;
 }

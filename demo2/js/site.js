@@ -535,7 +535,7 @@ $.fn.subPage = function(options) { //subPage --ajax --title
 			dataType:'text',
 			success:function(text){
 				$subContainer.html(text).append($face);
-				$face.css({width:$subContainer.width(),height:$subContainer.height(),opacity:1}).animate({opacity:0},1000);
+				$face.show().css({width:$subContainer.width(),height:$subContainer.height(),opacity:1}).animate({opacity:0},1000,function(){$(this).hide();});
 				navigation();
 			}
 		});
