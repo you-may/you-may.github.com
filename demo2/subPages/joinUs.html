@@ -11,12 +11,18 @@
 		
 		var $jusSide = $(".jusBottom .fl div");
 		var $jusNavList = $(".jusNav li");
-		var $jusContent = $(".jusBottom .fr").css({position:"relative"});
+		var $jusContent = $(".jusBottom .fr").css({position:"relative",
+						overflowY:"hidden",
+						overflowX:"hidden"
+						});
 		var $face = $("<div></div>").css({position:"absolute",background:"white",top:0,left:0});
+		var $sidebar = $(".sidebarWindow");
+		var scrollH = 0;
 		
 		$jusNavList.click(function(){
 			var top = $(this).position().top + 17;
 			var path = $(this).attr("action");
+			$jusContent.scrollTop(0);
 			
 			$(this).find("b").css({color:"#3B3B3B"});
 			$(this).siblings().find("b").css({color:"#078ACA"});
@@ -31,15 +37,68 @@
 				type:'POST',
 				dataType:'text',
 				success:function(text){
-					$jusContent.html(text).append($face);
+					var $c = $("<div>"+text+"</div>");
+					$jusContent.html($c).append($face);
 					$face.css({width:$jusContent.width(),height:$jusContent.height(),opacity:1}).animate({opacity:0},1000);
+					
+					$sidebar.slider("destroy").hide();
+					if($c.height() > $jusContent.height()){
+						scrollH = $c.height() - $jusContent.height();
+						side();
+					}
 				}
 			});
 			
 		}).eq(0).click();
+		
+		function side(){
+		
+			$sidebar.slider({
+				orientation: 'vertical',
+				range: "min",
+				value: scrollH,
+				min: 1,
+				max: scrollH,
+				slide: function( event, ui ) {
+					$jusContent.scrollTop(scrollH - ui.value);
+				},
+				start: function(event,ui) {
+					
+				},
+				stop: function(event,ui) {
+					
+				}
+			}).css({border:0}).show().find(".ui-slider-handle").css({
+				background:"url(images/slider.gif) no-repeat",
+				height:32,
+				width:13
+			}).click(function(){
+				$(this).blur();
+			}).hover(function(){
+				$(this).blur();
+			});
+			
+			$jusContent.bind("mousewheel",function(event, delta){
+				var slierValue = $sidebar.slider( "option", "value", scrollH - $jusContent.scrollTop() );
+				
+				if(delta > 0){// ? 'Up' : 'Down'
+					$jusContent.scrollTop($jusContent.scrollTop()-5);
+				}else{
+					$jusContent.scrollTop($jusContent.scrollTop()+5);
+				}
+			});
+		}
 	});
 </script>
 <style type="text/css">
+	.sidebarWindow{
+		height:333px;
+		width:9px;
+		position:absolute;
+		top:80px;
+		left:862px;
+		background: url(images/slide_dirBg2.gif) repeat-y center;
+	}
 	.jusCor{
 		background:#C0DBE8;
 		padding:1px 2px 2px 1px;
@@ -89,7 +148,7 @@
 		width:600px;
 		padding-right:75px;
 		height:328px;
-		overflow:hidden;
+		overflow:auto;
 		line-height:22px;
 	}
 	.jusBottom .fr b{
@@ -159,8 +218,10 @@
 				</dl>
 				
 				<dl class="fr">
-				
+					
 				</dl>
+			</div>
+			<div class="sidebarWindow">
 			</div>
 		</div>
 	</div>

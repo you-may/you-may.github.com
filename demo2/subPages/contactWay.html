@@ -14,9 +14,11 @@
 		var mailAttributes = { id:'mailFlash', name:'mailFlash' };
 		swfobject.embedSWF('images/mail.swf','mailFlash',236,256,'9.0.115','',false, mailParams, mailAttributes);
 		
-		$(".mailBox").mousedown(function(e){
-			$(this).click();
-		});
+		if($.browser.msie) {
+			$(".mailBox").mousedown(function(e){
+				$(this).click();
+			});
+		}
 	});
 	
 </script>
