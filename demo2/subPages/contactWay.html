@@ -10,6 +10,9 @@
 		$(".ctwCor").corner("cc:#ffffff 6px");
 		$(".ctwContainer").corner("5px");
 		
+		var mailParams = { wmode:'transparent',flashvars: "",scale:'NoBorder' };
+		var mailAttributes = { id:'mailFlash', name:'mailFlash' };
+		swfobject.embedSWF('images/mail.swf','mailFlash',236,256,'9.0.115','',false, mailParams, mailAttributes);
 	});
 	
 </script>
@@ -29,11 +32,8 @@
 		position:absolute;
 		width:190px;
 		height:233px;
-		background:url(images/mail_box.png);
-		_background:none; 
-		_filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src="images/mail_box.png" ,sizingMethod="crop"); 
-		top:-40px;
-		left:323px;
+		top:-65px;
+		left:315px;
 		cursor:pointer;
 	}
 	.ctwTop{
@@ -96,7 +96,9 @@
 					<img style="margin-top:8px;" src="images/map.gif" alt="" />
 				</dl>
 			</div>
-			<div class="mailBox"  action="contactWay/msgOnline.html" actionType="dialogAuto"  enTitle="message" title="在线留言"  ></div>
+			<div class="mailBox"  action="contactWay/msgOnline.html" actionType="dialogAuto"  enTitle="message" title="在线留言"  >
+				<div id="mailFlash"></div>
+			</div>
 		</div>
 	</div>
 </body>
