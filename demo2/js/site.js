@@ -57,6 +57,7 @@ $(function(){ // 页面整体效果
 	var isSide = false;
 	var locationHref;
 	var isPassCtrl = false;
+	var isSideTimer = null;
 	
 	init();
 	
@@ -111,9 +112,17 @@ $(function(){ // 页面整体效果
 		},
 		start: function(event,ui) {
 			isSide = true;
+			if(isSideTimer != null){
+				clearTimeout(isSideTimer);
+				isSide = true;
+			}
 		},
 		stop: function(event,ui) {
-			//isSide = false;
+		
+			isSideTimer = setTimeout(function(){
+				isSide = false;
+			},1000);
+			
 		},
 		change: function(event,ui){
 			if(isPassCtrl){
@@ -392,9 +401,9 @@ $(function(){ // 页面整体效果
 	});
 	
 	function init(){
-		var dialogObj = $("[_actionType='dialog']");
-		var dialogNoModelObj = $("[_actionType='dialogNoModel']");
-		var dialogAutoObj = $("[_actionType='dialogAuto']");
+		var dialogObj = $("[actionType='dialog']");
+		var dialogNoModelObj = $("[actionType='dialogNoModel']");
+		var dialogAutoObj = $("[actionType='dialogAuto']");
 		
 		dialogObj.die("click");
 		dialogObj.live("click",function(){
@@ -501,7 +510,7 @@ $.fn.subPage = function(options) { //subPage --ajax --title
 	var index = 0;
 	var pageSize = $subNav.find("li").size();
 	var aW = ($subNav.width())/pageSize;
-	var path = $subNav.find("li:first").attr("_action");
+	var path = $subNav.find("li:first").attr("action");
 	var loading = true;
 	var currentPage = -1;
 	var faceStop = null;
@@ -527,7 +536,7 @@ $.fn.subPage = function(options) { //subPage --ajax --title
 		$(this).siblings().find("em:last").removeClass().addClass("emLast");
 		
 		index = $(this).data("pageInfo").num;
-		path = $(this).attr("_action");
+		path = $(this).attr("action");
 		
 		if(faceStop != null){
 			clearTimeout(faceStop);
@@ -1017,9 +1026,9 @@ $.fn.modalWindow = function(options) { //imgFace
 	$sidebarWindow.append($sidePrev,$sidebar,$sideNext);
 	
 	var title = $contextual.attr("title");
-	var english = $contextual.attr("_enTitle").toUpperCase();
+	var english = $contextual.attr("enTitle").toUpperCase();
 	var str = title + "<br/><font style='font-size:12px;color:#707070'>&nbsp;" + english + "</font>";
-	var action = $contextual.attr("_action");
+	var action = $contextual.attr("action");
 	var twH = $textWindow.height();
 	
 	$titleText.html(str).addClass("CC078ACA FFSOFT").css({letterSpacing:1});
