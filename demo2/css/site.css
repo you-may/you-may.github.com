@@ -203,10 +203,12 @@ p.pageTitle{
 }
 
 .copyright{
-	line-height:20px; 
+	line-height:40px; 
 	color:#666666; 
 	margin-left:20px;
 	text-align:center;
+	height:30px;
+	padding-top:10px;
 }
 
 .fLogo{
