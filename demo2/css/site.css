@@ -78,6 +78,7 @@ body{
 
 .top{
 	height:85px;
+	position:relative;
 	background: url(../images/nav_bg.gif) repeat-x;
 }
 
@@ -86,16 +87,18 @@ p.pageTitle{
 }
 
 .navigation{
-	width:280px;
-	height:52px;
+	width:260px;
+	height:85px;
 	float:left;
 	line-height:52px;
 	font-size:14px;
 	color:#666666;
 	font-family:Arial,"幼圆";
 	font-weight:bold;
-	padding-left:150px;
-	background: url(../images/top_Llogo.gif) no-repeat left;
+	padding-left:170px;
+	background: url(../images/logo_youmay.png) no-repeat left;
+	_background:none; 
+	_filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src="images/logo_youmay.png" ,sizingMethod="crop"); 
 }
 
 .navigation  b{
@@ -109,6 +112,15 @@ p.pageTitle{
 	width:576px;
 	height:52px;
 	background: url(../images/top_Rlogo.gif) no-repeat right;
+}
+
+.navFace{
+	width:120px;
+	height:46px;
+	position:absolute;
+	background: url(../images/nav_face.png) no-repeat;
+	_background:none; 
+	_filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src="images/nav_face.png" ,sizingMethod="crop"); 
 }
 
 .nav a{

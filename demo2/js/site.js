@@ -504,7 +504,7 @@ $.fn.subPage = function(options) { //subPage --ajax --title
 	var $cornerd = $subPage.find(".cornerd");
 	
 	$subPage.find(".cor").corner("5px").css({background:"white"});
-	$cornerd.css({background:"#C0DBE8",padding:"1px 2px 2px 1px"}).corner("cc:#ffffff 6px");
+	$cornerd.css({background:"#C0DBE8",padding:"1px 2px 2px 1px"}).corner("cc:#EFFCE6 6px");
 	var $face = $("<div></div>").css({position:"absolute",top:0,left:0,background:"white"});
 	
 	var index = 0;
