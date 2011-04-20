@@ -86,6 +86,15 @@ p.pageTitle{
 	display:none;
 }
 
+.nav-move{
+	width:116px;
+	height:46px;
+	top:6px;
+	background: url(../images/nav_bg.png) no-repeat left;
+	_background:none; 
+	_filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src="images/nav_bg.png" ,sizingMethod="crop"); 
+}
+
 .navigation{
 	width:260px;
 	height:85px;

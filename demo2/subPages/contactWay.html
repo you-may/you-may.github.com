@@ -7,9 +7,6 @@
 <script type="text/javascript">
 	
 	$(function(){
-		$(".ctwCor").corner("cc:#ffffff 6px");
-		$(".ctwContainer").corner("5px");
-		
 		var mailParams = { wmode:'transparent',flashvars: "",scale:'NoBorder' };
 		var mailAttributes = { id:'mailFlash', name:'mailFlash' };
 		swfobject.embedSWF('images/mail.swf','mailFlash',236,256,'9.0.115','',false, mailParams, mailAttributes);
@@ -18,7 +15,14 @@
 			$(".mailBox").mousedown(function(e){
 				$(this).click();
 			});
+			
+			$(".ctwCor").corner("cc:#ffffff 6px");
+		}else{
+			$(".ctwCor").corner("6px");
 		}
+		
+		$(".ctwContainer").corner("5px");
+		
 	});
 	
 </script>

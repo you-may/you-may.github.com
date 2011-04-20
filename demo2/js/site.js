@@ -504,7 +504,13 @@ $.fn.subPage = function(options) { //subPage --ajax --title
 	var $cornerd = $subPage.find(".cornerd");
 	
 	$subPage.find(".cor").corner("5px").css({background:"white"});
-	$cornerd.css({background:"#C0DBE8",padding:"1px 2px 2px 1px"}).corner("cc:#EFFCE6 6px");
+	if($.browser.msie) {
+		$cornerd.css({background:"#C0DBE8",padding:"1px 2px 2px 1px"}).corner("cc:#EFFCE6 6px");
+	}else{
+		$cornerd.css({background:"#C0DBE8",padding:"1px 2px 2px 1px"}).corner("6px");
+	}
+	
+	
 	var $face = $("<div></div>").css({position:"absolute",top:0,left:0,background:"white"});
 	
 	var index = 0;
@@ -1184,72 +1190,12 @@ $(function(){
 		$nav.append($move);
 		$btns.wrapAll($btnContainer);
 		
-		var hoverColor = $move.css("color");
-		var outColor = $btns.css("color");
-		var direction = opts.direction == "lateral" ? true : false;
-		
-		$btns.eq(0).css({color:hoverColor});
-		
-		var moveBgH = $move.height();
-		
 		$btns.each(function(i){
 			$(this).data("data",{index:i});
 		});
 		
 		$btns.click(function(){
-			var left = $(this).position().left;
-			var top = $(this).position().top;
-			var $btn = $(this);
-			
-			var animate1 , animate2 , animate3;
-			
-			$btns.css({color:outColor});
-			
-			if(direction){
-				animate1 = {height:1,top:top + moveBgH/2,opacity:0.5};
-				animate2 = {left:left};
-				animate3 = {height:moveBgH,top:top,opacity:1};
-				
-			}else{
-				animate1 = {height:1,top:top + moveBgH/2,opacity:0.5};
-				animate2 = {top:top};
-				animate3 = {height:moveBgH,left:left,opacity:1};
-			}
-			
-			$move.animate(animate1,500);
-			//var o = {};
-			//$move.toggle("explode",o,500);
-			
-			$move.animate(animate2,300);
-			
-			//$move.toggle("explode",o,500);
-			$move.animate(animate3,100,function(){
-				$btn.css({color:hoverColor}).siblings().css({color:outColor});
-				
-			});
-			
-		}).hover(function(){
-			$nav.append("<div class='navAnimate-hover" + $(this).data("data").index + "'></div>");
-			
-			var $hover = $(".navAnimate-hover" + $(this).data("data").index);
-			
-			$hover.addClass(opts.hoverClass).css({
-				opacity:0,
-				zIndex:98,
-				position:"absolute",
-				top:$(this).position().top,
-				left:$(this).position().left
-			});
-				
-			$hover.animate({opacity:0.2},300);
-			
-		},function(){
-			var $hover = $(".navAnimate-hover" + $(this).data("data").index);
-			
-			$hover.animate({opacity:0},300,function(){
-				$hover.remove();
-			});
-			
+			$move.css({left:$(this).position().left,opacity:0}).animate({opacity:1},500);
 		});
 		
 	};

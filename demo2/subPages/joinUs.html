@@ -6,8 +6,13 @@
 
 <script type="text/javascript">
 	$(function(){
-		$(".jusCor").corner("cc:#ffffff 6px");
 		$(".jusContainer").corner("5px");
+		
+		if($.browser.msie) {
+			$(".jusCor").corner("cc:#ffffff 6px");
+		}else{
+			$(".jusCor").corner("6px");
+		}
 		
 		var $jusSide = $(".jusBottom .fl div");
 		var $jusNavList = $(".jusNav li");
