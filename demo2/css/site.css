@@ -117,6 +117,7 @@ p.pageTitle{
 .navFace{
 	width:120px;
 	height:46px;
+	top:2px;
 	position:absolute;
 	background: url(../images/nav_face.png) no-repeat;
 	_background:none; 

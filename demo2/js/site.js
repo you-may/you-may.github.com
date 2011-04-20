@@ -354,7 +354,7 @@ $(function(){ // 页面整体效果
 		//}
 		
 		var $m = $topMenus.eq(currentPage);
-		$m.removeClass().addClass($m.data("navCss").name + "-hover").siblings().each(function(){
+		$m.removeClass().addClass($m.data("navCss").name + "-hover").siblings("a").each(function(){
 			$(this).removeClass().addClass($(this).data("navCss").name);
 		});
 	}
@@ -1172,94 +1172,96 @@ $.fn.modalWindow.setDefaults = function(settings) {
 
 
 
-$.fn.navAnimate = function(options) { //navAnimate
-	var opts = $.extend({}, $.fn.navAnimate.defaults, options);
-	
-	var $nav = $(this).css({position:"relative"});
-	var $btns = $nav.find("a");
-	var $btnContainer = $("<div></div>").css({position:"absolute",top:0,zIndex:100});
-	var $move = $("<div></div>").addClass(opts.moveClass).css({zIndex:99,position:"absolute"});
-	
-	$nav.append($move);
-	$btns.wrapAll($btnContainer);
-	
-	var hoverColor = $move.css("color");
-	var outColor = $btns.css("color");
-	var direction = opts.direction == "lateral" ? true : false;
-	
-	$btns.eq(0).css({color:hoverColor});
-	
-	var moveBgH = $move.height();
-	
-	$btns.each(function(i){
-		$(this).data("data",{index:i});
-	});
-	
-	$btns.click(function(){
-		var left = $(this).position().left;
-		var top = $(this).position().top;
-		var $btn = $(this);
+$(function(){
+	$.fn.navAnimate = function(options) { //navAnimate
+		var opts = $.extend({}, $.fn.navAnimate.defaults, options);
 		
-		var animate1 , animate2 , animate3;
+		var $nav = $(this).css({position:"relative"});
+		var $btns = $nav.find("a");
+		var $btnContainer = $("<div></div>").css({position:"absolute",top:0,zIndex:100});
+		var $move = $("<div></div>").addClass(opts.moveClass).css({zIndex:99,position:"absolute"});
 		
-		$btns.css({color:outColor});
+		$nav.append($move);
+		$btns.wrapAll($btnContainer);
 		
-		if(direction){
-			animate1 = {height:1,top:top + moveBgH/2,opacity:0.5};
-			animate2 = {left:left};
-			animate3 = {height:moveBgH,top:top,opacity:1};
+		var hoverColor = $move.css("color");
+		var outColor = $btns.css("color");
+		var direction = opts.direction == "lateral" ? true : false;
+		
+		$btns.eq(0).css({color:hoverColor});
+		
+		var moveBgH = $move.height();
+		
+		$btns.each(function(i){
+			$(this).data("data",{index:i});
+		});
+		
+		$btns.click(function(){
+			var left = $(this).position().left;
+			var top = $(this).position().top;
+			var $btn = $(this);
 			
-		}else{
-			animate1 = {height:1,top:top + moveBgH/2,opacity:0.5};
-			animate2 = {top:top};
-			animate3 = {height:moveBgH,left:left,opacity:1};
-		}
-		
-		$move.animate(animate1,500);
-		//var o = {};
-		//$move.toggle("explode",o,500);
-		
-		$move.animate(animate2,300);
-		
-		//$move.toggle("explode",o,500);
-		$move.animate(animate3,100,function(){
-			$btn.css({color:hoverColor}).siblings().css({color:outColor});
+			var animate1 , animate2 , animate3;
+			
+			$btns.css({color:outColor});
+			
+			if(direction){
+				animate1 = {height:1,top:top + moveBgH/2,opacity:0.5};
+				animate2 = {left:left};
+				animate3 = {height:moveBgH,top:top,opacity:1};
+				
+			}else{
+				animate1 = {height:1,top:top + moveBgH/2,opacity:0.5};
+				animate2 = {top:top};
+				animate3 = {height:moveBgH,left:left,opacity:1};
+			}
+			
+			$move.animate(animate1,500);
+			//var o = {};
+			//$move.toggle("explode",o,500);
+			
+			$move.animate(animate2,300);
+			
+			//$move.toggle("explode",o,500);
+			$move.animate(animate3,100,function(){
+				$btn.css({color:hoverColor}).siblings().css({color:outColor});
+				
+			});
+			
+		}).hover(function(){
+			$nav.append("<div class='navAnimate-hover" + $(this).data("data").index + "'></div>");
+			
+			var $hover = $(".navAnimate-hover" + $(this).data("data").index);
+			
+			$hover.addClass(opts.hoverClass).css({
+				opacity:0,
+				zIndex:98,
+				position:"absolute",
+				top:$(this).position().top,
+				left:$(this).position().left
+			});
+				
+			$hover.animate({opacity:0.2},300);
+			
+		},function(){
+			var $hover = $(".navAnimate-hover" + $(this).data("data").index);
+			
+			$hover.animate({opacity:0},300,function(){
+				$hover.remove();
+			});
 			
 		});
 		
-	}).hover(function(){
-		$nav.append("<div class='navAnimate-hover" + $(this).data("data").index + "'></div>");
-		
-		var $hover = $(".navAnimate-hover" + $(this).data("data").index);
-		
-		$hover.addClass(opts.hoverClass).css({
-			opacity:0,
-			zIndex:98,
-			position:"absolute",
-			top:$(this).position().top,
-			left:$(this).position().left
-		});
-			
-		$hover.animate({opacity:0.2},300);
-		
-	},function(){
-		var $hover = $(".navAnimate-hover" + $(this).data("data").index);
-		
-		$hover.animate({opacity:0},300,function(){
-			$hover.remove();
-		});
-		
-	});
-	
-};
-$.fn.navAnimate.defaults = {
-	moveClass:"",
-	hoverClass:"",
-	direction:"lateral" //vertical纵向 lateral横向
-};
-$.fn.navAnimate.setDefaults = function(settings) {
-	$.extend($.fn.navAnimate.defaults, settings);
-};
+	};
+	$.fn.navAnimate.defaults = {
+		moveClass:"",
+		hoverClass:"",
+		direction:"lateral" //vertical纵向 lateral横向
+	};
+	$.fn.navAnimate.setDefaults = function(settings) {
+		$.extend($.fn.navAnimate.defaults, settings);
+	};
+});
 
 
 
