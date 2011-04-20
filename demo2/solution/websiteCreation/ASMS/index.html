@@ -19,7 +19,7 @@
 							nextOut:"inPageNext-out",
 							prevHover:"inPagePrev-hover",
 							prevOut:"inPagePrev-out",
-							scrollAmount:910,
+							scrollAmount:610,
 							listID:".nttNav",
 							listHoverCss:"nttNav-hover",
 							listOutCss:"nttNav-out"
@@ -30,13 +30,13 @@
 <style type="text/css">
 
 .nttWindow{
-	width:910px;
-	height:428px;
+	width:600px;
+	height:438px;
 }
 
 .nttWindow img{
-	width:617px;
-	height:424px;
+	width:600px;
+	height:434px;
 }
 
 .nttNav{
@@ -76,25 +76,31 @@
 }
 
 .rollPage{
-	width:910px;
-}
-
-.rollPage .fr{
-	width:290px;
-	line-height:23px;
-}
-
-.rollPage .fl{
 	width:608px; 
-	height:424px;
+	height:434px;
 	overflow:hidden;
 }
 
-.rollPage .fr p{
-	text-indent:2em;
+.nttText{
+	width:290px;
+	line-height:23px;
+	position:absolute;
+	top:0px;
+	left:620px;
 }
 
-</style>
+.nttFace{
+	width:600px;
+	height:438px;
+	position:absolute;
+	top:0px;
+	left:0px;
+	background:#cccccc;
+}
+
+.nttText p{
+	text-indent:2em;
+}
 
 </style>
 
@@ -109,54 +115,31 @@
 		</div>
 		<div class="nttWindow">
 			<div class="rollPage">
-				<div class="fl">
-					<img src="solution/websiteCreation/ASMS/images/ASMS_1.jpg" alt="" />
-				</div>
-				<div class="fr">
-					<b>软件简介:</b>
-					<p>帮助艺术培训院校更加方便快捷地管理客户信息，员工信息和上课业务流程管理的功能系统。</p>
-					<b>功能简介:</b>
-					<p>教师管理—提供教师信息管理，教师上课情况记录，自动计算上课工资，学生上课情况和课后回访内容登记等功能。</b>
-					<p>客户管理—提供客户信息管理，为客户预约上课，自动登记到课扣费上课费用，还有“生日预警”、“回访预警”、“充值预警”提示信息等功能。</b>
-					<p>课程管理—提供课程信息管理，制定上课模板，记录课堂信息，统计课堂情况数据等功能。</b>
-					<p>课室管理—提供课室信息管理，课室排课时段冲突提醒，排课模板课室视图和课堂记录课室视图等功能。</b>
-					<p>财务管理—提供财务信息管理，为客户充值课费，记录客户充值消费历史，统计系统财务数据等功能。</b>
-				</div>
+				<img src="solution/websiteCreation/ASMS/images/ASMS_1.jpg" alt="" />
 			</div>
 			
 			<div class="rollPage">
-				<div class="fl">
-					<img src="solution/websiteCreation/ASMS/images/ASMS_2.jpg" alt="" />
-				</div>
-				<div class="fr">
-					<b>软件简介:</b>
-					<p>帮助艺术培训院校更加方便快捷地管理客户信息，员工信息和上课业务流程管理的功能系统。</p>
-					<b>功能简介:</b>
-					<p>教师管理—提供教师信息管理，教师上课情况记录，自动计算上课工资，学生上课情况和课后回访内容登记等功能。</b>
-					<p>客户管理—提供客户信息管理，为客户预约上课，自动登记到课扣费上课费用，还有“生日预警”、“回访预警”、“充值预警”提示信息等功能。</b>
-					<p>课程管理—提供课程信息管理，制定上课模板，记录课堂信息，统计课堂情况数据等功能。</b>
-					<p>课室管理—提供课室信息管理，课室排课时段冲突提醒，排课模板课室视图和课堂记录课室视图等功能。</b>
-					<p>财务管理—提供财务信息管理，为客户充值课费，记录客户充值消费历史，统计系统财务数据等功能。</b>
-				</div>
+				<img src="solution/websiteCreation/ASMS/images/ASMS_2.jpg" alt="" />
 			</div>
 			
 			<div class="rollPage">
-				<div class="fl">
-					<img src="solution/websiteCreation/ASMS/images/ASMS_3.jpg" alt="" />
-				</div>
-				<div class="fr">
-					<b>软件简介:</b>
-					<p>帮助艺术培训院校更加方便快捷地管理客户信息，员工信息和上课业务流程管理的功能系统。</p>
-					<b>功能简介:</b>
-					<p>教师管理—提供教师信息管理，教师上课情况记录，自动计算上课工资，学生上课情况和课后回访内容登记等功能。</b>
-					<p>客户管理—提供客户信息管理，为客户预约上课，自动登记到课扣费上课费用，还有“生日预警”、“回访预警”、“充值预警”提示信息等功能。</b>
-					<p>课程管理—提供课程信息管理，制定上课模板，记录课堂信息，统计课堂情况数据等功能。</b>
-					<p>课室管理—提供课室信息管理，课室排课时段冲突提醒，排课模板课室视图和课堂记录课室视图等功能。</b>
-					<p>财务管理—提供财务信息管理，为客户充值课费，记录客户充值消费历史，统计系统财务数据等功能。</b>
-				</div>
+				<img src="solution/websiteCreation/ASMS/images/ASMS_3.jpg" alt="" />
 			</div>
 			
 		</div>
+		
+		<div class="nttText">
+			<b>软件简介:</b>
+			<p>帮助艺术培训院校更加方便快捷地管理客户信息，员工信息和上课业务流程管理的功能系统。</p>
+			<b>功能简介:</b>
+			<p>教师管理—提供教师信息管理，教师上课情况记录，自动计算上课工资，学生上课情况和课后回访内容登记等功能。</b>
+			<p>客户管理—提供客户信息管理，为客户预约上课，自动登记到课扣费上课费用，还有“生日预警”、“回访预警”、“充值预警”提示信息等功能。</b>
+			<p>课程管理—提供课程信息管理，制定上课模板，记录课堂信息，统计课堂情况数据等功能。</b>
+			<p>课室管理—提供课室信息管理，课室排课时段冲突提醒，排课模板课室视图和课堂记录课室视图等功能。</b>
+			<p>财务管理—提供财务信息管理，为客户充值课费，记录客户充值消费历史，统计系统财务数据等功能。</b>
+		</div>
+		
+		<div class="nttFace"></div>
 	</div>
 </body>
 </html>
