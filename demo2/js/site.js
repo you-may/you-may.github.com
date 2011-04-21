@@ -684,6 +684,7 @@ $.fn.roll = function(options) {
 			if(index < 0)
 				index = pagers - 1;
 			ShowAD(index);
+			$window.find(".ui-draggable").css({width:600,top:0,left:0});
 		});
 	}	
 	
@@ -699,6 +700,7 @@ $.fn.roll = function(options) {
 			if(index > pagers - 1)
 				index = 0;
 			ShowAD(index);
+			$window.find(".ui-draggable").css({width:600,top:0,left:0});
 		});
 	}
 	
