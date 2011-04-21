@@ -591,6 +591,7 @@ p.pageTitle{
 	height:420px;
 	border:10px solid #DDDDDD;
 	background:#F5EFF6;
+	cursor:pointer;
 }
 
 .nttWindow img{

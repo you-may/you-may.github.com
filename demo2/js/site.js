@@ -346,9 +346,9 @@ $(function(){ // 页面整体效果
 		
 		$navs.each(function(i){
 			if(i == 0){
-				str += "> <b>"+ $(this).html() +"</b> ";
+				str += "&gt; <b>"+ $(this).html() +"</b> ";
 			}else{
-				str += "> "+ $(this).html();
+				str += "&gt; "+ $(this).html();
 			}
 		});
 		
@@ -582,9 +582,9 @@ $.fn.subPage = function(options) { //subPage --ajax --title
 		
 		$navs.each(function(i){
 			if(i == 0){
-				str += "> <b>"+ $(this).html() +"</b> ";
+				str += "&gt; <b>"+ $(this).html() +"</b> ";
 			}else{
-				str += "> "+ $(this).html();
+				str += "&gt; "+ $(this).html();
 			}
 		});
 		
