@@ -382,7 +382,6 @@ p.pageTitle{
 	position:absolute;
 	top:190px;
 	left:-60px;
-	_left:-42px;
 	z-index:99;
 	background:url(../images/inPagePrev_hover.gif) no-repeat;
 }
@@ -391,7 +390,6 @@ p.pageTitle{
 	display:block;
 	top:190px;
 	left:-60px;
-	_left:-42px;
 	width:30px;
 	height:54px;
 	cursor:pointer;
@@ -404,7 +402,6 @@ p.pageTitle{
 	display:block;
 	top:190px;
 	left:940px;
-	_left:872px;
 	width:30px;
 	height:54px;
 	cursor:pointer;
@@ -417,7 +414,6 @@ p.pageTitle{
 	display:block;
 	top:190px;
 	left:940px;
-	_left:872px;
 	width:30px;
 	height:54px;
 	cursor:pointer;
