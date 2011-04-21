@@ -24,85 +24,15 @@
 							listHoverCss:"nttNav-hover",
 							listOutCss:"nttNav-out"
 							});
+							
+	$(".nttWindow img").draggable().toggle(function(){
+		$(this).width(1000);
+	},function(){
+		$(this).width(600);
+	});
 	
 </script>
 
-<style type="text/css">
-
-.nttWindow{
-	width:600px;
-	height:438px;
-}
-
-.nttWindow img{
-	width:600px;
-	height:434px;
-}
-
-.nttNav{
-	position:absolute;
-	top:-58px;
-	left:450px;
-}
-
-.nttNav li{
-	float:left;
-	border:1px solid #D5D5D5;
-	width:24px;
-	height:24px;
-	text-align:center;
-	margin-right:3px;
-	line-height:26px;
-}
-
-.nttNav-hover{
-	background:#39AEE7;
-	color:white;
-}
-
-.nttNav-out{
-	background:#E8E8E8;
-	color:#666666;
-}
-
-.ntt .subPrev{
-	left:-38px;
-	top:180px;
-}
-
-.ntt .subNext{
-	left:960px;
-	top:180px;
-}
-
-.rollPage{
-	width:608px; 
-	height:434px;
-	overflow:hidden;
-}
-
-.nttText{
-	width:290px;
-	line-height:23px;
-	position:absolute;
-	top:0px;
-	left:620px;
-}
-
-.nttFace{
-	width:600px;
-	height:438px;
-	position:absolute;
-	top:0px;
-	left:0px;
-	border:1px solid #D7F6D0;
-}
-
-.nttText p{
-	text-indent:2em;
-}
-
-</style>
 
 </head>
 <body>
@@ -137,8 +67,6 @@
 			<p>教师管理—管理教师的信息内容和关联相关教育视频数据，还可以对教师进行评论和评分操作。</p>
 			<p>学员管理—管理学员的信息资料，帮助学员进行在线学习，记录学员的学习情况和在视频培训的过程中向学员提供相关的习题内容。</p>
 		</div>
-		
-		<div class="nttFace"></div>
 	</div>
 </body>
 </html>
