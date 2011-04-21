@@ -118,7 +118,7 @@ p.pageTitle{
 }
 
 .nav{
-	width:576px;
+	width:556px;
 	height:52px;
 	background: url(../images/top_Rlogo.gif) no-repeat right;
 }
@@ -135,8 +135,7 @@ p.pageTitle{
 
 .nav a{
 	width:60px;
-	height:52px;
-	line-height:52px;
+	height:18px;
 	display:inline-block;
 	cursor:pointer;
 	text-align:left;
@@ -144,65 +143,96 @@ p.pageTitle{
 	font-weight:bold;
 	text-decoration:none;
 	margin-left:26px;
+	margin-top:23px;
 	font-family:Arial,"幼圆";
 }
 
 .navAbout{
-	background: url(../images/nav_1h.gif) no-repeat left center;
+	background: url(../images/nav_1h.png) no-repeat left center;
 	padding-left:18px;
 	color:#ffffff;
 }
 
 .navAbout-hover{
-	background: url(../images/nav_1o.gif) no-repeat left center;
+	background: url(../images/nav_1o.png) no-repeat left center;
+	color:#666666;
+	padding-left:18px;
+}
+
+.navAbout:hover{
+	background: url(../images/nav_1o.png) no-repeat left center;
 	color:#666666;
 	padding-left:18px;
 }
 
 .navGoodAt{
-	background: url(../images/nav_2h.gif) no-repeat left center;
+	background: url(../images/nav_2h.png) no-repeat left center;
 	padding-left:16px;
 	color:#ffffff;
 }
 
 .navGoodAt-hover{
-	background: url(../images/nav_2o.gif) no-repeat left center;
+	background: url(../images/nav_2o.png) no-repeat left center;
+	padding-left:16px;
+	color:#666666;
+}
+
+.navGoodAt:hover{
+	background: url(../images/nav_2o.png) no-repeat left center;
 	padding-left:16px;
 	color:#666666;
 }
 
 .navSolution{
-	background: url(../images/nav_3h.gif) no-repeat left center;
+	background: url(../images/nav_3h.png) no-repeat left center;
 	padding-left:18px;
 	color:#ffffff;
 }
 
 .navSolution-hover{
-	background: url(../images/nav_3o.gif) no-repeat left center;
+	background: url(../images/nav_3o.png) no-repeat left center;
+	padding-left:18px;
+	color:#666666;
+}
+
+.navSolution:hover{
+	background: url(../images/nav_3o.png) no-repeat left center;
 	padding-left:18px;
 	color:#666666;
 }
 
 .navContact{
-	background: url(../images/nav_4h.gif) no-repeat left center;
+	background: url(../images/nav_4h.png) no-repeat left center;
 	padding-left:22px;
 	color:#ffffff;
 }
 
 .navContact-hover{
-	background: url(../images/nav_4o.gif) no-repeat left center;
+	background: url(../images/nav_4o.png) no-repeat left center;
+	padding-left:22px;
+	color:#666666;
+}
+
+.navContact:hover{
+	background: url(../images/nav_4o.png) no-repeat left center;
 	padding-left:22px;
 	color:#666666;
 }
 
 .navJoinUs{
-	background: url(../images/nav_5h.gif) no-repeat left center;
+	background: url(../images/nav_5h.png) no-repeat left center;
 	padding-left:22px;
 	color:#ffffff;
 }
 
 .navJoinUs-hover{
-	background: url(../images/nav_5o.gif) no-repeat left center;
+	background: url(../images/nav_5o.png) no-repeat left center;
+	padding-left:22px;	
+	color:#666666;
+}
+
+.navJoinUs:hover{
+	background: url(../images/nav_5o.png) no-repeat left center;
 	padding-left:22px;	
 	color:#666666;
 }

@@ -167,10 +167,6 @@ $(function(){ // 页面整体效果
 	
 	$topMenus.click(function(){
 		isSide = false;
-	}).hover(function(){
-		$(this).removeClass().addClass($(this).data("navCss").name + "-hover");
-	},function(){
-		menuCss();
 	});
 	
 	function autoLoadPage(){
@@ -280,13 +276,7 @@ $(function(){ // 页面整体效果
 		if(($flashBg.width() + $flashBg.offset().left) < w){
 			$flashBg.css({left:-($flashBg.width()-w)});
 		}
-		
-		//movePage();
-		//$("#bgFlash").height(h);
 	}
-	
-	//$prev.css({left:$(window).scrollLeft(),top:containerH/2+$top.height()-$prev.height()/2});
-	//$next.css({left:$(window).width()-$next.width()+$(window).scrollLeft(),top:containerH/2+$top.height()-$prev.height()/2});
 	
 	function movePage(){
 		menuCss();
@@ -340,23 +330,13 @@ $(function(){ // 页面整体效果
 	}
 	
 	function menuCss(){
-		//if(currentPage < 1){
-		//	$prev.attr({"class":"prev prev-out"});
-		//	$next.attr({"class":"next next-hover"});
-			
-		//}else if(currentPage == pageNum-1){
-		//	$next.attr({"class":"next next-out"});
-		//	$prev.attr({"class":"prev prev-hover"});
-			
-		//}else{
-		//	$prev.attr({"class":"prev prev-hover"});
-		//	$next.attr({"class":"next next-hover"});
-		//}
 		
 		var $m = $topMenus.eq(currentPage);
 		$m.removeClass().addClass($m.data("navCss").name + "-hover").siblings("a").each(function(){
 			$(this).removeClass().addClass($(this).data("navCss").name);
 		});
+		$move = $(".nav-move");
+		$move.css({left:$m.position().left + $m.data("data").index,opacity:0}).animate({opacity:1},500);
 	}
 	
 	function navigation(){
@@ -1194,9 +1174,6 @@ $(function(){
 			$(this).data("data",{index:i});
 		});
 		
-		$btns.click(function(){
-			$move.css({left:$(this).position().left,opacity:0}).animate({opacity:1},500);
-		});
 		
 	};
 	$.fn.navAnimate.defaults = {
