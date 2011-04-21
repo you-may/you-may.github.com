@@ -590,6 +590,7 @@ p.pageTitle{
 	width:585px;
 	height:420px;
 	border:10px solid #DDDDDD;
+	background:#F5EFF6;
 }
 
 .nttWindow img{
@@ -633,7 +634,7 @@ p.pageTitle{
 }
 
 .rollPage{
-	width:608px; 
+	width:600px; 
 	height:434px;
 	overflow:hidden;
 }

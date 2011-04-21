@@ -1086,6 +1086,12 @@ $.fn.modalWindow = function(options) { //imgFace
 							background:"url('images/sideNext_hover.gif') no-repeat"
 						});
 					}
+							
+					$text.find(".nttWindow img").draggable().toggle(function(e){
+						$(this).animate({width:1000},300);
+					},function(){
+						$(this).animate({width:600,top:0,left:0},300);
+					});
 			}
 		});
 	}
