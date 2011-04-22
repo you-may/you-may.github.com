@@ -1,0 +1,83 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>无标题文档</title>
+
+<script type="text/javascript">
+	var nttNav = "";
+	
+	$(".nttWindow .rollPage").each(function(i){
+		nttNav += "<li>" + (i+1) + "</li>";
+	});
+	
+	$(".nttNav").html(nttNav);
+	
+	$(".nttWindow").roll({prevID: '.inPagePrev',
+							nextID: '.inPageNext',
+							nextHover:"inPageNext-hover",
+							nextOut:"inPageNext-out",
+							prevHover:"inPagePrev-hover",
+							prevOut:"inPagePrev-out",
+							scrollAmount:610,
+							listID:".nttNav",
+							listHoverCss:"nttNav-hover",
+							listOutCss:"nttNav-out"
+							});
+</script>
+
+
+</head>
+<body>
+	<div class="ntt" style="position:relative">
+		<ul class="nttNav">
+		</ul>
+		<div>
+			<a href="javascript:void(0)" class="inPagePrev inPagePrev-out"></a>
+			<a href="javascript:void(0)" class="inPageNext inPageNext-hover"></a>
+		</div>
+		<div class="nttWindow">
+			<div class="rollPage">
+				<img src="solution/websiteCreation/webSchool/images/MPSE_1.jpg" alt="" />
+			</div>
+			
+			<div class="rollPage">
+				<img src="solution/websiteCreation/webSchool/images/MPSE_2.jpg" alt="" />
+			</div>
+			
+			<div class="rollPage">
+				<img src="solution/websiteCreation/webSchool/images/MPSE_3.jpg" alt="" />
+			</div>
+			
+		</div>
+		
+		<div class="nttText">
+			<b>软件简介:</b>
+			<p>帮助在线培训教育机构在网上进行学员的培训指导的业务管理系统。</p>
+			<b>功能简介:</b>
+			<p>文章信息管理—管理对外发布的文章和通知文告等文字信息内容，支持后台对文章数据进行添加、修改、删除等操作。</p>
+			<p>视频管理—管理对外发布的教育视频内容，支持后台对视频数据进行上传、修改、删除和在前台页面播放等操作。</p>
+			<p>教师管理—管理教师的信息内容和关联相关教育视频数据，还可以对教师进行评论和评分操作。</p>
+			<p>学员管理—管理学员的信息资料，帮助学员进行在线学习，记录学员的学习情况和在视频培训的过程中向学员提供相关的习题内容。</p>
+		</div>
+	</div>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

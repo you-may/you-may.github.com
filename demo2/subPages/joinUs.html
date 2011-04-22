@@ -1,0 +1,252 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>加入我们</title>
+
+<script type="text/javascript">
+	$(function(){
+		$(".jusContainer").corner("5px");
+		
+		if($.browser.msie) {
+			$(".jusCor").corner("cc:#ffffff 6px");
+		}else{
+			$(".jusCor").corner("6px");
+		}
+		
+		var $jusSide = $(".jusBottom .fl div");
+		var $jusNavList = $(".jusNav li");
+		var $jusContent = $(".jusBottom .fr").css({position:"relative",
+						overflowY:"hidden",
+						overflowX:"hidden"
+						});
+		var $face = $("<div></div>").css({position:"absolute",background:"white",top:0,left:0});
+		var $sidebar = $(".sidebarWindow");
+		var scrollH = 0;
+		
+		$jusNavList.click(function(){
+			var top = $(this).position().top + 17;
+			var path = $(this).attr("action");
+			$jusContent.scrollTop(0);
+			
+			$(this).find("b").css({color:"#3B3B3B"});
+			$(this).siblings().find("b").css({color:"#078ACA"});
+			$(this).find("p").css({color:"#9c9c9c"});
+			$(this).siblings().find("p").css({color:"#AACBDA"});
+			
+			$jusSide.animate({top:top},500,function(){
+			});
+			
+			$.ajax({
+				url:path,
+				type:'POST',
+				dataType:'text',
+				success:function(text){
+					var $c = $("<div>"+text+"</div>");
+					$jusContent.html($c).append($face);
+					$face.css({width:$jusContent.width(),height:$jusContent.height(),opacity:1}).animate({opacity:0},1000);
+					
+					$sidebar.slider("destroy").hide();
+					if($c.height() > $jusContent.height()){
+						scrollH = $c.height() - $jusContent.height();
+						side();
+					}
+				}
+			});
+			
+		}).eq(0).click();
+		
+		function side(){
+		
+			$sidebar.slider({
+				orientation: 'vertical',
+				range: "min",
+				value: scrollH,
+				min: 1,
+				max: scrollH,
+				slide: function( event, ui ) {
+					$jusContent.scrollTop(scrollH - ui.value);
+				},
+				start: function(event,ui) {
+					
+				},
+				stop: function(event,ui) {
+					
+				}
+			}).css({border:0}).show().find(".ui-slider-handle").css({
+				background:"url(images/slider.gif) no-repeat",
+				height:32,
+				width:13
+			}).click(function(){
+				$(this).blur();
+			}).hover(function(){
+				$(this).blur();
+			});
+			
+			$jusContent.bind("mousewheel",function(event, delta){
+				var slierValue = $sidebar.slider( "option", "value", scrollH - $jusContent.scrollTop() );
+				
+				if(delta > 0){// ? 'Up' : 'Down'
+					$jusContent.scrollTop($jusContent.scrollTop()-5);
+				}else{
+					$jusContent.scrollTop($jusContent.scrollTop()+5);
+				}
+			});
+		}
+	});
+</script>
+<style type="text/css">
+	.sidebarWindow{
+		height:333px;
+		width:9px;
+		position:absolute;
+		top:80px;
+		left:862px;
+		background: url(images/slide_dirBg2.gif) repeat-y center;
+	}
+	.jusCor{
+		background:#C0DBE8;
+		padding:1px 2px 2px 1px;
+		margin-top:14px;
+	}
+	.jusContainer{
+		background:white;
+		width:100%;
+		height:428px;
+		position:relative;
+	}
+	.jusTop .fl{
+		width:215px;
+		height:85px;
+		background: url(images/joinUs_logo.gif) no-repeat;
+		text-align:right;
+	}
+	.jusTop .fr{
+		width:675px;
+		line-height:20px;
+	}
+	.jusBottom{
+		clear:both;
+	}
+	.jusBottom .jusNav{
+		width:180px;
+		height:330px;
+		text-align:right;
+		line-height:15px;
+		float:left;
+		position:relative;
+	}
+	.jusBottom .fl{
+		width:20px;
+		height:330px;
+		position:relative;
+		background: url(images/slide_dirBg2.gif) repeat-y right;
+	}
+	.jusBottom .fl div{
+		width:7px;
+		height:13px;
+		position:absolute;
+		left:13px;
+		background: url(images/slide_dir2.gif) no-repeat;
+	}
+	.jusBottom .fr{
+		width:600px;
+		padding-right:75px;
+		height:328px;
+		overflow:auto;
+		line-height:22px;
+	}
+	.jusBottom .fr b{
+		color:#3B3B3B;
+		font-size:14px;
+		font-family:"微软雅黑";
+		line-height:24px;
+	}
+	.jusBottom .fr p{
+		color:#666666;
+	}
+	.jusNav p{
+		font-weight:bold;
+	}
+	.jusNav b{
+		font-size:20px;
+		line-height:20px;
+	}
+	.jusNav li{
+		height:55px;
+		cursor:pointer;
+	}
+	.jusNav ul{
+		margin-top:50px;
+	}
+</style>
+
+</head>
+<body>
+	<p class="pageTitle">加入我们</p>
+	<div class="jusCor">
+		<div class="jusContainer">
+			<div class="jusTop">
+				<dl class="fl">
+					<p class="CCAACBDA" style="text-transform:uppercase; margin-top:28px; line-height:16px">Recruitment&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
+					<p class="CC078ACA FFSOFT" style="font-size:23px; font-weight:bold;line-height:25px">加入我们</p>
+				</dl>
+				<dl class="fr">
+					<p class="CC378BB3" style="padding:30px 50px 0px 0px;">如果您需要我们为您提供帮助或咨询,欢迎与我们联系， 广州市元镁计算机科技有限公司以软件开发、企业邮件服务、系统集成为主业， 利用自身长期积累的技术经验。</p>
+				</dl>
+			</div> 
+			
+			<div class="jusBottom">
+				<dl class="jusNav">
+					<ul>
+						<li action="joinUs/webPage.html">
+							<p class="CCAACBDA" >WEBPAGE ENGINEER&nbsp;</p>
+							<b class="CC078ACA FFSOFT" >页面工程师</b>
+						</li>
+						<li action="joinUs/system.html">
+							<p class="CCAACBDA" >INFRA SYSTEM ENGINEER&nbsp;</p>
+							<b class="CC078ACA FFSOFT" >系统平台工程师</b>
+						</li>
+						<li action="joinUs/sales.html">
+							<p class="CCAACBDA" >SALES SPECIALIST&nbsp;</p>
+							<b class="CC078ACA FFSOFT" >销售专员</b>
+						</li>
+						<li action="joinUs/accounting.html">
+							<p class="CCAACBDA" >ACCOUNTING CLERK&nbsp;</p>
+							<b class="CC078ACA FFSOFT" >会计文员</b>
+						</li>
+					</ul>
+				</dl>
+				
+				<dl class="fl">
+					<div class=""></div>
+				</dl>
+				
+				<dl class="fr">
+					
+				</dl>
+			</div>
+			<div class="sidebarWindow">
+			</div>
+		</div>
+	</div>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
