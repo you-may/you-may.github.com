@@ -491,7 +491,7 @@ $.fn.subPage = function(options) { //subPage --ajax --title
 	}
 	
 	
-	var $face = $("<div></div>").css({position:"absolute",top:0,left:0,background:"white"});
+	var $face = $("<div></div>").css({position:"absolute",top:5,left:5,background:"white"});
 	
 	var index = 0;
 	var pageSize = $subNav.find("li").size();
@@ -545,7 +545,7 @@ $.fn.subPage = function(options) { //subPage --ajax --title
 				$subContainer.html(text).append($face);
 				
 				$face.stop().css({opacity:0});
-				$face.show().css({width:$subContainer.width(),height:$subContainer.height(),opacity:1,background:"white"});
+				$face.show().css({width:$subContainer.width()-10,height:$subContainer.height()-10,opacity:1,background:"white"});
 				
 				$face.animate({opacity:0},1000,function(){
 						$(this).hide();
