@@ -685,7 +685,6 @@ $.fn.roll = function(options) {
 			if(index < 0)
 				index = pagers - 1;
 			ShowAD(index);
-			$window.find(".ui-draggable").css({width:600,top:0,left:0});
 		});
 	}	
 	
@@ -701,7 +700,6 @@ $.fn.roll = function(options) {
 			if(index > pagers - 1)
 				index = 0;
 			ShowAD(index);
-			$window.find(".ui-draggable").css({width:600,top:0,left:0});
 		});
 	}
 	
@@ -788,7 +786,11 @@ $.fn.roll = function(options) {
 			opts = {"top":-scrollSize};
 		}
 		
-		container.animate(opts,options.speed,function(){ });
+		container.animate(opts,options.speed,function(){ 
+		
+			$window.find(".ui-draggable").css({width:600,top:0,left:0});
+			
+		});
 		changeListClass(i);
 		changeCss();
 	};
@@ -1090,10 +1092,12 @@ $.fn.modalWindow = function(options) { //imgFace
 						});
 					}
 							
-					$text.find(".nttWindow img").draggable().toggle(function(e){
-						$(this).animate({width:1000},300);
-					},function(){
-						$(this).animate({width:600,top:0,left:0},300);
+					$text.find(".nttWindow img").draggable().click(function(){
+						if($(this).width() == 1000){
+							$(this).animate({width:600,top:0,left:0},300);
+						}else{
+							$(this).animate({width:1000},300);
+						}
 					});
 			}
 		});
