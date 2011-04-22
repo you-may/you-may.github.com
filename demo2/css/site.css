@@ -491,6 +491,12 @@ p.pageTitle{
 	height:393px;
 }
 
+.subContainerBg{
+	background:url(../images/frame.png) no-repeat;
+	_background:none; 
+	_filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src="images/frame.png" ,sizingMethod="crop"); 
+}
+
 
 .subPrev-hover{
 	display:block;

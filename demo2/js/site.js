@@ -483,10 +483,11 @@ $.fn.subPage = function(options) { //subPage --ajax --title
 	var $subContainer = $subPage.find(".subContainer").css({position:"relative"});
 	var $cornerd = $subPage.find(".cornerd");
 	
-	$subPage.find(".cor").corner("5px").css({background:"white"});
 	if($.browser.msie) {
-		$cornerd.css({background:"#C0DBE8",padding:"1px 2px 2px 1px"}).corner("cc:#EFFCE6 6px");
+		//$cornerd.css({background:"#C0DBE8",padding:"1px 2px 2px 1px"}).corner("cc:#EFFCE6 6px");
+		$subContainer.addClass("subContainerBg");
 	}else{
+		$subPage.find(".cor").corner("5px").css({background:"white"});
 		$cornerd.css({background:"#C0DBE8",padding:"1px 2px 2px 1px"}).corner("6px");
 	}
 	
