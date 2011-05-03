@@ -292,9 +292,6 @@ $(function(){ // 页面整体效果
 			}else{
 				$moveContainer.animate({left:-currentPage*pageW},{
 				duration: duration,
-				step: function(){
-					changeSideValue();
-				},
 				complete:function(){
 					changeSideValue();
 				}});
