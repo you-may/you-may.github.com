@@ -123,25 +123,6 @@ $(function(){ // 页面整体效果
 				isSide = false;
 			},1000);
 			
-		},
-		change: function(event,ui){
-			if(isPassCtrl){
-				$moveContainer.css({left:-ui.value});
-				
-				var flashMoveSize = $flashBg.width() / (pageW * (pageNum*2+8.5)) * ui.value;
-				
-				$flashBg.css({left:-flashMoveSize});
-				
-				currentPage = Math.round(ui.value / pageW);
-				
-				menuCss();
-				
-				var hashName = $topMenus.eq(currentPage).data("pageInfo").name;
-				
-				if(locationHref != hashName){
-					window.location.href = "#" + hashName;
-				}
-			}
 		}
 	});
 	
