@@ -11,10 +11,10 @@
 		var mailAttributes = { id:'mailFlash', name:'mailFlash' };
 		swfobject.embedSWF('images/mail.swf','mailFlash',236,256,'9.0.115','',false, mailParams, mailAttributes);
 		
-		if($.browser.msie) {
 			$(".mailBox").mousedown(function(e){
 				$(this).click();
 			});
+		if($.browser.msie) {
 			
 			$(".ctwCor").corner("cc:#ffffff 6px");
 		}else{
