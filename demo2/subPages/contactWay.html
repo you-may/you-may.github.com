@@ -11,11 +11,11 @@
 		var mailAttributes = { id:'mailFlash', name:'mailFlash' };
 		swfobject.embedSWF('images/mail.swf','mailFlash',236,256,'9.0.115','',false, mailParams, mailAttributes);
 		
-			$(".mailBox").mousedown(function(e){
-				$(this).click();
-			});
+		$(".mailBox").mousedown(function(e){
+			$(".mailBoxTarget").click();
+		});
+		
 		if($.browser.msie) {
-			
 			$(".ctwCor").corner("cc:#ffffff 6px");
 		}else{
 			$(".ctwCor").corner("6px");
@@ -106,8 +106,9 @@
 					<img style="margin-top:8px;" src="images/map.gif" alt="" />
 				</dl>
 			</div>
-			<div class="mailBox"  action="contactWay/msgOnline.html" actionType="dialogAuto"  enTitle="message" title="在线留言"  >
+			<div class="mailBox">
 				<div id="mailFlash"></div>
+				<div class="mailBoxTarget" action="contactWay/msgOnline.html" actionType="dialogAuto"  enTitle="message" title="在线留言" style="display:none"></div>
 			</div>
 		</div>
 	</div>
