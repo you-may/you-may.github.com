@@ -519,7 +519,7 @@ $.fn.subPage = function(options) { //subPage --ajax --title
 	function loadSubContainer(path){
 		$.ajax({
 			url:path,
-			type:'POST',
+			type:'GET',
 			dataType:'text',
 			success:function(text){
 			
