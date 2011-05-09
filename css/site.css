@@ -89,7 +89,7 @@ p.pageTitle{
 .nav-move{
 	width:116px;
 	height:46px;
-	top:6px;
+	top:8px;
 	background: url(../images/nav_bg.png) no-repeat left;
 	_background:none; 
 	_filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src="images/nav_bg.png" ,sizingMethod="crop"); 
@@ -112,14 +112,14 @@ p.pageTitle{
 
 .navigation  b{
 	font-size:15px;
-	color:#ffffff;
+	color:#078ACA;
 	font-family:Arial,"幼圆";
 	font-weight:bold;
 }
 
 .nav{
 	width:556px;
-	height:52px;
+	height:54px;
 	background: url(../images/top_Rlogo.gif) no-repeat right;
 }
 
@@ -152,7 +152,7 @@ p.pageTitle{
 	_background:none; 
 	_filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src="images/nav_1h.png" ,sizingMethod="crop"); 
 	padding-left:18px;
-	color:#ffffff;
+	color:#078ACA;
 }
 
 .navAbout-hover{
@@ -176,7 +176,7 @@ p.pageTitle{
 	_background:none; 
 	_filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src="images/nav_2h.png" ,sizingMethod="crop"); 
 	padding-left:16px;
-	color:#ffffff;
+	color:#078ACA;
 }
 
 .navGoodAt-hover{
@@ -200,7 +200,7 @@ p.pageTitle{
 	_background:none; 
 	_filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src="images/nav_3h.png" ,sizingMethod="crop"); 
 	padding-left:18px;
-	color:#ffffff;
+	color:#078ACA;
 }
 
 .navSolution-hover{
@@ -224,7 +224,7 @@ p.pageTitle{
 	_background:none; 
 	_filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src="images/nav_4h.png" ,sizingMethod="crop"); 
 	padding-left:22px;
-	color:#ffffff;
+	color:#078ACA;
 }
 
 .navContact-hover{
@@ -248,7 +248,7 @@ p.pageTitle{
 	_background:none; 
 	_filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src="images/nav_5h.png" ,sizingMethod="crop"); 
 	padding-left:22px;
-	color:#ffffff;
+	color:#078ACA;
 }
 
 .navJoinUs-hover{
