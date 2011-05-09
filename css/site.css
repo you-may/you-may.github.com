@@ -79,7 +79,7 @@ body{
 .top{
 	height:90px;
 	position:relative;
-	background: url(../images/nav_bg.gif) repeat-x;
+	background: url(../images/nav_bg.gif) repeat-x right top;
 }
 
 p.pageTitle{
