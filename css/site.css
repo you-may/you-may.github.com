@@ -71,6 +71,17 @@ body{
 	
 }
 
+.cancel{
+	float:right;
+	width:75px;
+	height:26px;
+	cursor:pointer;
+	margin-top:10px;
+	background:url(../images/back.png) no-repeat;
+	_background:none; 
+	_filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src="images/back.png" ,sizingMethod="crop"); 
+}
+
 .mainContainer{
 	position:absolute;
 	z-index:1;
@@ -88,11 +99,9 @@ p.pageTitle{
 
 .nav-move{
 	width:116px;
-	height:46px;
-	top:8px;
-	background: url(../images/nav_bg.png) no-repeat left;
-	_background:none; 
-	_filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src="images/nav_bg.png" ,sizingMethod="crop"); 
+	height:43px;
+	top:9px;
+	background: url(../images/nav_bg2.gif) no-repeat left;
 }
 
 .navigation{
@@ -135,7 +144,7 @@ p.pageTitle{
 
 .nav a{
 	width:60px;
-	height:15px;
+	height:18px;
 	display:inline-block;
 	cursor:pointer;
 	text-align:left;
@@ -145,6 +154,7 @@ p.pageTitle{
 	margin-left:26px;
 	margin-top:23px;
 	font-family:Arial,"幼圆";
+	line-height:18px;
 }
 
 .navAbout{
@@ -223,7 +233,7 @@ p.pageTitle{
 	background: url(../images/nav_4h.png) no-repeat left center;
 	_background:none; 
 	_filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src="images/nav_4h.png" ,sizingMethod="crop"); 
-	padding-left:22px;
+	padding-left:24px;
 	color:#078ACA;
 }
 
@@ -231,7 +241,7 @@ p.pageTitle{
 	background: url(../images/nav_4o.png) no-repeat left center;
 	_background:none; 
 	_filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src="images/nav_4o.png" ,sizingMethod="crop"); 
-	padding-left:22px;
+	padding-left:24px;
 	color:#666666;
 }
 
@@ -239,7 +249,7 @@ p.pageTitle{
 	background: url(../images/nav_4o.png) no-repeat left center;
 	_background:none; 
 	_filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src="images/nav_4o.png" ,sizingMethod="crop"); 
-	padding-left:22px;
+	padding-left:24px;
 	color:#666666;
 }
 
@@ -377,13 +387,15 @@ p.pageTitle{
 .inPagePrev-hover{
 	display:block;
 	width:30px;
-	height:54px;
+	height:62px;
 	cursor:pointer;
 	position:absolute;
 	top:190px;
 	left:-60px;
 	z-index:99;
-	background:url(../images/inPagePrev_hover.gif) no-repeat;
+	background:url(../images/inPagePrev_hover.png) no-repeat;
+	_background:none; 
+	_filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src="images/inPagePrev_hover.png" ,sizingMethod="crop"); 
 }
 
 .inPagePrev-out{
@@ -391,11 +403,13 @@ p.pageTitle{
 	top:190px;
 	left:-60px;
 	width:30px;
-	height:54px;
+	height:62px;
 	cursor:pointer;
 	position:absolute;
 	z-index:99;
-	background:url(../images/inPagePrev_out.gif) no-repeat;
+	background:url(../images/inPagePrev_out.png) no-repeat;
+	_background:none; 
+	_filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src="images/inPagePrev_out.png" ,sizingMethod="crop"); 
 }
 
 .inPageNext-hover{
@@ -403,11 +417,13 @@ p.pageTitle{
 	top:190px;
 	left:940px;
 	width:30px;
-	height:54px;
+	height:62px;
 	cursor:pointer;
 	position:absolute;
 	z-index:99;
-	background:url(../images/inPageNext_hover.gif) no-repeat;
+	background:url(../images/inPageNext_hover.png) no-repeat;
+	_background:none; 
+	_filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src="images/inPageNext_hover.png" ,sizingMethod="crop"); 
 }
 
 .inPageNext-out{
@@ -415,11 +431,13 @@ p.pageTitle{
 	top:190px;
 	left:940px;
 	width:30px;
-	height:54px;
+	height:62px;
 	cursor:pointer;
 	position:absolute;
 	z-index:99;
-	background:url(../images/inPageNext_out.gif) no-repeat;
+	background:url(../images/inPageNext_out.png) no-repeat;
+	_background:none; 
+	_filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src="images/inPageNext_out.png" ,sizingMethod="crop"); 
 }
 
 /**** pc *****/

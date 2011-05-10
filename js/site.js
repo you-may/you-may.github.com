@@ -123,6 +123,25 @@ $(function(){ // 页面整体效果
 				isSide = false;
 			},1000);
 			
+		},
+		change: function(event,ui){
+			if(isPassCtrl){
+				$moveContainer.css({left:-ui.value});
+
+				var flashMoveSize = $flashBg.width() / (pageW * (pageNum*2+2)) * ui.value;
+
+				$flashBg.css({left:-flashMoveSize});
+
+				currentPage = Math.round(ui.value / pageW);
+
+				menuCss();
+
+				var hashName = $topMenus.eq(currentPage).data("pageInfo").name;
+
+				if(locationHref != hashName){
+					window.location.href = "#" + hashName;
+				}
+			}
 		}
 	});
 	
@@ -317,7 +336,7 @@ $(function(){ // 页面整体效果
 			$(this).removeClass().addClass($(this).data("navCss").name);
 		});
 		$move = $(".nav-move");
-		$move.hide().css({left:$m.position().left + $m.data("data").index}).show();
+		$move.hide().css({left:$m.position().left + $m.data("data").index,opacity:0.9}).show();
 	}
 	
 	function navigation(){
@@ -899,14 +918,7 @@ $.fn.modalWindow = function(options) { //imgFace
 					fontWeight:"bold"
 					});
 	
-	var $cancel = $("<div></div>").css({
-					float:"right",
-					width:72,
-					height:26,
-					cursor:"pointer",
-					marginTop:10,
-					background:"url('images/cancel.gif') no-repeat"
-					});
+	var $cancel = $("<div></div>").addClass("cancel");
 	
 	var $corner = $("<div></div>").css({
 					background:"#078ACA",
