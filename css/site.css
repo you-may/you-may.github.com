@@ -518,7 +518,7 @@ p.pageTitle{
 
 .subPrev-hover{
 	display:block;
-	width:28px;
+	width:30px;
 	height:18px;
 	cursor:pointer;
 	background:url(../images/subPrev_out.png) no-repeat;
@@ -526,7 +526,7 @@ p.pageTitle{
 
 .subPrev-out{
 	display:block;
-	width:28px;
+	width:30px;
 	height:18px;
 	cursor:pointer;
 	background:url(../images/subPrev_hover.png) no-repeat;
@@ -534,7 +534,7 @@ p.pageTitle{
 
 .subNext-hover{
 	display:block;
-	width:28px;
+	width:30px;
 	height:18px;
 	cursor:pointer;
 	background:url(../images/subNext_out.png) no-repeat;
@@ -542,7 +542,7 @@ p.pageTitle{
 
 .subNext-out{
 	display:block;
-	width:28px;
+	width:30px;
 	height:18px;
 	cursor:pointer;
 	background:url(../images/subNext_hover.png) no-repeat;
@@ -577,7 +577,7 @@ p.pageTitle{
 	color:#C2C2C2;
 	font-size:14px;
 	background:url(../images/dian.gif) no-repeat 0px 1px;
-	font-family:Arial,"幼圆";;
+	font-family:Arial,"幼圆";
 	padding-left:15px;
 }
 
@@ -626,22 +626,27 @@ p.pageTitle{
 
 .nttNav li{
 	float:left;
-	border:1px solid #D5D5D5;
-	width:24px;
-	height:24px;
 	text-align:center;
 	margin-right:3px;
-	line-height:26px;
+	cursor:pointer;
 }
 
 .nttNav-hover{
 	background:#39AEE7;
 	color:white;
+	border:1px solid #D5D5D5;
+	width:24px;
+	height:24px;
+	line-height:26px;
 }
 
 .nttNav-out{
 	background:#E8E8E8;
 	color:#666666;
+	border:1px solid #D5D5D5;
+	width:24px;
+	height:24px;
+	line-height:26px;
 }
 
 .ntt .subPrev{
@@ -652,6 +657,50 @@ p.pageTitle{
 .ntt .subNext{
 	left:960px;
 	top:180px;
+}
+
+.nttFirst-hover{
+	width:35px;
+	height:26px;
+	color:#ffffff;
+	border:0px;
+	line-height:28px;
+	background:url(../images/nttF_hover.png) no-repeat;
+	_background:none; 
+	_filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src="images/nttF_hover.png" ,sizingMethod="crop"); 
+}
+
+.nttFirst-out{
+	width:35px;
+	height:26px;
+	border:0px;
+	color:#666666;
+	line-height:28px;
+	background:url(../images/nttF_out.png) no-repeat;
+	_background:none; 
+	_filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src="images/nttF_out.png" ,sizingMethod="crop"); 
+}
+
+.nttLast-hover{
+	width:35px;
+	height:26px;
+	color:#ffffff;
+	border:0px;
+	line-height:28px;
+	background:url(../images/nttL_hover.png) no-repeat;
+	_background:none; 
+	_filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src="images/nttL_hover.png" ,sizingMethod="crop"); 
+}
+
+.nttLast-out{
+	width:35px;
+	height:26px;
+	border:0px;
+	color:#666666;
+	line-height:28px;
+	background:url(../images/nttL_out.png) no-repeat;
+	_background:none; 
+	_filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src="images/nttL_out.png" ,sizingMethod="crop"); 
 }
 
 .rollPage{

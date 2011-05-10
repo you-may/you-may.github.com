@@ -660,7 +660,6 @@ $.fn.roll = function(options) {
 	
 	if(options.listID != 'no'){
 		listItems = $(options.listID);
-		listItems.css({cursor:'pointer'}).find(options.listTab).css({cursor:'pointer'});
 	}
 	
 	$window.css({'position':'relative','overflow':'hidden'});
@@ -763,6 +762,26 @@ $.fn.roll = function(options) {
 			changeListClass(index);
 		});
 		
+		if(options.listFirstHoverCss != 'no' && options.listFirstOutCss != 'no')
+		{
+			listItems.find(options.listTab+":first").removeClass().addClass(options.listFirstHoverCss)
+			.hover(function(){
+				$(this).removeClass().addClass(options.listFirstHoverCss);
+			},function(){
+				changeListClass(index);
+			});
+		}
+		
+		if(options.listLastHoverCss != 'no' && options.listLastOutCss != 'no')
+		{
+			listItems.find(options.listTab+":last").removeClass().addClass(options.listLastOutCss)
+			.hover(function(){
+				$(this).removeClass().addClass(options.listLastHoverCss);
+			},function(){
+				changeListClass(index);
+			});
+		}
+		
 	}
 	
 	var ShowAD=function(i){
@@ -831,6 +850,24 @@ $.fn.roll = function(options) {
 					
 				});
 				
+				if(options.listFirstHoverCss != 'no' && options.listFirstOutCss != 'no')
+				{
+					if(i == 0){
+						listItems.find(options.listTab+":first").removeClass().addClass(options.listFirstHoverCss);
+					}else{
+						listItems.find(options.listTab+":first").removeClass().addClass(options.listFirstOutCss);
+					}
+				}
+				
+				if(options.listLastHoverCss != 'no' && options.listLastOutCss != 'no')
+				{
+					if(i == pagers-1){
+						listItems.find(options.listTab+":last").removeClass().addClass(options.listLastHoverCss);
+					}else{
+						listItems.find(options.listTab+":last").removeClass().addClass(options.listLastOutCss);
+					}
+				}
+				
 			});
 		}
 	}
@@ -867,7 +904,11 @@ $.fn.roll.defaults = {
 	nextOut: "no",
 	touchList: 'click',	// 页码触动方式 'hover' or 'click'
 	listHoverCss: 'no', // 鼠标悬停页码时的样式名称
-	listOutCss: 'no'	// 鼠标离开页码时的样式名
+	listOutCss: 'no',	// 鼠标离开页码时的样式名
+	listFirstHoverCss: 'no',
+	listFirstOutCss: 'no',
+	listLastHoverCss: 'no',
+	listLastOutCss: 'no'
 };
 $.fn.roll.setDefaults = function(settings) {
     $.extend($.fn.roll.defaults, settings);

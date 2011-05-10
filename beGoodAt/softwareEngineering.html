@@ -7,7 +7,11 @@
 <script type="text/javascript">
 	var params = { wmode:'transparent',flashvars: "",scale:'NoBorder' };
 	var attributes = { id:'intFlash', name:'intFlash' };
-	swfobject.embedSWF('images/practice.swf','intFlash',300,221,'9.0.115','',false, params, attributes);
+	swfobject.embedSWF('images/practice.swf','intFlash',240,240,'9.0.115','',false, params, attributes);
+	
+	$(function(){
+		$("#intFlash").css({marginLeft:20,marginTop:-26});
+	});
 </script>
 
 <style type="text/css">
