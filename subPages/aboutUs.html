@@ -10,12 +10,11 @@
 	swfobject.embedSWF('images/aboutUs.swf','aboutFlbg',900,344,'9.0.115','',false, params, attributes);
 	
 	$(function(){
-	
-		$(".auContainer").corner("5px");
-		
 		if($.browser.msie) {
-			$(".auCor").corner("cc:#ffffff 6px");
+			//$(".auCor").corner("cc:#ffffff 6px");
+			$(".auCor").addClass("subContainerBg");
 		}else{
+			$(".auContainer").corner("5px");
 			$(".auCor").corner("6px");
 		}
 
