@@ -89,6 +89,7 @@ body{
 
 .top{
 	height:90px;
+	z-index:99999;
 	position:relative;
 	background: url(../images/nav_bg.gif) repeat-x right top;
 }
@@ -155,6 +156,7 @@ p.pageTitle{
 	margin-top:23px;
 	font-family:Arial,"幼圆";
 	line-height:18px;
+	line-height:16px !important;
 }
 
 .navAbout{
@@ -513,6 +515,12 @@ p.pageTitle{
 	background:url(../images/frame.png) no-repeat;
 	_background:none; 
 	_filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src="images/frame.png" ,sizingMethod="crop"); 
+}
+
+.subContainerBigBg{
+	background:url(../images/frame_big.png) no-repeat;
+	_background:none; 
+	_filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src="images/frame_big.png" ,sizingMethod="crop"); 
 }
 
 
