@@ -155,8 +155,7 @@ p.pageTitle{
 	margin-left:26px;
 	margin-top:23px;
 	font-family:Arial,"幼圆";
-	line-height:18px;
-	line-height:16px !important;
+	line-height:16px;
 }
 
 .navAbout{
@@ -513,14 +512,10 @@ p.pageTitle{
 
 .subContainerBg{
 	background:url(../images/frame.png) no-repeat;
-	_background:none; 
-	_filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src="images/frame.png" ,sizingMethod="crop"); 
 }
 
 .subContainerBigBg{
 	background:url(../images/frame_big.png) no-repeat;
-	_background:none; 
-	_filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src="images/frame_big.png" ,sizingMethod="crop"); 
 }
 
 
@@ -530,6 +525,8 @@ p.pageTitle{
 	height:18px;
 	cursor:pointer;
 	background:url(../images/subPrev_out.png) no-repeat;
+	_background:none; 
+	_filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src="images/subPrev_out.png" ,sizingMethod="crop"); 
 }
 
 .subPrev-out{
@@ -538,6 +535,8 @@ p.pageTitle{
 	height:18px;
 	cursor:pointer;
 	background:url(../images/subPrev_hover.png) no-repeat;
+	_background:none; 
+	_filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src="images/subPrev_hover.png" ,sizingMethod="crop"); 
 }
 
 .subNext-hover{
@@ -546,6 +545,8 @@ p.pageTitle{
 	height:18px;
 	cursor:pointer;
 	background:url(../images/subNext_out.png) no-repeat;
+	_background:none; 
+	_filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src="images/subNext_out.png" ,sizingMethod="crop"); 
 }
 
 .subNext-out{
@@ -554,6 +555,8 @@ p.pageTitle{
 	height:18px;
 	cursor:pointer;
 	background:url(../images/subNext_hover.png) no-repeat;
+	_background:none; 
+	_filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src="images/subNext_hover.png" ,sizingMethod="crop"); 
 }
 
 .navList-out{
@@ -646,6 +649,7 @@ p.pageTitle{
 	width:24px;
 	height:24px;
 	line-height:26px;
+	_line-height:24px;
 }
 
 .nttNav-out{
@@ -655,6 +659,7 @@ p.pageTitle{
 	width:24px;
 	height:24px;
 	line-height:26px;
+	_line-height:24px;
 }
 
 .ntt .subPrev{

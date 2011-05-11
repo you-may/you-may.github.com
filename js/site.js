@@ -287,9 +287,7 @@ $(function(){ // 页面整体效果
 			w = $(window).width(); 
 			if(w < minW){w = minW;}
 			
-			if(isIE && firstLoad < 2){
-				duration = 0;
-			}else if(!isIE && firstLoad < 1){
+			if(firstLoad < 1){
 				duration = 0;
 			}else{
 				duration =1000;
@@ -549,7 +547,7 @@ $.fn.subPage = function(options) { //subPage --ajax --title
 				$face.show().css({width:$subContainer.width()-10,height:$subContainer.height()-10,opacity:1,background:"white"});
 				
 				$face.animate({opacity:0},1000,function(){
-						$(this).hide();
+						$face.hide();
 					});
 					
 				navigation();

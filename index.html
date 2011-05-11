@@ -19,6 +19,10 @@
 		$(".nav").navAnimate({
 			moveClass:"nav-move"
 		});
+		
+		if($.browser.msie) {
+			$(".nav a").css({lineHeight:"18px"});
+		}
 	});
 </script>
 
